@@ -5,6 +5,7 @@
 
 # Docker data volume
 data/
+ssh/
 
 # TLS certificates
 certs/
@@ -40,3 +41,6 @@ logs/
 # Build outputs
 dist/
 build/
+
+# Config file
+litellm_config.yaml

@@ -3,32 +3,26 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: openclaw:allinone
     container_name: openclaw
     restart: unless-stopped
     ports:
-      - "18789:18789"
+      # - "18789:18789"
       # SSH access (optional, enable with OPENCLAW_SSH_ENABLED=true)
-      # - "2222:22"
+      - "22222:22"
     volumes:
       - ./data:/home/node/.openclaw
-      # Custom TLS certificates (optional)
-      # - ./certs/cert.pem:/certs/cert.pem:ro
-      # - ./certs/key.pem:/certs/key.pem:ro
-      # SSH authorized keys file (optional)
-      # - ./authorized_keys:/ssh/authorized_keys:ro
-    env_file:
-      - .env
-    # Docker secrets (alternative to mounting files)
-    # secrets:
-    #   - tls_cert
-    #   - tls_key
-    #   - ssh_authorized_keys
-
-# secrets:
-#   tls_cert:
-#     file: ./certs/cert.pem
-#   tls_key:
-#     file: ./certs/key.pem
-#   ssh_authorized_keys:
-#     file: ./authorized_keys
+      - ./ssh:/home/node/.ssh
+      - ./litellm_config.yaml:/home/node/litellm/config.yaml
+    environment:
+      - OPENCLAW_SSH_ENABLED=true
+      - OPENCLAW_SSH_PORT=22
+      - OPENCLAW_CONFIG_PATH=/home/node/.openclaw/lea/openclaw.json
+    depends_on:
+      - litellm
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: litellm
+    restart: unless-stopped
+    volumes:
+      - ./litellm_config.yaml:/app/config.yaml
+    command: --config /app/config.yaml --port 4000 --num_workers 1
