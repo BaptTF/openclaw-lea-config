@@ -15,7 +15,6 @@ RUN npm install -g \
     server-perplexity-ask \
     @modelcontextprotocol/server-sequential-thinking \
     @zengwenliang/mcp-server-sequential-thinking \
-    @modelcontextprotocol/server-fetch \
     @modelcontextprotocol/server-filesystem \
     @modelcontextprotocol/server-memory \
     @upstash/context7-mcp \
@@ -25,7 +24,8 @@ RUN npm install -g \
 ENV UV_INSTALL_DIR="/usr/local/bin"
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     uv tool install osm-mcp-server --python-preference managed && \
-    uv tool install mcp-server-time --python-preference managed
+    uv tool install mcp-server-time --python-preference managed && \
+    uv tool install mcp-server-fetch --python-preference managed
 
 # Add supervisord config and entrypoint script
 COPY docker/supervisord.conf /etc/supervisor/conf.d/openclaw.conf
