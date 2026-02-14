@@ -6,8 +6,26 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     mkdir -p /run/sshd
 
-# Install OpenClaw globally from npm
+# Install OpenClaw and mcporter globally from npm
 RUN npm install -g openclaw@latest && npm install -g mcporter@latest
+
+# Pre-install MCP server packages (used by mcporter)
+RUN npm install -g \
+    @modelcontextprotocol/server-brave-search \
+    server-perplexity-ask \
+    @modelcontextprotocol/server-sequential-thinking \
+    @zengwenliang/mcp-server-sequential-thinking \
+    @modelcontextprotocol/server-fetch \
+    @modelcontextprotocol/server-filesystem \
+    @modelcontextprotocol/server-memory \
+    @upstash/context7-mcp \
+    open-meteo-mcp-server
+
+# Install uv (Python package manager) and Python-based MCP servers
+ENV UV_INSTALL_DIR="/usr/local/bin"
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
+    uv tool install osm-mcp-server --python-preference managed && \
+    uv tool install mcp-server-time --python-preference managed
 
 # Add supervisord config and entrypoint script
 COPY docker/supervisord.conf /etc/supervisor/conf.d/openclaw.conf

@@ -13,6 +13,8 @@ services:
       - ./data:/home/node/.openclaw
       - ./ssh:/home/node/.ssh
       - ./litellm_config.yaml:/home/node/litellm/config.yaml
+    env_file:
+      - .env
     environment:
       - OPENCLAW_SSH_ENABLED=true
       - OPENCLAW_SSH_PORT=22
