@@ -7,7 +7,7 @@ RUN apt-get update && \
     mkdir -p /run/sshd
 
 # Install OpenClaw globally from npm
-RUN npm install -g openclaw@latest
+RUN npm install -g openclaw@latest && npm install -g mcporter@latest
 
 # Add supervisord config and entrypoint script
 COPY docker/supervisord.conf /etc/supervisor/conf.d/openclaw.conf
