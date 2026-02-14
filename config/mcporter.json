@@ -1,0 +1,63 @@
+{
+  "mcpServers": {
+    "osm": {
+      "command": "osm-mcp-server",
+      "args": [],
+      "disabled": false
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      },
+      "disabled": false
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@zengwenliang/mcp-server-sequential-thinking"],
+      "disabled": false
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/node", "/tmp", "/usr/local/lib/node_modules/openclaw"],
+      "disabled": false
+    },
+    "weather": {
+      "command": "npx",
+      "args": ["-y", "open-meteo-mcp-server"],
+      "disabled": false
+    },
+    "time": {
+      "command": "mcp-server-time",
+      "args": [],
+      "disabled": false
+    },
+    "fetch": {
+      "command": "mcp-server-fetch",
+      "args": [],
+      "disabled": true
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "disabled": false
+    },
+    "perplexity-ask": {
+      "command": "npx",
+      "args": ["-y", "server-perplexity-ask"],
+      "env": {
+        "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}"
+      },
+      "disabled": false
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "disabled": true
+    },
+    "peek": {
+      "baseUrl": "https://mcp.peek.com"
+    }
+  }
+}
