@@ -2,7 +2,7 @@ FROM node:24
 
 # Install supervisor for process management and openssh-server for optional SSH access
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends supervisor openssh-server && \
+    apt-get install -y --no-install-recommends supervisor openssh-server && \    
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     mkdir -p /run/sshd
 
@@ -28,8 +28,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     uv tool install mcp-server-fetch --python-preference managed
 
 # Install Himalaya CLI (email client)
-RUN curl -sSL https://github.com/pimalaya/himalaya/releases/latest/download/himalaya.x86_64-unknown-linux-gnu.tar.gz | tar xz -C /usr/local/bin/ && \
-    chmod +x /usr/local/bin/himalaya
+RUN curl -sSL https://raw.githubusercontent.com/pimalaya/himalaya/master/install.sh | sh
 
 # Add supervisord config and entrypoint script
 COPY docker/supervisord.conf /etc/supervisor/conf.d/openclaw.conf
