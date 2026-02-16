@@ -27,6 +27,10 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     uv tool install mcp-server-time --python-preference managed && \
     uv tool install mcp-server-fetch --python-preference managed
 
+# Install Himalaya CLI (email client)
+RUN curl -sSL https://github.com/pimalaya/himalaya/releases/latest/download/himalaya.x86_64-unknown-linux-gnu.tar.gz | tar xz -C /usr/local/bin/ && \
+    chmod +x /usr/local/bin/himalaya
+
 # Add supervisord config and entrypoint script
 COPY docker/supervisord.conf /etc/supervisor/conf.d/openclaw.conf
 COPY docker/entrypoint.sh /entrypoint.sh
