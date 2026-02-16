@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ] # Se déclenche aussi sur les PR vers main
+    branches: [ "master" ] # Se déclenche aussi sur les PR vers master
 
 env:
   REGISTRY: ghcr.io
@@ -43,7 +43,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest,enable=${{ github.ref == 'format("refs/heads/{0}", "main")' }}
+            type=raw,value=latest,enable=${{ github.ref == 'format("refs/heads/{0}", "master")' }}
             type=sha,format=long
 
       - name: Build and push Docker image
@@ -52,7 +52,7 @@ jobs:
           context: .
           # C'est ici que la magie opère :
           # Si c'est une PR -> push: false (Juste un test de build)
-          # Si c'est Main -> push: true
+          # Si c'est master -> push: true
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -60,9 +60,9 @@ jobs:
           cache-to: type=gha,mode=max
 
   trigger-deploy:
-    # Ce job ne s'exécute que si le build est passé ET que nous sommes sur la branche main
+    # Ce job ne s'exécute que si le build est passé ET que nous sommes sur la branche master
     needs: build-and-push
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger VPS Webhook
