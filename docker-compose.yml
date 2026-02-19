@@ -1,8 +1,6 @@
 services:
   openclaw:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/bapttf/openclaw-lea-config:latest
     container_name: openclaw
     restart: unless-stopped
     ports:
