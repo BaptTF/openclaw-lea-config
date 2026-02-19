@@ -148,4 +148,11 @@ if [ ! -f "$CONFIG_FILE" ] && [ "${OPENCLAW_SKIP_ONBOARD:-false}" != "true" ]; t
   fi
 fi
 
+# Run user boot script if present (restores symlinks, config, etc.)
+BOOT_SCRIPT="$HOME/.openclaw/boot-setup.sh"
+if [ -x "$BOOT_SCRIPT" ]; then
+  echo "==> Running user boot script..."
+  runuser -u node -- "$BOOT_SCRIPT"
+fi
+
 exec "$@"
