@@ -11,6 +11,7 @@ services:
       - ./data:/home/node/.openclaw
       - ./ssh:/home/node/.ssh
       - ./litellm_config.yaml:/home/node/litellm/config.yaml
+      - ./config:/home/node/.config
     env_file:
       - .env
     environment:
