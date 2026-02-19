@@ -29,13 +29,15 @@ export HOME=/home/node
 CONFIG_FILE="$HOME/.openclaw/openclaw.json"
 mkdir -p "$HOME/.openclaw"
 
-# Fix ownership on data directory BEFORE setup so node user can write
+# Fix ownership on mounted volumes BEFORE setup so node user can write
 if [ "$(id -u)" = "0" ]; then
   chown -R node:node "$HOME/.openclaw" || {
     echo "Error: Could not set permissions on data directory." >&2
     echo "Run 'sudo chown -R 1000:1000 ./data' on the host." >&2
     exit 1
   }
+  # Also fix .config if mounted as volume (used by himalaya, etc.)
+  [ -d "$HOME/.config" ] && chown -R node:node "$HOME/.config"
 fi
 
 # Set defaults
