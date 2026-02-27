@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update openclaw version in Dockerfile",
+      "managerFilePatterns": ["/Dockerfile/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)\\nARG \\w+_VERSION=(?<currentValue>.+?)\\n"
+      ],
+      "versioningTemplate": "semver-coerced"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["openclaw"],
+      "automerge": false,
+      "labels": ["dependencies", "openclaw"]
+    }
+  ]
+}
