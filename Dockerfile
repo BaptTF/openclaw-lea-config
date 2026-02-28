@@ -14,7 +14,9 @@ RUN apt-get update && \
     mkdir -p /run/sshd
 
 # Install OpenClaw and mcporter globally from npm
-RUN npm install -g openclaw@latest && npm install -g mcporter@latest
+# renovate: datasource=npm depName=openclaw
+ARG OPENCLAW_VERSION=2026.2.25
+RUN npm install -g openclaw@${OPENCLAW_VERSION} && npm install -g mcporter@latest
 
 # Pre-install MCP server packages (used by mcporter)
 RUN npm install -g \
