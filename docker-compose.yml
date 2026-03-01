@@ -18,6 +18,10 @@ services:
       - OPENCLAW_SSH_ENABLED=true
       - OPENCLAW_SSH_PORT=22
       - OPENCLAW_CONFIG_PATH=/home/node/.openclaw/lea/openclaw.json
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
     depends_on:
       - litellm
   litellm:
