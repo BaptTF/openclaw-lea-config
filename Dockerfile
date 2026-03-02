@@ -49,6 +49,11 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     uv tool install mcp-server-time --python-preference managed && \
     uv tool install mcp-server-fetch --python-preference managed
 
+# Install Playwright Chromium + system dependencies for headless browser
+# Enables OpenClaw browser tool (web scraping, JS-rendered pages, automation)
+RUN npx playwright install --with-deps chromium && \
+    rm -rf /tmp/*
+
 # Copy Himalaya binary with OAuth2 support from builder stage
 COPY --from=himalaya-builder /usr/local/cargo/bin/himalaya /usr/local/bin/himalaya
 
