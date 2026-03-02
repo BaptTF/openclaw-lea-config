@@ -29,6 +29,13 @@ RUN npm install -g \
     @upstash/context7-mcp \
     open-meteo-mcp-server
 
+# Environment setup — set HOME before uv tool install so Python-based
+# MCP servers install into /home/node/.local/bin (survives container rebuild
+# when /home/node is a mounted volume)
+ENV NODE_ENV=production
+ENV HOME=/home/node
+ENV TERM=xterm-256color
+
 # Install uv (Python package manager) and Python-based MCP servers
 ENV UV_INSTALL_DIR="/usr/local/bin"
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
@@ -44,11 +51,6 @@ COPY docker/supervisord.conf /etc/supervisor/conf.d/openclaw.conf
 COPY docker/entrypoint.sh /entrypoint.sh
 COPY docker/patch-config.js /patch-config.js
 RUN chmod +x /entrypoint.sh
-
-# Environment setup
-ENV NODE_ENV=production
-ENV HOME=/home/node
-ENV TERM=xterm-256color
 
 # Create data directory for OpenClaw config and generated certs
 RUN mkdir -p /home/node/.openclaw && \
