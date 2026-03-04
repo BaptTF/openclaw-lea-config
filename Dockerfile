@@ -52,6 +52,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
 # Install Playwright Chromium + system dependencies for headless browser
 # Enables OpenClaw browser tool (web scraping, JS-rendered pages, automation)
 RUN npx playwright install --with-deps chromium && \
+    ln -s $(find /root/.cache/ms-playwright -name chrome -type f | head -1) /usr/bin/chromium && \
     rm -rf /tmp/*
 
 # Copy Himalaya binary with OAuth2 support from builder stage
