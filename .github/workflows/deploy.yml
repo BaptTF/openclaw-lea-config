@@ -31,7 +31,7 @@ jobs:
         # On ne se log que si ce n'est PAS une PR, ou si on veut vérifier les accès
         # Mais pour push: false, le login n'est pas strictement obligatoire, mais conseillé.
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
