@@ -25,7 +25,7 @@ jobs:
 
       # Configuration de Docker Buildx (meilleur cache et perfs)
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Log in to the Container registry
         # On ne se log que si ce n'est PAS une PR, ou si on veut vérifier les accès
