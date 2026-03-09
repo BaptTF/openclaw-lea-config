@@ -41,6 +41,7 @@ RUN npm install -g \
 ENV NODE_ENV=production
 ENV HOME=/home/node
 ENV TERM=xterm-256color
+ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
 
 # Install uv (Python package manager) and Python-based MCP servers
 ENV UV_INSTALL_DIR="/usr/local/bin"
