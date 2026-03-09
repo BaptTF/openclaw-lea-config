@@ -22,6 +22,7 @@ services:
       - litellm
       - openvpn
   openvpn:
+    image: ghcr.io/bapttf/openclaw-lea-config/openvpn:latest
     build: docker/openvpn
     container_name: openvpn
     restart: unless-stopped

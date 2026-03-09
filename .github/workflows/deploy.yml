@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-    branches: [ "master" ] # Se déclenche aussi sur les PR vers master
+    branches: [ "master" ]
 
 env:
   REGISTRY: ghcr.io
@@ -16,20 +16,16 @@ jobs:
     permissions:
       contents: read
       packages: write
-      # Requis pour écrire des commentaires sur la PR si besoin (optionnel)
       pull-requests: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      # Configuration de Docker Buildx (meilleur cache et perfs)
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
 
       - name: Log in to the Container registry
-        # On ne se log que si ce n'est PAS une PR, ou si on veut vérifier les accès
-        # Mais pour push: false, le login n'est pas strictement obligatoire, mais conseillé.
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v4
         with:
@@ -37,7 +33,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels)
+      # --- Main OpenClaw image ---
+      - name: Extract metadata (main image)
         id: meta
         uses: docker/metadata-action@v6
         with:
@@ -46,21 +43,37 @@ jobs:
             type=raw,value=latest
             type=sha,format=long
 
-      - name: Build and push Docker image
+      - name: Build and push main image
         uses: docker/build-push-action@v7
         with:
           context: .
-          # C'est ici que la magie opère :
-          # Si c'est une PR -> push: false (Juste un test de build)
-          # Si c'est master -> push: true
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha # Utilise le cache de GitHub Actions pour aller plus vite
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=main
+          cache-to: type=gha,mode=max,scope=main
+
+      # --- OpenVPN sidecar image ---
+      - name: Extract metadata (openvpn)
+        id: meta-openvpn
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/openvpn
+          tags: |
+            type=raw,value=latest
+            type=sha,format=long
+
+      - name: Build and push openvpn image
+        uses: docker/build-push-action@v7
+        with:
+          context: ./docker/openvpn
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta-openvpn.outputs.tags }}
+          labels: ${{ steps.meta-openvpn.outputs.labels }}
+          cache-from: type=gha,scope=openvpn
+          cache-to: type=gha,mode=max,scope=openvpn
 
   trigger-deploy:
-    # Ce job ne s'exécute que si le build est passé ET que nous sommes sur la branche master
     needs: build-and-push
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest

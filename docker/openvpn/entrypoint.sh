@@ -12,14 +12,14 @@ echo "Starting OpenVPN with $CONFIG ..."
 
 # Copy config to writable location and fix auth-user-pass path
 cp "$CONFIG" /tmp/vpn.conf
-sed -i 's|auth-user-pass .*|auth-user-pass /vpn/auth.txt|' /tmp/vpn.conf
+if [ -f /vpn/auth.txt ]; then
+    sed -i 's|auth-user-pass.*|auth-user-pass /vpn/auth.txt|' /tmp/vpn.conf
+    # Ensure auth-user-pass directive exists
+    grep -q 'auth-user-pass' /tmp/vpn.conf || echo "auth-user-pass /vpn/auth.txt" >> /tmp/vpn.conf
+fi
 
 # Start OpenVPN in background
-if [ -f /vpn/auth.txt ]; then
-    openvpn --config /tmp/vpn.conf --daemon --log /tmp/openvpn.log
-else
-    openvpn --config /tmp/vpn.conf --daemon --log /tmp/openvpn.log
-fi
+openvpn --config /tmp/vpn.conf --daemon --log /tmp/openvpn.log
 
 # Wait for tun0 to come up
 echo "Waiting for tun0 ..."
@@ -38,6 +38,15 @@ if ! ip addr show tun0 >/dev/null 2>&1; then
     exit 1
 fi
 
-# Start SOCKS5 proxy bound to tun0 interface, listening on all interfaces
-echo "Starting SOCKS5 proxy on 0.0.0.0:1080 (outbound via $TUN_IP) ..."
-exec microsocks -i 0.0.0.0 -p 1080 -b "$TUN_IP"
+# Generate tinyproxy config — bind outgoing traffic to VPN tunnel IP
+cat > /tmp/tinyproxy.conf <<EOF
+Port 8888
+Listen 0.0.0.0
+Bind ${TUN_IP}
+Timeout 600
+MaxClients 50
+Allow 0.0.0.0/0
+EOF
+
+echo "Starting HTTP proxy on 0.0.0.0:8888 (outbound via $TUN_IP) ..."
+exec tinyproxy -d -c /tmp/tinyproxy.conf
