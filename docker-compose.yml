@@ -20,6 +20,18 @@ services:
       - OPENCLAW_CONFIG_PATH=/home/node/.openclaw/lea/openclaw.json
     depends_on:
       - litellm
+      - openvpn
+  openvpn:
+    image: ghcr.io/bapttf/openclaw-lea-config/openvpn:latest
+    build: docker/openvpn
+    container_name: openvpn
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      - ./config/openvpn:/vpn:ro
   litellm:
     image: ghcr.io/berriai/litellm:main-latest
     container_name: litellm
