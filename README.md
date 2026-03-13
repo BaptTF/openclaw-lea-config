@@ -26,6 +26,48 @@ docker compose up -d --build
 # With token: https://localhost:18789/?token=YOUR_TOKEN
 ```
 
+## Memory Search (Embeddings)
+
+OpenClaw supports semantic memory search over `MEMORY.md` and `memory/*.md` files. To enable it, you need an embedding model accessible via LiteLLM.
+
+**Setup with Amazon Titan Embed V2 (Bedrock):**
+
+1. Add the embedding model to `litellm_config.yaml` (see `litellm_config.example.yaml`):
+   ```yaml
+   - model_name: titan-embed-v2
+     litellm_params:
+       model: bedrock/amazon.titan-embed-text-v2:0
+       aws_region_name: us-west-2
+       aws_access_key_id: YOUR_AWS_ACCESS_KEY
+       aws_secret_access_key: YOUR_AWS_SECRET_KEY
+   ```
+
+2. Configure OpenClaw's `openclaw.json` to use the embedding model:
+   ```json
+   {
+     "memory": { "backend": "builtin" },
+     "agents": {
+       "defaults": {
+         "memorySearch": {
+           "provider": "openai",
+           "model": "titan-embed-v2",
+           "remote": {
+             "baseUrl": "http://litellm:4000/v1/",
+             "apiKey": "sk-your-litellm-key"
+           }
+         }
+       }
+     }
+   }
+   ```
+
+3. Restart both containers:
+   ```bash
+   docker compose restart litellm openclaw
+   ```
+
+**Cost:** Amazon Titan Embed V2 costs ~$0.00011 per 1K tokens — virtually free for personal memory (~$0.01/month).
+
 ## Data Persistence
 
 OpenClaw stores all configuration and state in `/home/node/.openclaw` inside the container. **This directory must be mounted as a volume to prevent data loss** when the container is recreated.
