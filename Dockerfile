@@ -67,7 +67,13 @@ RUN uv python install 3.12 && \
     cd /opt/ace && \
     uv venv --python 3.12 .venv && \
     uv pip install -e ".[mcp]" && \
+    uv pip install instructor boto3 && \
     chown -R node:node /opt/ace
+
+# Patch learn_from_traces.py: use InstructorClient (MD_JSON) for reliable
+# structured output through LiteLLM proxies, and respect ACE_MAX_TOKENS.
+COPY docker/ace-patch-learn.py /tmp/ace-patch-learn.py
+RUN cd /opt/ace && .venv/bin/python /tmp/ace-patch-learn.py && rm /tmp/ace-patch-learn.py
 
 # ace-learn wrapper — learns from OpenClaw session transcripts
 COPY docker/ace-learn.sh /usr/local/bin/ace-learn
