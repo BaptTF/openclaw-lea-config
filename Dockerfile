@@ -56,6 +56,30 @@ RUN npx playwright install --with-deps chromium && \
     ln -s $(find /root/.cache/ms-playwright -name chrome -type f | head -1) /usr/bin/chromium && \
     rm -rf /tmp/*
 
+# ---------------------------------------------------------------------------
+# ACE Framework — self-improving agent (learns from past sessions)
+# Installs Python 3.12 (required by ace-framework) into a shared location
+# and clones the Agentic Context Engine with OpenClaw integration.
+# ---------------------------------------------------------------------------
+ENV UV_PYTHON_INSTALL_DIR=/opt/python
+RUN uv python install 3.12 && \
+    git clone --depth 1 --no-recurse-submodules \
+      https://github.com/kayba-ai/agentic-context-engine.git /opt/ace && \
+    cd /opt/ace && \
+    uv venv --python 3.12 .venv && \
+    uv pip install -e ".[mcp]" && \
+    uv pip install instructor boto3 && \
+    chown -R node:node /opt/ace
+
+# Patch learn_from_traces.py: use InstructorClient (MD_JSON) for reliable
+# structured output through LiteLLM proxies, and respect ACE_MAX_TOKENS.
+COPY docker/ace-patch-learn.py /tmp/ace-patch-learn.py
+RUN cd /opt/ace && .venv/bin/python /tmp/ace-patch-learn.py && rm /tmp/ace-patch-learn.py
+
+# ace-learn wrapper — learns from OpenClaw session transcripts
+COPY docker/ace-learn.sh /usr/local/bin/ace-learn
+RUN chmod +x /usr/local/bin/ace-learn
+
 # Copy Himalaya binary with OAuth2 support from builder stage
 COPY --from=himalaya-builder /usr/local/cargo/bin/himalaya /usr/local/bin/himalaya
 
