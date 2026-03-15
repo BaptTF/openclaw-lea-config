@@ -30,7 +30,7 @@ input{font:inherit;border:none;outline:none}
 #auth .err{color:var(--accent);font-size:.85em;min-height:22px}
 
 /* NAV */
-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:var(--card);display:flex;z-index:100;border-top:1px solid rgba(255,255,255,.06);padding-bottom:env(safe-area-inset-bottom)}
+nav{position:fixed;bottom:0;left:0;right:0;height:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));background:var(--card);display:flex;z-index:100;border-top:1px solid rgba(255,255,255,.06);padding-bottom:env(safe-area-inset-bottom)}
 nav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:.65em;color:var(--muted);transition:.15s}
 nav button.active{color:var(--accent)}
 nav button .ico{font-size:1.6rem}
@@ -94,7 +94,7 @@ h2.section-title{font-size:1.15em;margin:18px 0 10px;padding-left:4px}
 .culture-section p{margin-bottom:8px;color:var(--muted)}
 
 /* QUIZ TAB — Full-screen one-question-at-a-time UX */
-#tabQuiz{padding:0!important;display:none;flex-direction:column;height:calc(100dvh - var(--nav-h));overflow:hidden}
+#tabQuiz{padding:0!important;display:none;flex-direction:column;height:calc(100dvh - var(--nav-h) - env(safe-area-inset-bottom,0px));overflow:hidden}
 #tabQuiz.active{display:flex!important}
 
 /* Quiz top bar */
@@ -235,7 +235,7 @@ h2.section-title{font-size:1.15em;margin:18px 0 10px;padding-left:4px}
       <em>À lire dans l'avion pour comprendre ce qu'on va voir ✈️</em><br>
       <span style="color:var(--sec);font-weight:600">Ceux qui le lisent auront un avantage au quiz 😏</span>
     </p>
-    <a href="travel-guide.pdf" target="_blank" rel="noopener" style="display:inline-block;background:var(--accent);color:#fff;padding:12px 28px;border-radius:12px;font-weight:700;font-size:.95em;text-decoration:none;transition:.2s">📖 Ouvrir le Carnet Culturel</a>
+    <a href="travel-guide.pdf" style="display:inline-block;background:var(--accent);color:#fff;padding:12px 28px;border-radius:12px;font-weight:700;font-size:.95em;text-decoration:none;transition:.2s">📖 Ouvrir le Carnet Culturel</a>
     <div style="color:var(--muted);font-size:.7em;margin-top:8px">PDF · ~30 pages A4 · Fonctionne hors-ligne</div>
   </div>
 
@@ -296,7 +296,14 @@ pinInput.addEventListener('input', async function() {
     d.className = 'pin-dot' + (i===v.length ? ' active' : '') + (v[i] ? ' filled' : '');
   }
   if(v.length>=4){
-    const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)))).map(b=>b.toString(16).padStart(2,'0')).join('');
+    let hash;
+    if(crypto.subtle){
+      hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)))).map(b=>b.toString(16).padStart(2,'0')).join('');
+    } else {
+      // Fallback for insecure contexts (HTTP) — simple hash, not cryptographic
+      let h=0;for(let c=0;c<v.length;c++){h=((h<<5)-h)+v.charCodeAt(c);h|=0;}
+      hash=String(h);
+    }
     if(hash===PIN_ADMIN){isAdmin=true;sessionStorage.setItem('auth','admin');unlock();}
     else if(hash===PIN_VISITOR){isAdmin=false;sessionStorage.setItem('auth','visitor');unlock();}
     else{pinErr.textContent='Code incorrect 🙃';this.value='';for(let i=0;i<4;i++){const d=document.getElementById('d'+i);d.textContent='';d.className='pin-dot';}}
@@ -624,10 +631,11 @@ let quizAnswered = {};   // {d1q0: chosenIdx, ...}
 let quizStreaks = {};    // {playerName: currentStreakCount}
 
 function loadQuiz() {
+  let loaded = false;
   fetch('questions.json').then(r=>r.ok?r.json():null).then(data=>{
-    if(data){QUIZ_DATA=data;setupQuiz();}
-  }).catch(()=>{ QUIZ_DATA=null; });
-  setTimeout(()=>{ if(!QUIZ_DATA) quizFallback(); },1200);
+    if(data){loaded=true;QUIZ_DATA=data;setupQuiz();}
+    else quizFallback();
+  }).catch(()=>{ QUIZ_DATA=null; if(!loaded) quizFallback(); });
 }
 
 function setupQuiz(){
