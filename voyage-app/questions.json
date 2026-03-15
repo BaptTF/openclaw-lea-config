@@ -1,0 +1,1235 @@
+{
+  "meta": {
+    "trip": "2026-usa-google-next",
+    "generated": "2026-03-15",
+    "total_days": 14,
+    "questions_per_day": 10,
+    "scoring": {
+      "easy": 1,
+      "medium": 2,
+      "expert": 3,
+      "wtaf": 5,
+      "cinema": 2
+    }
+  },
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-04-17",
+      "label": "Arrivée Las Vegas → Chloride (Ghost Town Route 66)",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Dans un de nos teasers, on vous a parlé d'un problème qu'on a évité pour la première nuit. Pourquoi on a abandonné Kingman, la ville-étape classique de la Route 66 ?",
+          "options": ["Pas de resto ouvert le soir", "100 trains par jour passent à côté — un klaxon toutes les 15 min", "Des travaux bloquaient l'autoroute", "L'hôtel avait des cafards dans les avis"],
+          "correct": 1,
+          "explanation": "La ligne BNSF Los Angeles-Chicago passe en plein Kingman : plus de 100 trains de marchandises par jour, avec klaxon obligatoire à chaque passage à niveau. C'est documenté sur kingmanarizonatrains.com. On a choisi Chloride à 25 km — silence garanti et 80€ d'économie !",
+          "link": "📍 On y est ce soir — et on va très bien dormir, promis"
+        },
+        {
+          "level": "easy",
+          "text": "Combien de kilomètres va faire notre road trip au total ? On vous l'a dit dans le tout premier teaser...",
+          "options": ["1 850 km", "2 524 km", "3 100 km", "3 940 km"],
+          "correct": 1,
+          "explanation": "2 524 km à travers 4 États (Nevada, Arizona, Utah, Colorado). Les 3 940 km, c'est la longueur totale de la Route 66 de Chicago à LA — on n'en fait qu'un petit bout !",
+          "link": "📍 Premier tronçon ce soir : 141 km Las Vegas → Chloride"
+        },
+        {
+          "level": "easy",
+          "text": "La Route 66 a été inaugurée en quelle année ?",
+          "options": ["1912", "1926", "1938", "1953"],
+          "correct": 1,
+          "explanation": "Le 11 novembre 1926. Elle reliait Chicago à Santa Monica sur 3 940 km à travers 8 États. Bobby Troup l'a chantée en 1946 : 'Get your kicks on Route 66'. Déclassée en 1985.",
+          "link": "📍 Demain matin, on roule sur un tronçon d'origine entre Chloride et Kingman"
+        },
+        {
+          "level": "easy",
+          "text": "Dans les années 30, 400 000 familles ont fui sur la Route 66. Quel désastre naturel les a poussées à tout quitter ?",
+          "options": ["Un tremblement de terre en Californie", "Le Dust Bowl — des tempêtes de poussière apocalyptiques", "Des inondations du Mississippi", "Une épidémie de peste dans le Midwest"],
+          "correct": 1,
+          "explanation": "Le Dust Bowl (1930-1940) : des tempêtes de poussière noire qui obscurcissaient le ciel en plein jour, détruisant les fermes de l'Oklahoma, du Kansas et du Texas. Steinbeck a immortalisé ces 'Okies' dans Les Raisins de la Colère, baptisant la 66 'Mother Road'.",
+          "link": "📍 Demain matin au Mr. D'z Route 66 Diner à Kingman, on sera pile sur cette route mythique"
+        },
+        {
+          "level": "medium",
+          "text": "Notre ghost town de ce soir, Chloride, est née grâce à une ruée vers un métal précieux. Lequel ?",
+          "options": ["L'or", "L'argent (chlorure d'argent)", "Le cuivre", "Le plomb"],
+          "correct": 1,
+          "explanation": "C'est du chlorure d'argent trouvé dans les Cerbat Mountains en 1863 qui a donné son nom et sa raison d'être à Chloride. À l'apogée : 75 mines, 5 000 habitants, 3ème ville d'Arizona. Le crash de l'argent de 1893 a tout tué en un an.",
+          "link": "📍 On dort dans la plus vieille ville minière d'Arizona encore habitée — 300 âmes ce soir"
+        },
+        {
+          "level": "medium",
+          "text": "Tennessee Schuerman, une habitante de Chloride dans les années 1890, avait un CV impressionnant. Combien de concessions minières possédait-elle ?",
+          "options": ["3", "9", "17", "42"],
+          "correct": 2,
+          "explanation": "Tennessee Schuerman possédait 17 concessions minières, tenait un saloon et avait survécu à une attaque de diligence. Une pionnière hors norme dans le Far West de la fin du 19ème siècle !",
+          "link": "📍 On marche ce soir dans les rues qu'elle arpentait il y a 130 ans"
+        },
+        {
+          "level": "expert",
+          "text": "L'artiste Roy Purcell a peint des fresques psychédéliques monumentales sur les rochers de Chloride dans les années 60. Qu'a-t-il utilisé pour rendre sa peinture durable ?",
+          "options": ["De la résine de pin du désert", "De l'urine animale mélangée à la peinture", "Du vernis de voiture récupéré", "De la cire d'abeille fondue"],
+          "correct": 1,
+          "explanation": "Oui, vous avez bien lu ! Roy Purcell mélangeait de l'urine animale à sa peinture maison pour la durabilité. Il appelait ses fresques des 'portails interdimensionnels'. Elles sont toujours là, 60 ans plus tard — la technique fonctionne !",
+          "link": "📍 Les fresques sont à la sortie du village — on pourrait y jeter un œil demain matin"
+        },
+        {
+          "level": "expert",
+          "text": "Pourquoi les roches de tout l'Ouest américain qu'on va traverser pendant 15 jours sont-elles rouges ?",
+          "options": ["Des pigments de plantes fossilisées", "De l'oxyde de fer sur chaque grain de sable — c'est de la rouille", "Du magma refroidi riche en soufre", "Des bactéries qui colorent la surface"],
+          "correct": 1,
+          "explanation": "Chaque grain de sable est un quartz recouvert d'une fine couche d'hématite — de l'oxyde de fer, donc littéralement de la rouille microscopique. On va marcher pendant 15 jours sur un désert qui rouille depuis 190 millions d'années !",
+          "link": "📍 Regardez le sol ce soir à Chloride — c'est de la rouille sous vos pieds"
+        },
+        {
+          "level": "wtaf",
+          "text": "Chloride est dans le comté de Mohave, en Arizona. L'Arizona a une particularité unique parmi les États continentaux des USA. Laquelle ?",
+          "options": ["C'est le seul État sans rivière navigable", "C'est le seul État continental qui refuse l'heure d'été", "C'est le seul État où les cactus sont protégés par la loi", "C'est le seul État où il est illégal de chasser le chameau"],
+          "correct": 1,
+          "explanation": "L'Arizona refuse le changement d'heure d'été (DST) depuis 1968. Le gouverneur a dit non : à 45°C en été, personne ne veut plus de soleil ! Mais la Nation Navajo en Arizona l'observe quand même. Résultat absurde : on peut changer d'heure 4 FOIS en 120 km d'autoroute en Arizona !",
+          "link": "📍 Bonne nouvelle : en avril, Nevada et Arizona sont à la même heure. Mais attention en entrant en Utah au J8 !"
+        },
+        {
+          "level": "cinema",
+          "text": "Kingman, où on s'arrête demain matin pour le petit-déj, est sur la Route 66. Quel roman de John Steinbeck a rendu cette route mythique en la baptisant 'Mother Road' ?",
+          "options": ["À l'Est d'Eden", "Les Raisins de la Colère", "Des Souris et des Hommes", "En un combat douteux"],
+          "correct": 1,
+          "explanation": "Les Raisins de la Colère (1939) raconte l'exode des familles d'Oklahoma fuyant le Dust Bowl sur la Route 66. Steinbeck a baptisé la route 'Mother Road' — la route mère. Prix Pulitzer 1940, film de John Ford la même année.",
+          "link": "📍 Demain au Mr. D'z Diner, on sera sur cette même route que les Okies ont empruntée dans les années 30"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-04-18",
+      "label": "Chloride → Grand Canyon South Rim",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "On vous a teasé un chiffre impressionnant : combien de temps le Colorado a-t-il mis pour creuser le Grand Canyon ?",
+          "options": ["500 000 ans", "2 millions d'années", "5 à 6 millions d'années", "20 millions d'années"],
+          "correct": 2,
+          "explanation": "Le Colorado a mis 5 à 6 millions d'années pour creuser 1,6 km de profondeur. Ça semble énorme, mais à l'échelle géologique c'est un clin d'œil — les roches du fond ont 1,84 milliard d'années !",
+          "link": "📍 On sera au bord dans quelques heures — 1,6 km de profondeur sous nos pieds"
+        },
+        {
+          "level": "easy",
+          "text": "Combien de parcs nationaux va-t-on visiter pendant ce road trip ? On vous l'a dit dans un teaser...",
+          "options": ["3", "4", "5", "7"],
+          "correct": 2,
+          "explanation": "5 parcs nationaux : Grand Canyon, Zion, Bryce Canyon, Capitol Reef et Arches. Et en bonus, plusieurs State Parks (Valley of Fire, Dead Horse Point, Coral Pink Sand Dunes) !",
+          "link": "📍 Le premier des cinq commence maintenant — et pas le moindre"
+        },
+        {
+          "level": "easy",
+          "text": "À quelle profondeur se trouve le Colorado quand on regarde depuis le bord du Grand Canyon ?",
+          "options": ["400 mètres", "800 mètres", "1 200 mètres", "1 600 mètres"],
+          "correct": 3,
+          "explanation": "1 600 mètres — soit l'équivalent de 5 Tour Eiffel empilées ! Le canyon expose 40 couches de roches : en descendant, on remonte littéralement le temps.",
+          "link": "📍 On va regarder 1,6 km de vide cet après-midi depuis Mather Point"
+        },
+        {
+          "level": "easy",
+          "text": "Combien coûte le pass 'America the Beautiful' qui donne accès à TOUS les parcs nationaux pendant 12 mois ?",
+          "options": ["35 dollars", "55 dollars", "80 dollars", "120 dollars"],
+          "correct": 2,
+          "explanation": "80 dollars par véhicule pour 12 mois d'accès illimité à tous les parcs nationaux. On l'achète aujourd'hui au Grand Canyon et il servira pour Zion, Bryce, Capitol Reef et Arches. Le deal du siècle !",
+          "link": "📍 On l'achète à l'entrée du parc dans quelques heures"
+        },
+        {
+          "level": "medium",
+          "text": "Les géologues ont un nom pour le plus grand mystère du Grand Canyon : entre les roches du fond et celles du dessus, il manque 1,2 milliard d'années de strates. Comment s'appelle ce phénomène ?",
+          "options": ["La Faille de Vishnu", "La Great Unconformity", "Le Colorado Gap", "L'Intervalle de Powell"],
+          "correct": 1,
+          "explanation": "La 'Great Unconformity' — le plus grand trou de mémoire de la Terre ! C'est comme si on arrachait 1 200 pages au milieu d'un livre. Personne ne sait exactement ce qui s'est passé pendant ce milliard d'années manquant.",
+          "link": "📍 En regardant les couches de roche cet après-midi, le trou est visible — une ligne nette entre deux mondes"
+        },
+        {
+          "level": "medium",
+          "text": "Ce soir, on dîne au El Tovar, le restaurant historique du Grand Canyon. Depuis quelle année est-il ouvert ?",
+          "options": ["1883", "1905", "1922", "1948"],
+          "correct": 1,
+          "explanation": "Depuis 1905 ! C'était le premier hôtel de luxe à l'ouest du Mississippi. Theodore Roosevelt y a séjourné. 121 ans d'histoire, et on y dîne ce soir avec vue directe sur le canyon.",
+          "link": "📍 Réservation à 19h30 — préparez-vous pour un dîner face au vide"
+        },
+        {
+          "level": "expert",
+          "text": "En 1869, un explorateur borgne et manchot a descendu le Colorado en bateau pour la première fois. Qui était-ce ?",
+          "options": ["Kit Carson", "John Wesley Powell", "Theodore Roosevelt", "Clarence Dutton"],
+          "correct": 1,
+          "explanation": "John Wesley Powell — borgne, avec un seul bras (perdu à la bataille de Shiloh pendant la Guerre de Sécession). Il a mis 3 mois pour descendre le Colorado et découvrir les roches noires du Vishnu Schist au fond du canyon. Un sacré bonhomme !",
+          "link": "📍 Les roches qu'il a découvertes au fond du canyon sont visibles depuis certains viewpoints — 1,84 milliard d'années sous nos yeux"
+        },
+        {
+          "level": "expert",
+          "text": "On a trouvé des cristaux dans le Grand Canyon qui sont quasi aussi vieux que la Terre elle-même. Quel âge ont ces cristaux de zircon ?",
+          "options": ["1,8 milliard d'années", "2,5 milliards d'années", "3,6 milliards d'années", "4,4 milliards d'années"],
+          "correct": 3,
+          "explanation": "4,4 milliards d'années ! La Terre a environ 4,5 milliards d'années. Ces cristaux de zircon dans le Vishnu Schist sont presque aussi vieux que la planète elle-même. Le Grand Canyon est littéralement un livre ouvert sur l'histoire de la Terre.",
+          "link": "📍 Ces cristaux sont là, au fond, 1 600 m sous l'endroit où on se tient"
+        },
+        {
+          "level": "wtaf",
+          "text": "Le Colorado traverse 7 États et alimente 40 millions de personnes. Mais depuis 1998, il a un problème majeur. Lequel ?",
+          "options": ["Il est pollué au mercure sur 80% de son cours", "Il n'atteint plus l'océan — il meurt dans le sable à 150 km de la mer", "Il a changé de couleur à cause des algues invasives", "Il a inversé son cours à cause d'un séisme"],
+          "correct": 1,
+          "explanation": "Depuis 1998, le Colorado n'atteint plus le Golfe de Californie. Toute son eau est pompée avant ! 7 États US + le Mexique se partagent chaque goutte. Le fleuve qui a creusé le Grand Canyon pendant 6 millions d'années meurt aujourd'hui dans le sable du désert mexicain.",
+          "link": "📍 On va le voir 3 fois pendant le voyage : ici (1 600 m en contrebas), à Horseshoe Bend (305 m) et à Dead Horse Point (600 m). De plus en plus faible à chaque rencontre."
+        },
+        {
+          "level": "cinema",
+          "text": "Dead Horse Point (qu'on verra au J12) a servi de décor pour la scène finale d'un film culte... même si dans le film on dit 'Grand Canyon'. Quel film ?",
+          "options": ["Indiana Jones 3", "Thelma & Louise", "127 Hours", "Fear and Loathing in Las Vegas"],
+          "correct": 1,
+          "explanation": "Thelma & Louise (1991) avec Susan Sarandon et Geena Davis ! La scène finale mythique où elles foncent dans le vide a été tournée à Dead Horse Point près de Moab, pas au Grand Canyon. On sera EXACTEMENT au bord du même précipice au Jour 12.",
+          "link": "📍 Patience — on verra ce précipice dans 10 jours à Dead Horse Point !"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-04-19",
+      "label": "Grand Canyon → Page + Horseshoe Bend",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Horseshoe Bend, qu'on va voir ce soir au coucher du soleil, c'est un méandre du Colorado. À quelle hauteur se trouve le point de vue au-dessus de la rivière ?",
+          "options": ["100 mètres", "200 mètres", "305 mètres", "500 mètres"],
+          "correct": 2,
+          "explanation": "305 mètres de chute libre ! Le méandre fait un virage de 270° et mesure 540 m de large. Et il n'y a pas de barrière au bord... accrochez-vous (mentalement) !",
+          "link": "📍 On y sera ce soir vers 17h45 pour le coucher de soleil — appareil photo obligatoire"
+        },
+        {
+          "level": "easy",
+          "text": "On vous a parlé d'un fleuve qui nous suit tout le voyage. Combien de personnes dépendent du Colorado ?",
+          "options": ["10 millions", "25 millions", "40 millions", "65 millions"],
+          "correct": 2,
+          "explanation": "40 millions de personnes et 2,3 millions d'hectares de terres agricoles. Et il a été 'sur-alloué' dès le départ en 1922 — le fleuve n'a jamais eu autant d'eau que les papiers le disent !",
+          "link": "📍 On le retrouve cet après-midi à Horseshoe Bend — 305 m plus bas"
+        },
+        {
+          "level": "easy",
+          "text": "Horseshoe Bend était quasi inconnu jusqu'en 2012. Qu'est-ce qui l'a rendu mondialement célèbre ?",
+          "options": ["Un documentaire Netflix", "Une photo virale sur Instagram", "Un accident d'avion spectaculaire", "Un film de James Cameron"],
+          "correct": 1,
+          "explanation": "Avant 2012 : ni panneau, ni parking, ni sentier. Juste un coin de locaux. Puis une photo Instagram est devenue virale. Résultat : de 100 000 visiteurs en 2015 à plus de 2 millions en 2023 ! Page a dû construire un parking de 500 places. Le canyon, lui, n'a pas changé d'un millimètre.",
+          "link": "📍 On fait partie des 2 millions ce soir — et ça vaut le détour"
+        },
+        {
+          "level": "easy",
+          "text": "En combien de temps faut-il marcher pour rejoindre Horseshoe Bend depuis le parking ?",
+          "options": ["5 minutes", "20-30 minutes", "1 heure", "2 heures"],
+          "correct": 1,
+          "explanation": "1,2 km de sentier pavé, soit 20-30 minutes de marche. Plus un droit d'entrée de 10$ par véhicule. Avant 2012 il n'y avait rien de tout ça — la rançon du succès Instagram !",
+          "link": "📍 On part du parking vers 17h15 — arrivée au bord pour la golden hour"
+        },
+        {
+          "level": "medium",
+          "text": "Horseshoe Bend est un 'méandre encaissé'. Le Colorado s'est enfoncé dans le grès Navajo. Quel âge a ce grès ?",
+          "options": ["50 millions d'années", "100 millions d'années", "190 millions d'années", "500 millions d'années"],
+          "correct": 2,
+          "explanation": "Le grès Navajo a 190 millions d'années — c'est du sable de dunes fossilisé de l'ère des dinosaures. À l'époque, un méga-désert plus grand que le Sahara actuel recouvrait tout l'Ouest américain !",
+          "link": "📍 En touchant les roches ce soir, vous touchez d'anciennes dunes du Jurassique"
+        },
+        {
+          "level": "medium",
+          "text": "Que va-t-il arriver à Horseshoe Bend dans quelques millions d'années selon les géologues ?",
+          "options": ["Le méandre va se combler de sable", "Le fleuve va percer l'isthme et former un pont naturel, puis une butte isolée", "L'érosion va élargir le canyon jusqu'à le faire disparaître", "Un séisme va dévier le cours du fleuve"],
+          "correct": 1,
+          "explanation": "Le Colorado finira par percer l'isthme de 300 m de large, créant d'abord un pont naturel puis laissant une butte isolée. C'est exactement comme ça que s'est formé Rainbow Bridge, plus au nord. On le voit dans un instant géologique éphémère.",
+          "link": "📍 Profitez de la vue ce soir — dans quelques millions d'années, ce sera un pont !"
+        },
+        {
+          "level": "expert",
+          "text": "On traverse le Colorado Plateau pendant tout le voyage. Ce bloc de croûte terrestre s'est soulevé d'un seul tenant. Quelle est sa surface ?",
+          "options": ["34 000 km²", "130 000 km²", "340 000 km²", "800 000 km²"],
+          "correct": 2,
+          "explanation": "340 000 km² — soit plus grand que l'Italie ! Ce plateau s'est soulevé il y a 5 à 10 millions d'années comme un piston géant, sans se fracturer. Les rivières se sont alors mises à sculpter les couches exposées. Chaque canyon qu'on voit est un accident de cette histoire.",
+          "link": "📍 Tout ce qu'on voit depuis hier — et jusqu'à Moab — c'est le Colorado Plateau"
+        },
+        {
+          "level": "expert",
+          "text": "La 'bath tub ring' blanche visible sur les falaises du Lake Mead (le réservoir de Las Vegas) mesure combien de haut ?",
+          "options": ["5 mètres", "15 mètres", "40 mètres", "80 mètres"],
+          "correct": 2,
+          "explanation": "40 mètres de 'ring' blanc ! C'est l'ancien niveau d'eau — le Lake Mead a perdu plus de 70% de son volume depuis 2000. Quand on a atterri à Vegas, on est passé tout près de ce lac en crise.",
+          "link": "📍 Le même Colorado qu'on regarde ici remplit (de moins en moins) le lac qui fait vivre Vegas"
+        },
+        {
+          "level": "wtaf",
+          "text": "Las Vegas est dans le désert de Mojave avec 10 cm de pluie par an. Depuis 2002, la ville a RÉDUIT sa consommation d'eau de 47% malgré 850 000 nouveaux habitants. Comment ?",
+          "options": ["En construisant une usine de dessalement géante", "En interdisant les pelouses et payant les gens 3$/sq ft pour arracher leur gazon", "En imposant des douches de 2 minutes max", "En détournant une rivière du Canada"],
+          "correct": 1,
+          "explanation": "Le programme 'Cash for Grass' paye les habitants pour arracher leurs pelouses ! Plus : recyclage de 99% des eaux intérieures, et la 'Water Police' qui verbalise les arrosages illégaux (80 à 1 200$ d'amende). Les fontaines du Bellagio utilisent de l'eau de puits non potable — le Strip consomme moins de 3% de l'eau de la ville.",
+          "link": "📍 Vegas qu'on a traversée hier est un miracle d'ingénierie hydraulique"
+        },
+        {
+          "level": "cinema",
+          "text": "Demain on visite Antelope Canyon sur terre Navajo. Dans quel film Harry Goulding a-t-il convaincu John Ford de tourner à Monument Valley, lançant 100 ans de westerns dans le désert ?",
+          "options": ["The Searchers (1956)", "Stagecoach / La Chevauchée fantastique (1939)", "How the West Was Won (1962)", "She Wore a Yellow Ribbon (1949)"],
+          "correct": 1,
+          "explanation": "Stagecoach (1939) ! Harry Goulding, un trader fauché, a roulé jusqu'à Hollywood avec ses derniers 60$ et un album photo. Il a forcé la porte de John Ford — qui l'a d'abord jeté dehors, puis a ouvert l'album. Un jeune inconnu nommé John Wayne jouait le héros.",
+          "link": "📍 On ne passe pas par Monument Valley cette fois, mais demain on sera sur terre Navajo pour Antelope Canyon"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2026-04-20",
+      "label": "Antelope Canyon + Coral Pink Sand Dunes → Mesquite",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "On vous a teasé les 'light beams' d'Antelope Canyon. Combien de temps durent-ils chaque jour ?",
+          "options": ["30 minutes", "1 heure", "2 heures", "Toute la journée"],
+          "correct": 2,
+          "explanation": "Les rayons de lumière ne durent que 2 heures par jour — quand le soleil est au zénith et perce les 40 m de roche au-dessus de nos têtes. C'est pour ça qu'on a réservé le créneau de 12h25 !",
+          "link": "📍 On a LE créneau parfait dans quelques heures — les light beams seront au max"
+        },
+        {
+          "level": "easy",
+          "text": "Antelope Canyon est sur terre Navajo. Comment se dit son nom en navajo, 'Tsé bighánílíní' ?",
+          "options": ["La grotte des esprits", "L'endroit où l'eau coule à travers les rochers", "Le couloir de lumière sacrée", "La maison des antilopes"],
+          "correct": 1,
+          "explanation": "'L'endroit où l'eau coule à travers les rochers' — et ce n'est pas juste poétique ! Les murs lisses sont sculptés par des crues-éclair qui 'poncent' le grès à chaque passage. Un mélange de beauté et de danger.",
+          "link": "📍 Le guide Navajo nous racontera tout dans quelques heures"
+        },
+        {
+          "level": "easy",
+          "text": "Pourquoi la visite d'Antelope Canyon se fait OBLIGATOIREMENT avec un guide ?",
+          "options": ["Pour éviter de se perdre dans le canyon", "Parce que c'est terre Navajo sacrée et les guides en sont les gardiens", "Pour des raisons d'assurance", "Parce que l'entrée est un labyrinthe"],
+          "correct": 1,
+          "explanation": "C'est terre Navajo — un lieu sacré. Les guides ne sont pas de simples accompagnateurs, ce sont les gardiens d'un endroit que les Navajos considèrent comme une cathédrale naturelle. Après la tragédie de 1997 (11 morts dans une crue-éclair), l'accès est strictement contrôlé.",
+          "link": "📍 Pensez au pourboire pour notre guide : 10-20$ par personne, c'est leur gagne-pain"
+        },
+        {
+          "level": "easy",
+          "text": "Quelle est la bonne étiquette sur terre Navajo concernant les photos ?",
+          "options": ["Les photos sont totalement interdites", "On peut tout photographier librement", "Il faut demander avant de photographier les personnes", "Les photos ne sont autorisées qu'avec un trépied"],
+          "correct": 2,
+          "explanation": "Certains Navajos croient que la photo capture une partie de l'esprit. Toujours demander avant de photographier quelqu'un. Les paysages c'est OK, les gens c'est 'puis-je ?'. Pas de drone non plus — interdit par la loi tribale.",
+          "link": "📍 Respectons nos guides et les lieux ce matin"
+        },
+        {
+          "level": "medium",
+          "text": "Le 12 août 1997, une crue-éclair a dévasté Lower Antelope Canyon. De combien de mètres l'eau est-elle montée en quelques minutes ?",
+          "options": ["1 mètre", "3 mètres", "6 mètres", "10 mètres"],
+          "correct": 2,
+          "explanation": "6 mètres ! Un orage à 16 km de là a provoqué la crue. 11 touristes sont morts — 10 Allemands et 1 Britannique. Certains corps n'ont jamais été retrouvés. C'est pour ça que les systèmes d'alerte et l'accès contrôlé existent aujourd'hui.",
+          "link": "📍 Rassurez-vous — les systèmes d'alerte sont en place et notre guide veille"
+        },
+        {
+          "level": "medium",
+          "text": "Cet après-midi, on s'arrête aux Coral Pink Sand Dunes. Leur couleur rose unique vient d'un phénomène physique. Lequel ?",
+          "options": ["Des algues roses qui vivent dans le sable", "L'effet Venturi : le vent s'accélère entre deux montagnes et arrache du grès rouge", "Des minéraux de cuivre oxydés", "La réflexion du coucher de soleil sur le sable blanc"],
+          "correct": 1,
+          "explanation": "Le vent dominant passe entre les Moquith Mountains et les Moccasin Mountains comme dans un entonnoir (effet Venturi). En s'accélérant, il arrache des particules de grès rouge des falaises. Ce sable se dépose depuis 10 000 ans. Chaque grain est un quartz avec une couche de rouille microscopique !",
+          "link": "📍 Arrêt photos cet après-midi vers 15h45 — les dunes sont magnifiques en fin de journée"
+        },
+        {
+          "level": "expert",
+          "text": "Le Navajo fry bread qu'on peut manger dans la région n'est pas un plat traditionnel. C'est un pain né d'un épisode sombre de l'histoire. Lequel ?",
+          "options": ["La famine de 1900 dans les réserves", "La Longue Marche de 1864 et l'internement à Fort Sumner", "La construction forcée des chemins de fer en 1870", "L'épidémie de grippe espagnole de 1918"],
+          "correct": 1,
+          "explanation": "En 1864, 9 000 Navajos ont été forcés de marcher 480 km jusqu'à Fort Sumner. Internés 4 ans, ils n'avaient que farine, sel, levure et saindoux des rations gouvernementales. Ils ont inventé le fry bread pour survivre. Aujourd'hui c'est une fierté culturelle... mais aussi un rappel douloureux.",
+          "link": "📍 Si vous voyez un stand de Navajo tacos, c'est cette histoire que vous mangez"
+        },
+        {
+          "level": "expert",
+          "text": "Les Coral Pink Sand Dunes abritent une plante unique au monde qui ne pousse nulle part ailleurs sur Terre. Laquelle ?",
+          "options": ["Le Pink Cactus de Kane", "Le Welsh's milkweed", "La Sand Orchid de l'Utah", "Le Desert Rose du Mojave"],
+          "correct": 1,
+          "explanation": "Le Welsh's milkweed (Asclepias welshii) est endémique des Coral Pink Sand Dunes — il ne pousse nulle part ailleurs sur la planète. Les dunes bougent d'environ 15 m par an, et cette plante a évolué pour vivre exclusivement ici.",
+          "link": "📍 Ouvrez l'œil cet après-midi — si vous la voyez, vous aurez vu une espèce unique au monde"
+        },
+        {
+          "level": "wtaf",
+          "text": "En 1864, combien de Navajos ont été forcés de marcher 480 km lors de la 'Longue Marche' ordonnée par le colonel Kit Carson ?",
+          "options": ["2 000", "5 000", "9 000", "15 000"],
+          "correct": 2,
+          "explanation": "9 000 Navajos forcés de marcher pendant 18 jours. Des centaines sont morts en route. Les survivants ont été internés 4 ans à Fort Sumner dans des conditions inhumaines. Le traité de 1868 leur a permis de rentrer — sur un territoire réduit. Aujourd'hui, la Navajo Nation fait 71 000 km², 170 000 habitants.",
+          "link": "📍 On est sur terre Navajo aujourd'hui — cette histoire a 160 ans et elle est partout ici"
+        },
+        {
+          "level": "cinema",
+          "text": "Butch Cassidy, le célèbre hors-la-loi dont on verra le village fantôme à Grafton (J9), est né dans une ville qu'on traversera au J11. Laquelle ?",
+          "options": ["Moab, Utah", "Beaver, Utah", "St. George, Utah", "Hurricane, Utah"],
+          "correct": 1,
+          "explanation": "Butch Cassidy (Robert LeRoy Parker de son vrai nom) est né à Beaver en 1866 ! C'est exactement là où Laurine prendra son bus pour rentrer au J11. Le film avec Paul Newman et Robert Redford (1969) a été partiellement tourné dans le sud de l'Utah.",
+          "link": "📍 On retrouvera Butch Cassidy à Grafton (J9) et on passera dans sa ville natale à Beaver (J11)"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2026-04-21",
+      "label": "Valley of Fire → Las Vegas + Spectacle KÀ",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Ce soir on va voir KÀ du Cirque du Soleil au MGM Grand. Dans un teaser, on vous a dit que la scène fait combien d'étages de haut ?",
+          "options": ["3 étages", "4 étages", "6 étages", "10 étages"],
+          "correct": 2,
+          "explanation": "Le 'Sand Cliff Deck' de KÀ pèse 80 tonnes, descend de 15 mètres (soit 6 étages), pivote à 360° et s'incline à 100° — quasi-vertical ! Le tout sans pilier central. 6 millions de lignes de code pour le contrôler — plus qu'un Boeing 787.",
+          "link": "📍 Ce soir à 20h30 au MGM Grand — préparez-vous à avoir le vertige"
+        },
+        {
+          "level": "easy",
+          "text": "Valley of Fire, qu'on vient de traverser ce matin, a des roches d'un rouge incandescent. Quel âge ont-elles ?",
+          "options": ["50 millions d'années", "150 millions d'années", "500 millions d'années", "1 milliard d'années"],
+          "correct": 1,
+          "explanation": "150 millions d'années ! C'est du sable fossilisé de l'ère des dinosaures — des dunes géantes solidifiées. La couleur rouge vient de l'oxyde de fer (rouille) sur chaque grain de sable, en concentration maximale ici.",
+          "link": "📍 Les roches qu'on a vues ce matin ont vu passer des dinosaures — littéralement"
+        },
+        {
+          "level": "easy",
+          "text": "Las Vegas est surnommée 'Sin City' — la ville du péché. Depuis quand ?",
+          "options": ["Depuis les années 20", "Depuis les années 40", "Depuis les années 60", "Depuis les années 80"],
+          "correct": 1,
+          "explanation": "Depuis les années 40, quand la mafia a commencé à y construire des casinos. Le Flamingo (1946) de Bugsy Siegel a ouvert le bal. Pendant 40 ans, la Cosa Nostra contrôlait une partie du Strip. Le slogan : 'What happens in Vegas stays in Vegas.'",
+          "link": "📍 Ce soir, on est en plein dedans — mais nous, on va au cirque, pas au casino 😏"
+        },
+        {
+          "level": "easy",
+          "text": "On dort au Luxor cette semaine. Quelle forme a cet hôtel ?",
+          "options": ["Une tour en spirale", "Une pyramide noire", "Un globe géant", "Une réplique du Colisée"],
+          "correct": 1,
+          "explanation": "Le Luxor est une pyramide noire avec un faisceau lumineux au sommet visible à 20 km dans le désert — le 'Luxor Sky Beam' est le faisceau lumineux le plus puissant au monde, utilisant 39 lampes xénon de 7 000 watts chacune !",
+          "link": "📍 Notre hôtel est littéralement une pyramide — regardez le ciel ce soir depuis le Strip"
+        },
+        {
+          "level": "medium",
+          "text": "KÀ se prononce 'Ka'. Ça vient de quelle mythologie ?",
+          "options": ["Mythologie maya — le dieu du feu", "Mythologie égyptienne — le double spirituel", "Mythologie japonaise — l'esprit du vent", "Mythologie grecque — le chaos originel"],
+          "correct": 1,
+          "explanation": "Le Ka égyptien est le double spirituel — une essence vitale qui accompagne chaque être. Le spectacle explore les thèmes du voyage, du destin et de la dualité. Quand on entre dans la salle et qu'on voit le gouffre de 15 m au centre... on comprend pourquoi.",
+          "link": "📍 Ce soir à 20h30 — arriver 30 min avant"
+        },
+        {
+          "level": "medium",
+          "text": "Las Vegas recycle 99% de ses eaux usées intérieures. Mais les fontaines du Bellagio — elles utilisent quel type d'eau ?",
+          "options": ["Eau recyclée du Strip", "Eau du Lake Mead", "Eau de puits non potable", "Eau de pluie collectée"],
+          "correct": 2,
+          "explanation": "Les fontaines du Bellagio utilisent de l'eau de puits non potable — pas l'eau précieuse du Colorado ! Et le Strip entier ne consomme que 3% de l'eau de la ville. Vegas est bien plus maligne qu'on ne croit en matière d'eau.",
+          "link": "📍 Si on passe devant les fontaines du Bellagio ce soir, sachez que pas une goutte du Colorado ne danse là-dedans"
+        },
+        {
+          "level": "expert",
+          "text": "Quand le Lake Mead est descendu dangereusement bas, Las Vegas a percé un 3ème tunnel de pompage à quelle profondeur ?",
+          "options": ["50 mètres", "120 mètres", "270 mètres", "500 mètres"],
+          "correct": 2,
+          "explanation": "270 mètres de profondeur ! Le 'Third Straw', un projet à 817 millions de dollars, a été percé pour pouvoir pomper même si le lac tombe au 'dead pool'. Vegas ne prend aucun risque avec son approvisionnement en eau.",
+          "link": "📍 Toute l'eau qui sort de nos robinets cette semaine vient de ce système"
+        },
+        {
+          "level": "expert",
+          "text": "Combien de lignes de code contrôlent la scène de KÀ ?",
+          "options": ["500 000 lignes", "2 millions de lignes", "6 millions de lignes", "12 millions de lignes"],
+          "correct": 2,
+          "explanation": "6 millions de lignes de code ! Plus qu'un Boeing 787. Le théâtre a coûté 165 millions de dollars — le spectacle le plus cher jamais produit en 2004. 80 artistes se battent sur les murs, le plafond et dans le vide.",
+          "link": "📍 Dans quelques heures, on verra ce monstre technologique en action"
+        },
+        {
+          "level": "wtaf",
+          "text": "Le premier casino de Las Vegas, le Flamingo (1946), a été construit par un gangster célèbre. Comment s'appelait-il ?",
+          "options": ["Al Capone", "Lucky Luciano", "Bugsy Siegel", "Meyer Lansky"],
+          "correct": 2,
+          "explanation": "Bugsy Siegel — un gangster de la Cosa Nostra qui a vu le potentiel du désert du Nevada. Il a dépassé le budget de construction (6 millions au lieu de 1,5), et la mafia l'a fait assassiner en 1947 — 6 mois après l'ouverture. Mais Vegas était lancée !",
+          "link": "📍 L'ombre de Bugsy plane encore sur le Strip qu'on arpente ce soir"
+        },
+        {
+          "level": "cinema",
+          "text": "On dort au Luxor et au LINQ, à quelques minutes à pied du lieu du plus célèbre braquage de cinéma. Quel film ?",
+          "options": ["Casino (1995)", "Ocean's Eleven (2001)", "The Hangover (2009)", "Showgirls (1995)"],
+          "correct": 1,
+          "explanation": "Ocean's Eleven (2001) avec George Clooney, Brad Pitt et Matt Damon ! Le braquage du Bellagio, du Mirage et du MGM Grand. La scène finale devant les fontaines du Bellagio — on peut la voir en vrai, les fontaines sont toujours là !",
+          "link": "📍 Le MGM Grand (où on va ce soir pour KÀ) est un des casinos braqués dans le film !"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2026-04-22",
+      "label": "Google Cloud Next — Las Vegas (Jour 1 conf)",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Las Vegas est construite dans quel désert ?",
+          "options": ["Désert de Sonora", "Désert du Mojave", "Désert de Chihuahua", "Désert du Sahara (LOL)"],
+          "correct": 1,
+          "explanation": "Le désert de Mojave — 10 cm de pluie par an. Malgré ça, 2,2 millions de personnes vivent dans l'agglomération de Las Vegas. Un miracle (ou une folie) d'ingénierie hydraulique !",
+          "link": "📍 On est en plein dedans — profitez de la piscine de l'hôtel, ça ne durera que 3 jours !"
+        },
+        {
+          "level": "easy",
+          "text": "On vous a dit qu'on traverse 4 États pendant ce road trip. Lesquels ?",
+          "options": ["Nevada, Arizona, Nouveau-Mexique, Colorado", "Californie, Nevada, Arizona, Utah", "Nevada, Arizona, Utah, Colorado", "Nevada, Utah, Colorado, Wyoming"],
+          "correct": 2,
+          "explanation": "Nevada (Vegas), Arizona (Grand Canyon, Antelope), Utah (Zion, Bryce, Arches) et Colorado (Denver). 4 États, 2 524 km, 15 jours d'aventure !",
+          "link": "📍 On est dans le Nevada pour les 3 prochains jours — puis retour en Utah pour les parcs"
+        },
+        {
+          "level": "easy",
+          "text": "Combien de pluie tombe par an à Las Vegas ?",
+          "options": ["10 cm", "30 cm", "50 cm", "80 cm"],
+          "correct": 0,
+          "explanation": "10 cm — soit 6 fois moins que Nice (600 mm/an) ! Et pourtant la ville de 2,2 millions d'habitants fonctionne grâce à une gestion de l'eau exemplaire.",
+          "link": "📍 C'est pour ça que le ciel est toujours bleu ici — profitez-en"
+        },
+        {
+          "level": "easy",
+          "text": "Quel est le slogan officiel du tourisme de Las Vegas ?",
+          "options": ["The City That Never Sleeps", "What happens in Vegas stays in Vegas", "Viva Las Vegas", "Welcome to Fabulous Las Vegas"],
+          "correct": 1,
+          "explanation": "'What happens in Vegas stays in Vegas' est le slogan de la Las Vegas Convention and Visitors Authority depuis 2003. Il a remplacé des campagnes plus sages. La ville assume totalement son image de ville du péché !",
+          "link": "📍 Aujourd'hui c'est Google Cloud Next... mais ce soir, c'est Vegas 😏"
+        },
+        {
+          "level": "medium",
+          "text": "En quelle année la Route 66 a-t-elle été officiellement déclassée, remplacée par les Interstates ?",
+          "options": ["1972", "1979", "1985", "1991"],
+          "correct": 2,
+          "explanation": "Le 27 juin 1985 — remplacée par l'Interstate 40 principalement. Morte sur le papier mais vivante dans la légende. On en a parcouru un bout entre Chloride et Kingman au Jour 2 !",
+          "link": "📍 L'asphalte qu'on a touché il y a 4 jours a 100 ans d'histoire"
+        },
+        {
+          "level": "medium",
+          "text": "Le High Roller, la grande roue de Las Vegas (au LINQ, là où logent Alex et Dinah), est la plus haute du monde. Quelle est sa hauteur ?",
+          "options": ["120 mètres", "135 mètres", "168 mètres", "210 mètres"],
+          "correct": 2,
+          "explanation": "168 mètres ! Chaque cabine fait la taille d'un bus et peut accueillir 40 personnes. Une rotation complète prend 30 minutes. Vue à 360° sur le Strip et le désert — spectaculaire de nuit.",
+          "link": "📍 Elle est juste à côté du LINQ — visible depuis la fenêtre d'Alex et Dinah !"
+        },
+        {
+          "level": "expert",
+          "text": "Avant que les corporations ne prennent le relais, la mafia contrôlait Vegas. Le film Casino de Scorsese raconte l'histoire d'un vrai casino. Lequel ?",
+          "options": ["Le Riviera", "Le Sands", "Le Stardust", "Le Hacienda"],
+          "correct": 2,
+          "explanation": "Le Tangiers du film est basé sur le Stardust, contrôlé par la mafia de Chicago dans les années 70-80. Le vrai directeur s'appelait Frank 'Lefty' Rosenthal (Robert De Niro dans le film). Le Stardust a été démoli en 2007.",
+          "link": "📍 Le Stardust était pile sur le Strip — là où on se promène ce soir"
+        },
+        {
+          "level": "expert",
+          "text": "Las Vegas a un programme agressif pour économiser l'eau. Quel pourcentage de l'eau de la ville le Strip consomme-t-il ?",
+          "options": ["3%", "12%", "25%", "40%"],
+          "correct": 0,
+          "explanation": "Moins de 3% ! Les casinos recyclent massivement. L'essentiel de l'eau va aux pelouses résidentielles (en voie de disparition) et à l'irrigation. Le Strip est bien moins gourmand qu'on ne croit.",
+          "link": "📍 La piscine de l'hôtel est raisonnable — c'est les pelouses des maisons qui posaient problème"
+        },
+        {
+          "level": "wtaf",
+          "text": "Le Luxor Sky Beam au sommet de notre pyramide-hôtel est le faisceau lumineux le plus puissant au monde. Il attire chaque nuit des milliards de... quoi ?",
+          "options": ["Photons (c'est juste de la lumière)", "Insectes — surtout des sphinx à tête de mort", "Chauves-souris qui chassent les insectes attirés", "Oiseaux migrateurs désorientés"],
+          "correct": 2,
+          "explanation": "Le faisceau de 39 lampes xénon (315 000 watts au total) attire des milliards d'insectes, qui attirent à leur tour des milliers de chauves-souris qui viennent festoyer ! Un écosystème nocturne imprévu au sommet d'une pyramide de casino. La nature reprend toujours ses droits !",
+          "link": "📍 Ce soir, regardez le faisceau depuis le Strip — les chauves-souris sont là-haut"
+        },
+        {
+          "level": "cinema",
+          "text": "Las Vegas Parano (Fear and Loathing in Las Vegas) raconte un road trip déjanté vers Vegas. Quel acteur incarne le journaliste gonzo dans le film de Terry Gilliam ?",
+          "options": ["Nicolas Cage", "Johnny Depp", "Robert Downey Jr.", "Jim Carrey"],
+          "correct": 1,
+          "explanation": "Johnny Depp joue Raoul Duke (basé sur Hunter S. Thompson). Le film raconte un road trip hallucinogène à travers le désert du Nevada. L'ambiance de la route, le désert et la folie de Sin City version gonzo. Un ovni cinématographique.",
+          "link": "📍 La même route qu'on a prise entre le désert et Vegas — en un peu plus sobre (normalement)"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2026-04-23",
+      "label": "Google Cloud Next — Las Vegas (Jour 2 conf)",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Les mormons sont très présents en Utah, notre prochaine destination. Qu'est-ce que le 'Word of Wisdom' mormon interdit ?",
+          "options": ["La viande et le fromage", "L'alcool, le tabac, le café et le thé", "Le sport le dimanche", "La musique électronique"],
+          "correct": 1,
+          "explanation": "La doctrine mormone interdit l'alcool, le tabac, le café et le thé. L'Utah étant à 60% mormon, les lois sur l'alcool y sont plus strictes. Quand on quittera Vegas (alcool 24h/24 dans les rues), le contraste sera saisissant !",
+          "link": "📍 Profitez de Vegas — en Utah, commander un cocktail sera un sport"
+        },
+        {
+          "level": "easy",
+          "text": "Dans 2 jours on entre en Utah. Quelle est la limite d'alcool pour la bière vendue en épicerie là-bas ?",
+          "options": ["3,2%", "5%", "8%", "Pas de limite"],
+          "correct": 1,
+          "explanation": "5% depuis 2019 — c'était 3,2% avant ! Les spiritueux ne se vendent que dans des 'State Liquor Stores' (fermés le dimanche). Et le fameux 'Zion Curtain' empêchait les bartenders de préparer les cocktails devant vous jusqu'en 2017.",
+          "link": "📍 Conseil : faites le plein de bonnes bouteilles à Vegas avant de partir pour l'Utah !"
+        },
+        {
+          "level": "easy",
+          "text": "Combien de couchers de soleil 'iconiques' a-t-on planifié pendant le voyage ? On l'avait teasé...",
+          "options": ["4", "5", "7", "10"],
+          "correct": 2,
+          "explanation": "7 couchers de soleil planifiés : Grand Canyon (Hopi Point), Horseshoe Bend, Valley of Fire, Zion, Bryce (Sunset Point), Delicate Arch et Dead Horse Point. Plus les bonus !",
+          "link": "📍 On en a déjà eu 3 magnifiques — 4 de plus à venir dans les parcs"
+        },
+        {
+          "level": "easy",
+          "text": "En 1847, un leader mormon a mené 70 000 personnes jusqu'en Utah. En arrivant dans la vallée du Grand Lac Salé, qu'a-t-il déclaré ?",
+          "options": ["'God bless this land'", "'This is the right place'", "'Here we shall build Zion'", "'The promised land at last'"],
+          "correct": 1,
+          "explanation": "Brigham Young a déclaré 'This is the right place' en arrivant dans un désert que personne d'autre ne voulait. Les mormons fuyaient les persécutions (leur fondateur Joseph Smith avait été assassiné en 1844). Ils ont colonisé systématiquement chaque vallée de l'Utah.",
+          "link": "📍 Tout l'Utah qu'on va traverser porte la marque des mormons — de Hurricane à Beaver"
+        },
+        {
+          "level": "medium",
+          "text": "Un écrivain-ranger ivre a escaladé Delicate Arch en 1956 et a écrit le plus beau livre sur le désert américain. Qui est-ce ?",
+          "options": ["Jack Kerouac", "Edward Abbey", "John Muir", "Aldo Leopold"],
+          "correct": 1,
+          "explanation": "Edward Abbey ! Ranger à Arches dans les années 50, il a écrit 'Desert Solitaire' (1968). Ivre avec un ami, il a escaladé Delicate Arch — un acte aujourd'hui illégal. Son roman 'The Monkey Wrench Gang' a inspiré le mouvement écologiste radical Earth First!",
+          "link": "📍 Quand on sera à Arches au J12, on marchera dans le décor de son chef-d'œuvre"
+        },
+        {
+          "level": "medium",
+          "text": "Edward Abbey détestait le Glen Canyon Dam — le barrage qui a noyé Glen Canyon pour créer le Lake Powell (qu'on a vu à Page). Quel mouvement son roman a-t-il inspiré ?",
+          "options": ["Greenpeace", "Sierra Club", "Earth First!", "WWF"],
+          "correct": 2,
+          "explanation": "Earth First! — le mouvement écologiste radical qui pratiquait le 'monkeywrenching' : sabotage non-violent d'équipements de construction. Inspiré directement de 'The Monkey Wrench Gang' (1975) où 4 amis planifient de faire sauter le Glen Canyon Dam.",
+          "link": "📍 Le Lake Powell qu'on a vu à Page, c'est 300 km de canyon noyé — ce qu'Abbey détestait le plus"
+        },
+        {
+          "level": "expert",
+          "text": "Les Ancestral Puebloans (anciennement appelés 'Anasazi') ont habité le Colorado Plateau entre 100 et 1300 apr. J.-C. Pourquoi le terme 'Anasazi' est-il considéré péjoratif ?",
+          "options": ["C'est un mot espagnol qui signifie 'sauvages'", "C'est un mot navajo qui signifie 'anciens ennemis'", "C'est un terme inventé par les colons pour les rabaisser", "C'est une déformation d'un nom sacré qu'on ne doit pas prononcer"],
+          "correct": 1,
+          "explanation": "'Anasazi' signifie 'anciens ennemis' en navajo. Les descendants de ce peuple (Hopi, Zuni, Acoma) préfèrent 'Ancestral Puebloans'. Ils ont construit Mesa Verde et habité tout le Colorado Plateau. Vers 1300, une sécheresse de 25 ans les a poussés à migrer vers le sud.",
+          "link": "📍 On verra leurs pétroglyphes à Capitol Reef au J11"
+        },
+        {
+          "level": "expert",
+          "text": "Les 'funeral potatoes' sont un plat emblématique de l'Utah. Pourquoi s'appellent-ils comme ça ?",
+          "options": ["Ils ont la couleur d'un cercueil", "On les sert traditionnellement aux funérailles mormones", "Un cuisinier nommé Funeral les a inventés", "Ils sont censés être 'le dernier repas parfait'"],
+          "correct": 1,
+          "explanation": "On les sert littéralement aux funérailles mormones ! C'est un gratin de pommes de terre râpées avec crème, fromage et corn flakes émiettés par-dessus. Un comfort food ultime. L'Utah a aussi les 'scones' qui sont en fait... du fry bread !",
+          "link": "📍 Si vous en voyez au menu en Utah, c'est un classique local — malgré le nom"
+        },
+        {
+          "level": "wtaf",
+          "text": "Edward Abbey, le punk du désert, a laissé des instructions très précises pour ses funérailles en 1989. Qu'a-t-il demandé ?",
+          "options": ["Être dispersé dans le Colorado River", "Être enterré illégalement dans le désert, sans cercueil, dans un sac de couchage", "Être momifié et exposé à Arches NP", "Être incinéré et mélangé au grès de Delicate Arch"],
+          "correct": 1,
+          "explanation": "Ses amis l'ont réellement fait ! Enterré illégalement dans le désert, sans cercueil, enveloppé dans son sac de couchage. L'emplacement exact est tenu secret à ce jour. Punk jusqu'au bout, même mort.",
+          "link": "📍 Quelque part dans le désert de l'Utah qu'on va traverser, Abbey dort pour toujours"
+        },
+        {
+          "level": "cinema",
+          "text": "On est à Vegas — la ville du cinéma ! Dans Very Bad Trip (The Hangover, 2009), dans quel casino de Vegas le groupe se réveille après sa nuit de folie ?",
+          "options": ["Le Bellagio", "Le MGM Grand", "Le Caesars Palace", "Le Venetian"],
+          "correct": 2,
+          "explanation": "Le Caesars Palace ! La suite ravagée, le tigre de Mike Tyson dans la salle de bain, le bébé dans le placard... La villa qu'ils louent est la 'Villa Suite' du Caesars, qui coûte entre 4 000 et 25 000$ la nuit en vrai.",
+          "link": "📍 Le Caesars Palace est à 10 min à pied du LINQ — on peut passer devant ce soir"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "date": "2026-04-24",
+      "label": "Fin Google Cloud Next → St. George / Hurricane, UT",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Aujourd'hui on quitte le Nevada pour l'Utah. Attention au changement d'heure ! Qu'est-ce qui se passe en entrant en Utah ?",
+          "options": ["On gagne 1 heure (horloge recule)", "On perd 1 heure (horloge avance)", "Pas de changement", "Ça dépend si c'est l'heure d'été"],
+          "correct": 1,
+          "explanation": "On perd 1 heure ! Nevada = PDT (UTC-7), Utah = MDT (UTC-6). S'il est 16h quand on quitte Vegas, il sera 17h quand on arrive en Utah. Pensez à régler vos montres (ou laissez le téléphone le faire) !",
+          "link": "📍 Transition cet après-midi — on perd 1h mais on gagne les plus beaux canyons du monde"
+        },
+        {
+          "level": "easy",
+          "text": "Demain matin, on attaque Zion ! On a soumis notre loterie pour Angel's Landing — combien de personnes ont gagné ?",
+          "options": ["Tout le groupe de 5", "3 personnes sur 5", "C'est encore un secret", "Personne — on fait le Plan B"],
+          "correct": 0,
+          "explanation": "Toute la bande a son permis ! On a soumis la loterie saisonnière, puis gagné. Résultat annoncé dans le teaser #6 avec la citation de Frederick Fisher : 'Only an angel could land on it.' 15$ par personne, créneau 9h-12h.",
+          "link": "📍 Demain matin, on grimpe les chaînes les plus célèbres de l'Utah !"
+        },
+        {
+          "level": "easy",
+          "text": "Hurricane, où on dort ce soir, a été fondée par qui ?",
+          "options": ["Des chercheurs d'or californiens", "Des familles mormones envoyées creuser un canal", "Des cowboys texans en transhumance", "L'armée américaine pour un fort"],
+          "correct": 1,
+          "explanation": "Fondée en 1906 par des familles mormones chargées par l'Église de creuser un canal d'irrigation pour transformer le désert en terres fertiles. La colonisation méthodique de l'Utah par Brigham Young en action.",
+          "link": "📍 Ce soir on dort dans une farmhouse à Hurricane — l'héritage mormon est partout ici"
+        },
+        {
+          "level": "easy",
+          "text": "Notre Airbnb à Hurricane a un jacuzzi. Mais il faut faire quelque chose de spécial pour l'utiliser. Quoi ?",
+          "options": ["Payer un supplément de 20$", "Demander aux hôtes de le chauffer à l'avance", "Aller le chercher dans le garage et le brancher", "Réserver un créneau sur une app"],
+          "correct": 1,
+          "explanation": "Il faut prévenir Tiffany et Chris (nos hôtes) le matin pour qu'ils le chauffent — ça prend 1-2h ! Horaires : 17h-22h. On espère que Dinah leur a envoyé un message ce matin via l'app Airbnb.",
+          "link": "📍 Après 2h de route et la fin de la conf, un jacuzzi sous les étoiles... si on a pensé à prévenir !"
+        },
+        {
+          "level": "medium",
+          "text": "Zion Canyon fait 600 m de profondeur. Par endroits, les parois ne sont séparées que de combien de mètres ?",
+          "options": ["20 mètres", "12 mètres", "6 mètres", "2 mètres"],
+          "correct": 2,
+          "explanation": "6 mètres ! Dans The Narrows, les parois de 600 m de haut ne sont séparées que de 6 m. Le ratio profondeur/largeur est parmi les plus extrêmes au monde. Un slot canyon à l'échelle monumentale.",
+          "link": "📍 Demain on sera entre ces murs — 600 m au-dessus de nos têtes"
+        },
+        {
+          "level": "medium",
+          "text": "Les murs de Zion 'pleurent' en permanence — les fameuses 'weeping walls'. Pourquoi ?",
+          "options": ["Des sources souterraines sous pression", "Le grès Navajo est poreux comme une éponge et relâche l'eau lentement", "La condensation due au microclimat du canyon", "Des tuyaux d'irrigation mormon encore actifs"],
+          "correct": 1,
+          "explanation": "Le grès Navajo a une porosité de 20-30% — il absorbe la pluie comme une éponge géante, puis la relâche lentement. Résultat : des murs suintants couverts de fougères, de mousse et de jardins suspendus. Un microcosme de verdure au milieu du désert !",
+          "link": "📍 Ouvrez l'œil demain — les weeping walls sont spectaculaires quand le soleil les éclaire"
+        },
+        {
+          "level": "expert",
+          "text": "Angel's Landing fait 8,7 km A/R avec 450 m de dénivelé. Les chaînes ont été installées en 1926 par Walter Ruesch. Combien de lacets a-t-il sculptés dans la falaise (les fameux 'Walter's Wiggles') ?",
+          "options": ["12", "17", "21", "28"],
+          "correct": 2,
+          "explanation": "21 lacets vertigineux sculptés dans la falaise ! Walter Ruesch a foré chaque ancrage à la main avec un 'star drill' et un marteau, suspendu au-dessus du vide. Les Walter's Wiggles sont devenus mythiques.",
+          "link": "📍 Demain on les monte un par un — comptez-les !"
+        },
+        {
+          "level": "expert",
+          "text": "Combien de personnes sont mortes en tombant d'Angel's Landing depuis l'ouverture du sentier ?",
+          "options": ["5", "10", "Au moins 16", "Plus de 30"],
+          "correct": 2,
+          "explanation": "Au moins 16 personnes sont mortes, dont 5 rien qu'en 2023. La plupart par temps de pluie (le grès mouillé est comme du savon) ou en ignorant les chaînes. C'est pour ça que le permis est obligatoire depuis 2022 — et qu'on vérifie la météo demain matin.",
+          "link": "📍 Soyons prudents demain — on tient les chaînes et on ne rigole pas avec la météo"
+        },
+        {
+          "level": "wtaf",
+          "text": "Les mormons qui ont colonisé l'Utah avaient une spécialité culinaire surprenante : les 'scones de l'Utah'. C'est quoi en réalité ?",
+          "options": ["Des vrais scones british avec de la confiture", "Du fry bread Navajo — de la pâte frite servie avec du miel-beurre", "Des crêpes de maïs bleu", "Des biscuits au fromage de Beaver"],
+          "correct": 1,
+          "explanation": "Les 'scones' de l'Utah n'ont RIEN à voir avec les scones britanniques ! C'est du fry bread — une pâte frite servie avec du miel-beurre. Le même concept que le fry bread Navajo mais rebaptisé par les mormons. Délicieux et confus.",
+          "link": "📍 Si vous en voyez au menu du petit-déj, ne vous attendez pas à un afternoon tea"
+        },
+        {
+          "level": "cinema",
+          "text": "Demain on visite Grafton Ghost Town avant Zion. Quel film culte y a été tourné en 1969 — la scène de la balade à vélo avec Paul Newman et Katharine Ross ?",
+          "options": ["Easy Rider", "Butch Cassidy et le Kid", "The Wild Bunch", "True Grit"],
+          "correct": 1,
+          "explanation": "Butch Cassidy et le Kid (1969) avec Paul Newman et Robert Redford ! La scène romantique de la balade à vélo au son de 'Raindrops Keep Fallin' On My Head' a été tournée à Grafton. Et Butch Cassidy est né à Beaver — là où Laurine prend son bus au J11 !",
+          "link": "📍 Demain matin à 8h15, on sera sur ce même décor de cinéma"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "date": "2026-04-25",
+      "label": "Grafton Ghost Town + Zion (Angel's Landing) → Mt. Carmel Junction",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Angel's Landing tire son nom d'une phrase célèbre. En 1916, un explorateur a gravi le sommet et dit quoi ?",
+          "options": ["'This is God's balcony'", "'Only an angel could land on it'", "'The devil himself couldn't climb this'", "'Heaven starts here'"],
+          "correct": 1,
+          "explanation": "Frederick Vining Fisher a déclaré 'Only an angel could land on it' — seul un ange pourrait s'y poser. Avant ça, le promontoire s'appelait 'Temple d'Éole' (dieu grec du vent). Le permis est obligatoire depuis 2022.",
+          "link": "📍 Ce matin, ON Y VA ! Créneau 9h-12h, permis en poche"
+        },
+        {
+          "level": "easy",
+          "text": "On vous a dit dans un teaser que l'âge des roches qu'on foule est de 270 millions d'années. Mais le grès de Zion est plus précisément du grès Navajo. Quel âge a-t-il ?",
+          "options": ["50 millions d'années", "100 millions d'années", "190 millions d'années", "270 millions d'années"],
+          "correct": 2,
+          "explanation": "190 millions d'années — du Jurassique ! C'étaient des dunes de sable fossilisées. Un méga-désert plus grand que le Sahara recouvrait tout l'Ouest américain. Les strates croisées visibles dans la roche, ce sont les couches de sable déposées par le vent, pétrifiées.",
+          "link": "📍 En montant Angel's Landing, vous marchez sur d'anciennes dunes du Jurassique"
+        },
+        {
+          "level": "easy",
+          "text": "On passe par Grafton Ghost Town ce matin avant Zion. Pourquoi ce village mormon a-t-il été abandonné ?",
+          "options": ["Une épidémie de choléra", "Des crues de la Virgin River et des conflits avec les Paiutes", "Un incendie qui a tout détruit", "La mine d'or s'est épuisée"],
+          "correct": 1,
+          "explanation": "Fondé en 1862 par des mormons, Grafton a été dévasté par les crues de la Virgin River et les tensions avec les Paiutes. Le village a servi de décor pour Butch Cassidy et le Kid (1969). Gratuit, 5 km de piste.",
+          "link": "📍 On y est à 8h15 — le cimetière et l'école sont les mieux préservés"
+        },
+        {
+          "level": "easy",
+          "text": "La dernière section d'Angel's Landing (les chaînes) fait quelle largeur ?",
+          "options": ["2 mètres", "1 mètre", "45-60 cm", "30 cm"],
+          "correct": 2,
+          "explanation": "45 à 60 cm de large — avec 300 mètres de vide de chaque côté ! Les chaînes installées par Walter Ruesch en 1926 sont votre meilleur ami là-haut. Le grès mouillé est comme du savon — on a vérifié la météo, n'est-ce pas ?",
+          "link": "📍 Accrochez-vous aux chaînes et profitez — la vue depuis le sommet est à couper le souffle"
+        },
+        {
+          "level": "medium",
+          "text": "Zion Canyon a une particularité hydrologique unique : les 'weeping walls'. Qu'est-ce que c'est ?",
+          "options": ["Des cascades saisonnières qui coulent en avril", "Des murs de grès poreux qui suintent en permanence, couverts de fougères", "Des stalactites qui dégoulinent dans les grottes", "Des brouillards qui montent du fond du canyon"],
+          "correct": 1,
+          "explanation": "Le grès Navajo est poreux à 20-30% — une éponge géante ! Il absorbe la pluie et la relâche lentement par les parois. Résultat : des murs suintants couverts de fougères, mousse et jardins suspendus. Un microcosme de verdure au milieu du désert.",
+          "link": "📍 Ouvrez l'œil dans le canyon — les weeping walls sont un jardin secret vertical"
+        },
+        {
+          "level": "medium",
+          "text": "The Narrows de Zion est dangereux à cause des crues-éclair. Le parc ferme l'accès dès que le risque dépasse quel pourcentage ?",
+          "options": ["20%", "40%", "60%", "80%"],
+          "correct": 1,
+          "explanation": "40% ! Une pluie à 50 km peut provoquer une crue sans signe visible sur place. L'eau monte de 3 m en quelques minutes dans un canyon de 6 m de large. C'est ce qui est arrivé à Antelope Canyon en 1997 (11 morts). La nature ne plaisante pas ici.",
+          "link": "📍 C'est pour ça que les rangers vérifient la météo en permanence — et nous aussi"
+        },
+        {
+          "level": "expert",
+          "text": "Les chaînes d'Angel's Landing ont été installées en 1926 par l'ingénieur Walter Ruesch. Comment a-t-il foré les ancrages dans la roche ?",
+          "options": ["Avec des explosifs contrôlés", "À la main, avec un 'star drill' et un marteau, suspendu au-dessus du vide", "Avec une foreuse mécanique transportée par mulet", "Il a utilisé des fissures naturelles sans forage"],
+          "correct": 1,
+          "explanation": "Walter Ruesch a foré CHAQUE ancrage à la main avec un 'star drill' (foret en étoile qu'on tape au marteau) et un marteau, suspendu au-dessus du vide. Les 21 lacets qui portent son nom — les 'Walter's Wiggles' — sont sculptés dans la falaise elle-même.",
+          "link": "📍 Chaque chaîne qu'on attrape ce matin tient grâce au travail à mains nues de cet homme il y a 100 ans"
+        },
+        {
+          "level": "expert",
+          "text": "Butch Cassidy, dont on visite le 'village fantôme' ce matin, a un vrai nom. Lequel ?",
+          "options": ["James Longstreet Parker", "Robert LeRoy Parker", "William Henry McCarty", "Harry Alonzo Longabaugh"],
+          "correct": 1,
+          "explanation": "Robert LeRoy Parker ! Né à Beaver, Utah, en 1866. Il a pris le nom 'Cassidy' d'un ami cowboy, et 'Butch' de son travail chez un boucher (butcher). Le Sundance Kid, son acolyte, s'appelait Harry Longabaugh. Newman et Redford les ont immortalisés en 1969.",
+          "link": "📍 On est sur les traces de Robert LeRoy Parker ce matin à Grafton"
+        },
+        {
+          "level": "wtaf",
+          "text": "Bryce Canyon, qu'on visite demain, culmine à 2 778 m. C'est un 'International Dark Sky Park'. Combien d'étoiles peut-on y voir à l'œil nu ?",
+          "options": ["2 000 (comme en ville)", "4 500", "7 500", "15 000"],
+          "correct": 2,
+          "explanation": "7 500 étoiles à l'œil nu ! Contre 2 000 en zone urbaine. L'altitude, l'absence de pollution lumineuse et l'air sec de l'Utah en font un des meilleurs spots d'observation astronomique du monde. Lever les yeux après le dîner demain soir !",
+          "link": "📍 Demain soir à Bryce, le ciel sera un spectacle à lui tout seul"
+        },
+        {
+          "level": "cinema",
+          "text": "Aron Ralston, coincé 5 jours sous un rocher dans un canyon de Moab, s'est coupé le bras pour survivre. Quel acteur joue son rôle dans 127 Hours (2010) ?",
+          "options": ["Jake Gyllenhaal", "James Franco", "Ryan Gosling", "Andrew Garfield"],
+          "correct": 1,
+          "explanation": "James Franco dans 127 Hours de Danny Boyle. L'histoire VRAIE d'Aron Ralston, coincé dans Blue John Canyon (à 30 min de Moab). Filmé sur les lieux réels. Attention, scènes dures ! Aron Ralston continue de faire de l'alpinisme avec un bras prothétique.",
+          "link": "📍 On sera à côté de Blue John Canyon dans 3 jours à Moab"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "date": "2026-04-26",
+      "label": "Mt. Carmel Junction → Bryce Canyon",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "On vous l'a teasé : Bryce Canyon n'est PAS un canyon. Qu'est-ce que c'est en réalité ?",
+          "options": ["Un volcan éteint", "Un amphithéâtre naturel — un bord de plateau qui s'érode vers l'intérieur", "Un cratère de météorite", "Un ancien lac asséché"],
+          "correct": 1,
+          "explanation": "Aucune rivière n'a creusé Bryce ! C'est le bord du plateau de Paunsaugunt qui s'érode par l'eau de pluie et le gel. Les géologues appellent ça 'érosion en retrait' (vs 'érosion fluviale' pour le Grand Canyon). Même le nom est trompeur !",
+          "link": "📍 On descend dans l'amphithéâtre ce matin — Navajo Loop + Queen's Garden"
+        },
+        {
+          "level": "easy",
+          "text": "Ebenezer Bryce, l'éleveur mormon qui a donné son nom au canyon, a dit une phrase restée célèbre. Laquelle ?",
+          "options": ["'God's masterpiece'", "'It's a hell of a place to lose a cow'", "'I shall build my ranch here'", "'This land is cursed'"],
+          "correct": 1,
+          "explanation": "'C'est un sacré endroit pour perdre une vache !' — Ebenezer Bryce, éleveur écossais envoyé ici par Brigham Young en 1875 pour couper du bois. La critique la plus laconique d'un des plus beaux paysages du monde.",
+          "link": "📍 En descendant parmi les hoodoos, pensez à Ebenezer et ses vaches perdues"
+        },
+        {
+          "level": "easy",
+          "text": "Les colonnes de roche de Bryce s'appellent des 'hoodoos'. Qu'est-ce qui les sculpte principalement ?",
+          "options": ["Le vent du désert", "La glace — 200 cycles gel/dégel par an", "L'érosion par la pluie acide", "Les tremblements de terre"],
+          "correct": 1,
+          "explanation": "La glace ! Bryce subit 200 cycles gel/dégel par an — record de l'Utah. L'eau s'infiltre, gèle (expansion de 9%), fait exploser la roche de l'intérieur. Les couches dures forment des 'chapeaux' qui protègent les couches tendres en dessous.",
+          "link": "📍 Chaque hoodoo qu'on voit est en train de mourir — 30 à 60 cm de recul par siècle"
+        },
+        {
+          "level": "easy",
+          "text": "Thor's Hammer est le hoodoo le plus photographié de Bryce. Qu'est-ce qui va lui arriver selon les géologues ?",
+          "options": ["Il va continuer de grandir", "Il va perdre sa 'tête' dans quelques milliers d'années", "Il va se fossiliser et devenir permanent", "Il va être protégé par un dôme en verre"],
+          "correct": 1,
+          "explanation": "La couche dure qui forme le 'marteau' se fissure progressivement. Dans quelques milliers d'années, elle tombera. Et dans 3 millions d'années, tout l'amphithéâtre aura disparu. On le voit dans un instant géologique parfait !",
+          "link": "📍 Photographiez-le bien aujourd'hui — il ne sera plus le même dans quelques siècles"
+        },
+        {
+          "level": "medium",
+          "text": "Bryce Canyon culmine à quelle altitude — le point le plus haut de tous les parcs qu'on visite ?",
+          "options": ["1 800 m", "2 200 m", "2 778 m", "3 100 m"],
+          "correct": 2,
+          "explanation": "2 778 m ! Plus haut que le Grand Canyon (2 100 m au South Rim), Zion (1 500 m) ou Arches (1 700 m). À cette altitude, il peut encore neiger en avril et les nuits sont fraîches. Mais le ciel étoilé est incomparable.",
+          "link": "📍 Prenez une veste pour le coucher de soleil ce soir à Sunset Point — il fait frais à 2 778 m !"
+        },
+        {
+          "level": "medium",
+          "text": "Le Navajo Loop qu'on fait ce matin descend parmi les hoodoos. Combien de km fait la boucle Navajo Loop + Queen's Garden ?",
+          "options": ["2,5 km", "4,5 km", "7 km", "10 km"],
+          "correct": 1,
+          "explanation": "4,5 km en boucle avec 170 m de dénivelé, 2-3h de rando modérée. C'est LA rando incontournable de Bryce : on descend PARMI les hoodoos, pas juste les regarder d'en haut. On marche entre des colonnes de 40 m de haut !",
+          "link": "📍 On est en plein dedans ce matin — profitez de chaque instant entre les colonnes"
+        },
+        {
+          "level": "expert",
+          "text": "De combien de centimètres les hoodoos de Bryce reculent-ils par siècle ?",
+          "options": ["5-10 cm", "30-60 cm", "1-2 mètres", "5-10 mètres"],
+          "correct": 1,
+          "explanation": "30 à 60 cm par siècle ! Les hoodoos que les premiers explorateurs ont dessinés en 1870 n'ont plus la même forme. Ce qu'on voit aujourd'hui n'existait pas il y a 10 000 ans. Dans 3 millions d'années, le Pink Cliffs aura complètement reculé.",
+          "link": "📍 Ce qu'on voit n'a existé que brièvement — à l'échelle géologique, c'est un flash"
+        },
+        {
+          "level": "expert",
+          "text": "La nuit, Bryce est un 'International Dark Sky Park'. Combien de fois plus d'étoiles voit-on ici par rapport à une zone urbaine ?",
+          "options": ["2x plus (4 000 vs 2 000)", "3x plus (6 000 vs 2 000)", "3,75x plus (7 500 vs 2 000)", "5x plus (10 000 vs 2 000)"],
+          "correct": 2,
+          "explanation": "3,75 fois plus : 7 500 étoiles à l'œil nu vs 2 000 en ville. L'altitude (2 778 m), l'air sec et l'absence de pollution lumineuse font de Bryce un des meilleurs spots d'astronomie du monde.",
+          "link": "📍 Après le dîner ce soir, sortez et levez les yeux — le spectacle est garanti"
+        },
+        {
+          "level": "wtaf",
+          "text": "L'Utah a une recette bizarre appelée 'fry sauce'. C'est quoi exactement ?",
+          "options": ["De la sauce BBQ avec du miel", "Du ketchup mélangé à de la mayo — et les locaux en mettent sur TOUT", "De la moutarde avec du sirop d'érable", "De la crème fraîche avec du piment"],
+          "correct": 1,
+          "explanation": "Ketchup + mayo mélangés. C'est tout. Mais les habitants de l'Utah en sont OBSÉDÉS — c'est dans tous les fast-foods, tous les diners, sur les frites, les burgers, les nuggets. C'est l'invention culinaire (discutable) la plus fière de l'Utah.",
+          "link": "📍 Cherchez-la sur la table ce soir au restaurant — elle sera là, garantie"
+        },
+        {
+          "level": "cinema",
+          "text": "Indiana Jones et la Dernière Croisade (1989) a une scène d'ouverture avec le jeune Indy à cheval, tournée dans les canyons qu'on va voir. Où exactement ?",
+          "options": ["Au Grand Canyon", "À Zion National Park", "À Arches National Park et autour de Moab", "À Monument Valley"],
+          "correct": 2,
+          "explanation": "Arches National Park et les canyons autour de Moab ! Le jeune Indiana Jones (River Phoenix) chevauche dans ces mêmes paysages de grès rouge. On marchera dans ces décors aux Jours 11-12.",
+          "link": "📍 Dans 2 jours, on marche dans les décors d'Indiana Jones"
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "date": "2026-04-27",
+      "label": "Bryce → Beaver (Départ Laurine) → Capitol Reef → Factory Butte → Moab",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Aujourd'hui, Laurine nous quitte à Beaver. On vous a teasé que la NASA teste ses rovers dans un endroit qu'on visite cet après-midi. Lequel ?",
+          "options": ["Capitol Reef", "Factory Butte", "Red Hill Hot Springs", "Canyonlands"],
+          "correct": 1,
+          "explanation": "Factory Butte ! Le monolithe de 490 m domine des badlands qui ressemblent tellement à Mars que la NASA y teste ses rovers depuis 2001. La Mars Desert Research Station de la Mars Society est à 30 km. On marche sur Mars cet après-midi !",
+          "link": "📍 Arrêt photos prévu vers 17h — les badlands prennent des teintes rosées au soleil couchant"
+        },
+        {
+          "level": "easy",
+          "text": "Laurine prend un bus à Beaver cet après-midi. Butch Cassidy, le célèbre hors-la-loi, est né dans cette même ville. En quelle année ?",
+          "options": ["1848", "1866", "1882", "1895"],
+          "correct": 1,
+          "explanation": "1866 ! Robert LeRoy Parker (son vrai nom) est né à Beaver, Utah, dans une famille mormone. Il a pris le surnom 'Butch' de son travail chez un boucher. Laurine prend le bus à l'Exit 112 de l'I-15 — pile dans la ville natale d'un hors-la-loi légendaire !",
+          "link": "📍 Dernier repas avec Laurine au Timberline Restaurant — à 50 m de l'arrêt bus"
+        },
+        {
+          "level": "easy",
+          "text": "Capitol Reef, qu'on traverse cet après-midi, doit son nom à deux choses. Quelles sont-elles ?",
+          "options": ["Un capitaine de l'armée + un récif de corail fossile", "Des dômes blancs comme le Capitole de Washington + une barrière infranchissable comme un récif", "La capitale de l'Utah + les récifs du Lake Powell", "Un sénateur du Colorado + les falaises rouges comme des récifs"],
+          "correct": 1,
+          "explanation": "Les dômes de grès blanc au sommet rappelaient le dôme du Capitole à Washington. Et les pionniers mormons appelaient cette muraille de falaises un 'reef' (récif) car elle était aussi infranchissable qu'un récif de corail — aucun passage sur 160 km !",
+          "link": "📍 On traverse ce 'récif' cet après-midi — arrêt pétroglyphes et viewpoints"
+        },
+        {
+          "level": "easy",
+          "text": "On s'arrête aux Red Hill Hot Springs cet après-midi à Monroe. Combien ça coûte ?",
+          "options": ["10$ par personne", "25$ par personne", "C'est GRATUIT", "5$ par véhicule"],
+          "correct": 2,
+          "explanation": "Totalement gratuit ! Ce sont des sources chaudes naturelles — 3 à 5 bassins au pied d'une colline rouge. Terrain privé, accès public toléré. Eau très chaude en haut, tiède en bas. Prévoir maillot et chaussures d'eau !",
+          "link": "📍 Baignade prévue vers 14h20 — 30 min de détente bien méritée"
+        },
+        {
+          "level": "medium",
+          "text": "Le Waterpocket Fold de Capitol Reef est un pli géologique. Quelle est sa longueur ?",
+          "options": ["40 km", "80 km", "160 km", "250 km"],
+          "correct": 2,
+          "explanation": "160 km de long ! Ce monocline (pli en marche d'escalier) expose 7 000 pieds de strates continues — un livre ouvert de 270 millions d'années de géologie. Formé il y a 50-70 millions d'années par la compression Laramide.",
+          "link": "📍 On roule le long de cette muraille géologique cet après-midi sur la UT-24"
+        },
+        {
+          "level": "medium",
+          "text": "Les pétroglyphes de Capitol Reef ont été gravés par le peuple Fremont. De quand datent-ils ?",
+          "options": ["2 000 av. J.-C.", "600-1300 apr. J.-C.", "1500 apr. J.-C.", "1800 apr. J.-C."],
+          "correct": 1,
+          "explanation": "600 à 1300 après J.-C. ! Les Fremont étaient des chasseurs-cueilleurs distincts des Ancestral Puebloans. Leurs pétroglyphes montrent des bighorn sheep et des figures humaines aux épaules larges (le 'style Fremont'). Arrêt rapide de 5 min depuis la route.",
+          "link": "📍 Arrêt pétroglyphes cet après-midi — 700 ans d'art rupestre visible depuis le parking"
+        },
+        {
+          "level": "expert",
+          "text": "Le sol gris-bleuté de Factory Butte est du 'Mancos Shale'. Ce sont des sédiments de quoi exactement ?",
+          "options": ["Un ancien désert de cendres volcaniques", "Un fond marin vieux de 75-90 millions d'années", "Un glacier fondu il y a 10 000 ans", "Des dunes de sable gris pétrifié"],
+          "correct": 1,
+          "explanation": "On marche littéralement sur un ancien fond d'océan ! Le Mancos Shale est composé à 95% de minéraux argileux déposés au fond d'une mer intérieure il y a 75-90 millions d'années (Crétacé). Des sédiments marins à 1 500 m d'altitude dans le désert — la tectonique est folle.",
+          "link": "📍 Cet après-midi, on marche sur un ancien océan qui ressemble à Mars"
+        },
+        {
+          "level": "expert",
+          "text": "La vallée de Fruita à Capitol Reef est restée isolée derrière le Waterpocket Fold jusqu'à quelle année ?",
+          "options": ["1912", "1935", "1962", "1984"],
+          "correct": 2,
+          "explanation": "1962 ! La construction de la route a enfin ouvert cette vallée cachée. Les mormons y avaient planté des vergers dans les années 1880, et ces mêmes arbres centenaires produisent encore ~2 000 boisseaux de fruits par an. Le NPS les entretient toujours.",
+          "link": "📍 On traverse une vallée qui était coupée du monde jusqu'il y a 64 ans"
+        },
+        {
+          "level": "wtaf",
+          "text": "Moab, où on arrive ce soir, était la 'capitale mondiale de l'uranium' dans les années 50. Un géologue fauché y a découvert un filon et est devenu millionnaire du jour au lendemain. Qui était-ce ?",
+          "options": ["Howard Hughes", "Charlie Steen", "J. Robert Oppenheimer", "Vanadium King Smith"],
+          "correct": 1,
+          "explanation": "Charlie Steen ! Il a découvert le filon 'Mi Vida' en 1952. Pendant la Guerre Froide, le gouvernement payait 10 000$ de bonus (110 000$ d'aujourd'hui) par gisement découvert. Steen a construit un manoir sur les falaises et donnait des fêtes légendaires. L'héritage : 16 millions de tonnes de déchets radioactifs le long du Colorado.",
+          "link": "📍 Ce soir à Moab, on est dans l'ancienne capitale du nucléaire reconvertie en mecque du VTT"
+        },
+        {
+          "level": "cinema",
+          "text": "Tom Cruise a tourné la scène d'ouverture de Mission Impossible 2 (2000) dans un lieu qu'on peut visiter demain. Il escalade une falaise sans doublure. Où ?",
+          "options": ["Angel's Landing, Zion", "Dead Horse Point, Moab", "Delicate Arch, Arches NP", "Factory Butte"],
+          "correct": 1,
+          "explanation": "Dead Horse Point ! Tom Cruise escalade les falaises 600 m au-dessus du Colorado, sans doublure. C'est aussi (théoriquement) le lieu de la scène finale de Thelma & Louise, même si le film dit 'Grand Canyon'. 20$/véhicule — pas couvert par le pass national.",
+          "link": "📍 Demain matin très tôt si on veut le lever de soleil — ou après-midi entre deux arches"
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "date": "2026-04-28",
+      "label": "Journée Arches National Park (+ Dead Horse Point option)",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Arches National Park contient combien d'arches naturelles ? On vous l'a teasé...",
+          "options": ["500", "1 000", "2 000+", "5 000"],
+          "correct": 2,
+          "explanation": "Plus de 2 000 arches naturelles ! C'est la plus grande concentration au monde. La plus célèbre, Delicate Arch (14 m de haut), est sur les plaques d'immatriculation de l'Utah depuis 1996.",
+          "link": "📍 On en visite une dizaine aujourd'hui — et Delicate Arch au coucher de soleil"
+        },
+        {
+          "level": "easy",
+          "text": "Delicate Arch est l'icône de l'Utah. Elle figure sur quoi depuis 1996 ?",
+          "options": ["Les billets de banque américains", "Les plaques d'immatriculation de l'Utah", "Le logo du National Park Service", "Les timbres-poste des USA"],
+          "correct": 1,
+          "explanation": "Les plaques d'immatriculation de l'Utah ! Elle est devenue monument d'État en 2002. Pour les JO d'hiver de Salt Lake City en 2002, un coureur a porté la flamme olympique sur le trail enneigé jusqu'à l'arche.",
+          "link": "📍 On la voit de nos propres yeux ce soir au coucher de soleil — THE photo du voyage"
+        },
+        {
+          "level": "easy",
+          "text": "On avait le droit d'entrer à Arches sans réservation cette année. Pourquoi c'est nouveau ?",
+          "options": ["Le parc vient d'ouvrir en 2026", "Le Timed Entry (réservation obligatoire) a été supprimé en 2026", "On a un pass VIP", "C'est gratuit le mardi"],
+          "correct": 1,
+          "explanation": "Le NPS a annoncé en février 2026 la suppression du Timed Entry — l'entrée est libre avec le pass America the Beautiful. Avant, il fallait réserver un créneau horaire. On entre quand on veut !",
+          "link": "📍 On entre tôt ce matin (7h30) pour éviter la foule — pas de résa mais un peu de stratégie"
+        },
+        {
+          "level": "easy",
+          "text": "Landscape Arch est la plus longue arche naturelle au monde. Quelle est sa portée ?",
+          "options": ["45 mètres", "67 mètres", "93 mètres", "120 mètres"],
+          "correct": 2,
+          "explanation": "93 mètres de portée ! Mais elle s'amincit dangereusement. En 1991, un bloc de 20 tonnes s'est détaché devant des touristes (filmé !). Le sentier en dessous est fermé depuis. On la voit de loin ce matin à Devils Garden.",
+          "link": "📍 On la voit ce matin — regardez comme elle est fine. Un jour elle tombera."
+        },
+        {
+          "level": "medium",
+          "text": "Toutes les arches d'Arches NP commencent par un secret souterrain. Qu'est-ce qui se cache sous le grès ?",
+          "options": ["Un réseau de grottes karstiques", "Une couche de sel de 900 m d'épaisseur vieille de 300 millions d'années", "Un ancien lac souterrain", "Des poches de gaz naturel"],
+          "correct": 1,
+          "explanation": "Du sel ! Il y a 300 millions d'années, une mer intérieure s'est évaporée, laissant 900 m de sel sous le grès. Ce sel se dissout lentement, déstabilisant la roche au-dessus. Des failles apparaissent, découpent le grès en 'ailettes', et l'eau + le gel percent les arches.",
+          "link": "📍 Chaque arche qu'on voit aujourd'hui existe grâce à du sel invisible 900 m sous nos pieds"
+        },
+        {
+          "level": "medium",
+          "text": "Wall Arch (22 m) s'est effondrée en une nuit. Les rangers l'ont découverte au matin. C'était quand ?",
+          "options": ["Le 4 août 2008", "Le 15 mars 2015", "Le 22 juin 2019", "Le 1er janvier 2024"],
+          "correct": 0,
+          "explanation": "La nuit du 4 août 2008 ! Aucun témoin, aucun signe avant-coureur. Les rangers l'ont trouvée en gravats le matin. On perd environ 1 arche par décennie. Aucune arche n'est permanente — on les voit dans un instant géologique fugace.",
+          "link": "📍 Chaque arche qu'on voit aujourd'hui pourrait tomber cette nuit. Savourez."
+        },
+        {
+          "level": "expert",
+          "text": "Edward Abbey, ivre, a escaladé Delicate Arch en 1956 quand il était ranger ici. Comment l'a-t-il décrite ?",
+          "options": ["'The most ancient wonder of the world'", "'The most delicately balanced arch in the world'", "'Nature's perfect mistake'", "'God's last standing doorway'"],
+          "correct": 1,
+          "explanation": "'The most delicately balanced arch in the world.' Abbey était ranger à Arches dans les années 50, dormait dans une caravane, buvait et écrivait. Le résultat : Desert Solitaire (1968), un chef-d'œuvre. Escalader l'arche est aujourd'hui illégal et passible d'amende.",
+          "link": "📍 Ce soir au coucher de soleil devant Delicate Arch, on est dans le décor de Desert Solitaire"
+        },
+        {
+          "level": "expert",
+          "text": "Moab (5 000 habitants) accueille combien de visiteurs par an grâce au boom de l'outdoor ?",
+          "options": ["500 000", "1,5 million", "3 millions", "5 millions"],
+          "correct": 2,
+          "explanation": "3 millions ! 600 fois la population de la ville. C'est le 2ème boom de Moab : après l'uranium (1952-1964), c'est le VTT et l'escalade depuis les années 80. Le Slickrock Trail est le trail VTT le plus célèbre du monde.",
+          "link": "📍 On fait partie des 3 millions — et on comprend pourquoi"
+        },
+        {
+          "level": "wtaf",
+          "text": "Moab a un héritage toxique de l'ère de l'uranium : des déchets radioactifs empilés le long du Colorado. Combien de tonnes ?",
+          "options": ["500 000 tonnes", "4 millions de tonnes", "16 millions de tonnes", "50 millions de tonnes"],
+          "correct": 2,
+          "explanation": "16 MILLIONS de tonnes de déchets radioactifs, à 230 m de la rivière Colorado ! Le nettoyage est en cours depuis 2009 — coût estimé 1,3 milliard de dollars, fin prévue 2028. On déplace les déchets à 50 km. L'héritage de la Guerre Froide est encore bien présent.",
+          "link": "📍 La rivière qu'on voit couler à Moab a vécu à côté de ces déchets pendant 60 ans"
+        },
+        {
+          "level": "cinema",
+          "text": "Dead Horse Point, le panorama vertigineux au-dessus du Colorado, doit son nom à une légende. Que dit-elle ?",
+          "options": ["Un cheval a sauté dans le vide pour échapper aux Navajos", "Des chevaux abandonnés sont morts de soif en voyant la rivière 600 m plus bas", "Un sheriff a fait basculer le cheval d'un hors-la-loi dans le canyon", "Des chevaux sauvages y galopaient au bord du précipice pour le plaisir"],
+          "correct": 1,
+          "explanation": "Les cowboys parquaient les mustangs sauvages sur cette mesa (isthme de 30 m de large = corral naturel). La légende dit qu'un groupe de chevaux 'de moindre valeur' fut abandonné là. Incapables de retrouver la sortie, ils sont morts de soif — avec le Colorado visible 600 m plus bas mais inaccessible.",
+          "link": "📍 Si on y va au lever du soleil demain matin (6h), le Colorado reflète le ciel rose"
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "date": "2026-04-29",
+      "label": "Moab → Denver (via I-70, Canyonlands optionnel)",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Aujourd'hui on fait la plus longue étape du voyage : Moab → Denver. Combien de km ?",
+          "options": ["350 km", "470 km", "570 km", "700 km"],
+          "correct": 2,
+          "explanation": "570 km et environ 5h30 de route ! C'est la seule journée qui dépasse notre limite de 4h. On fait une pause à Grand Junction (175 km) pour couper le trajet. Les paysages sur l'I-70 sont spectaculaires.",
+          "link": "📍 Longue route mais beau programme — et Denver nous attend ce soir"
+        },
+        {
+          "level": "easy",
+          "text": "Denver est surnommée la 'Mile High City'. À quelle altitude se trouve-t-elle ?",
+          "options": ["1 200 m", "1 609 m", "2 100 m", "2 500 m"],
+          "correct": 1,
+          "explanation": "1 609 m — soit exactement 5 280 pieds = 1 mile. D'où le surnom ! La 13ème marche du Colorado State Capitol est gravée 'One Mile Above Sea Level'. Mais un relevé GPS de 2003 a montré que c'est en fait la 18ème marche qui est à la bonne altitude !",
+          "link": "📍 Demain on ira vérifier par nous-mêmes quelle marche est à 1 mile"
+        },
+        {
+          "level": "easy",
+          "text": "Les Rocheuses qu'on traverse en I-70 ont quel âge ?",
+          "options": ["20 millions d'années", "70 millions d'années", "300 millions d'années", "1 milliard d'années"],
+          "correct": 1,
+          "explanation": "70 millions d'années — formées par l'orogenèse Laramide, une collision de plaques tectoniques qui a soulevé le fond marin pour en faire des sommets à 4 000 m+. Mais il existait des 'Ancestral Rockies' 300 millions d'années plus tôt, qui se sont complètement érodées !",
+          "link": "📍 On les traverse aujourd'hui sur l'I-70 — les cols sont à 3 200-3 400 m"
+        },
+        {
+          "level": "easy",
+          "text": "L'Eisenhower Tunnel qu'on traverse sur l'I-70 perce la Continental Divide. Qu'est-ce que ça signifie ?",
+          "options": ["La frontière entre le Colorado et l'Utah", "La ligne de partage des eaux : à l'ouest → Pacifique, à l'est → Atlantique", "La limite entre les Rocheuses et les plaines", "La frontière entre deux plaques tectoniques"],
+          "correct": 1,
+          "explanation": "La Continental Divide ! À l'ouest de ce tunnel (3 401 m d'altitude), chaque goutte d'eau coule vers le Pacifique. À l'est, vers l'Atlantique. On traverse cette ligne invisible aujourd'hui. C'est le plus haut tunnel routier des USA.",
+          "link": "📍 Quand on sort du tunnel côté est, on est passé du versant Pacifique au versant Atlantique"
+        },
+        {
+          "level": "medium",
+          "text": "Le grès rouge de Red Rocks Amphitheatre (près de Denver) est composé de quoi ?",
+          "options": ["De lave refroidie des volcans du Colorado", "Des débris des 'Ancestral Rockies' — des montagnes fantômes érodées il y a 300 millions d'années", "Du sable du Sahara transporté par le vent", "Des sédiments du fond du Grand Canyon"],
+          "correct": 1,
+          "explanation": "Les 'Ancestral Rockies' existaient 300 millions d'années avant les Rocheuses actuelles — et se sont complètement érodées ! Le grès rouge de Red Rocks est littéralement leurs débris. On fait un concert dans les ruines d'une chaîne de montagnes fantôme !",
+          "link": "📍 Si vous voyez des falaises rouges en arrivant à Denver, ce sont les fantômes de montagnes mortes"
+        },
+        {
+          "level": "medium",
+          "text": "Pendant la construction de l'Eisenhower Tunnel (1968-1979), les femmes n'avaient pas le droit d'entrer. Pourquoi ?",
+          "options": ["Loi fédérale sur le travail des femmes en milieu souterrain", "Superstition minière — les femmes porteraient malheur sous terre", "Le syndicat des mineurs l'interdisait", "La ventilation était jugée insuffisante pour les femmes"],
+          "correct": 1,
+          "explanation": "Superstition minière ! Le deuxième tube porte le nom de Patricia Schroeder, première femme congresswoman du Colorado, qui a brisé cette tradition en entrant dans le tunnel malgré l'interdiction. Punk move.",
+          "link": "📍 On traverse les deux tubes aujourd'hui — à 3 401 m d'altitude"
+        },
+        {
+          "level": "expert",
+          "text": "Denver compte plus de 400 brasseries artisanales. L'altitude de Denver affecte la bière de quelle manière ?",
+          "options": ["La bière est plus gazeuse car elle mousse plus en altitude", "La fermentation est plus rapide et l'alcool est absorbé plus vite par le corps", "La bière gèle plus vite car il fait plus froid", "La bière a un goût plus amer à cause de l'eau de montagne"],
+          "correct": 1,
+          "explanation": "La fermentation est plus rapide (pression atmosphérique plus basse) et l'alcool est absorbé plus vite par le corps (air 17% moins dense = absorption plus rapide). Deux pintes à Denver = trois pintes au niveau de la mer. À bon entendeur ce soir ! 🍺",
+          "link": "📍 Ce soir dans le quartier RiNo (où on dort), les brasseries sont partout — attention au mile high effect"
+        },
+        {
+          "level": "expert",
+          "text": "Les Chinook winds de Denver sont un phénomène météo unique. Qu'est-ce qu'ils font ?",
+          "options": ["Ils soufflent de la neige horizontalement pendant des heures", "Ils font monter la température de 30°C en quelques heures", "Ils créent des tornades en plein centre-ville", "Ils apportent de la pluie rouge chargée de sable du désert"],
+          "correct": 1,
+          "explanation": "Les Chinook sont des vents chauds descendant des Rocheuses qui font monter la température de façon spectaculaire. Record : +27°C en 2h le 25 janvier 1872 (de -20°C à +7°C !). C'est de la compression adiabatique — l'air se réchauffe en descendant.",
+          "link": "📍 Si la température change brutalement ce soir à Denver, c'est les Chinook qui jouent"
+        },
+        {
+          "level": "wtaf",
+          "text": "Au Coors Field (stade de baseball de Denver), les home runs volent 9% plus loin qu'au niveau de la mer. Que fait l'équipe pour compenser ?",
+          "options": ["Ils utilisent des balles plus lourdes", "Ils stockent les balles dans un humidificateur", "Ils ont raccourci le terrain de 5%", "Ils interdisent certains types de battes"],
+          "correct": 1,
+          "explanation": "Les balles de baseball des Colorado Rockies sont stockées dans un humidificateur ! L'air sec et moins dense de Denver les fait voler plus loin, donc on les humidifie pour les alourdir légèrement. L'altitude affecte tout ici — même le sport !",
+          "link": "📍 On passe devant le Coors Field dans le centre de Denver"
+        },
+        {
+          "level": "cinema",
+          "text": "Retour vers le Futur III (1990) se passe dans le Far West de 1885. Monument Valley sert de toile de fond. Quel objet improbable apparaît dans le désert en 1885 ?",
+          "options": ["Un hélicoptère", "La DeLorean (machine à voyager dans le temps)", "Un sous-marin", "Un train spatial"],
+          "correct": 1,
+          "explanation": "La DeLorean ! Marty McFly remonte à 1885 et retrouve Doc Brown dans le Far West, avec Monument Valley en toile de fond. La scène du train lancé à pleine vitesse pour atteindre 88 mph est devenue culte. Les décors sont les mêmes que ceux de John Ford !",
+          "link": "📍 On a traversé le même type de paysages pendant 12 jours — des décors de cinéma grandeur nature"
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "date": "2026-04-30",
+      "label": "Journée libre Denver — Dernier jour",
+      "questions": [
+        {
+          "level": "easy",
+          "text": "Ce matin on visite le Colorado State Capitol. La 13ème marche est gravée 'One Mile Above Sea Level' depuis 1947. Mais un relevé GPS de 2003 a trouvé que c'est en fait quelle marche ?",
+          "options": ["La 15ème", "La 17ème", "La 18ème", "La 21ème"],
+          "correct": 2,
+          "explanation": "La 18ème marche ! Des étudiants avec un GPS de précision ont découvert que la 13ème est trop basse. Les deux sont maintenant marquées — la 13ème avec une plaque en laiton, la 18ème avec un disque gravé. Le selfie obligatoire du jour !",
+          "link": "📍 On y va ce matin — photo sur les deux marches pour la science"
+        },
+        {
+          "level": "easy",
+          "text": "La Denver Mint, qu'on visite ce matin, frappe combien de pièces par an ?",
+          "options": ["Des millions", "Des centaines de millions", "Des milliards", "Des dizaines de milliards"],
+          "correct": 2,
+          "explanation": "Des MILLIARDS ! Toutes les pièces frappées ici portent un petit 'D'. Sortez une pièce américaine de votre poche et vérifiez — si vous voyez un 'D', elle vient de Denver. Le bâtiment de 1904 est classé au patrimoine national.",
+          "link": "📍 On voit la chaîne de production en live ce matin — la visite est gratuite !"
+        },
+        {
+          "level": "easy",
+          "text": "L'eau bout à quelle température à Denver (1 609 m d'altitude) ?",
+          "options": ["90°C", "95°C", "98°C", "100°C comme partout"],
+          "correct": 1,
+          "explanation": "95°C ! La pression atmosphérique est plus basse en altitude, donc l'eau bout à une température inférieure. Résultat : les pâtes et le riz cuisent moins bien. Les boulangers de Denver doivent adapter TOUTES leurs recettes !",
+          "link": "📍 Si le café a un goût différent ce matin, c'est l'altitude"
+        },
+        {
+          "level": "easy",
+          "text": "Denver est célèbre pour son 'green chili'. C'est quoi ?",
+          "options": ["Un piment vert frais qu'on mange cru", "Un ragoût de piment vert qu'on met sur tout — burritos, omelettes, burgers", "Un cocktail à base de tequila et de piment", "Une salade de cactus"],
+          "correct": 1,
+          "explanation": "Le green chili du Colorado est un ragoût de piment vert (pas du chili con carne rouge !). C'est le plat signature. On le met sur les burritos, les omelettes, les burgers, TOUT. Au restaurant, demander 'green chili on top' est un mode de vie à Denver.",
+          "link": "📍 Commandez-le au déjeuner — c'est le dernier goût local du voyage"
+        },
+        {
+          "level": "medium",
+          "text": "Le quartier RiNo (River North Art District), où on dort, est le cœur de quoi à Denver ?",
+          "options": ["La scène jazz et blues", "La scène brassicole et street art", "Le quartier financier", "Le marché aux puces géant"],
+          "correct": 1,
+          "explanation": "RiNo est LE quartier des brasseries artisanales et du street art de Denver ! Murales colorées partout, galeries, brasseries à chaque coin de rue. Et notre Airbnb est un appart de 1883 — historique et trendy en même temps.",
+          "link": "📍 Balade dans le quartier cet après-midi — les murales et les bières vous attendent"
+        },
+        {
+          "level": "medium",
+          "text": "On a fait un road trip de 2 524 km à travers le Colorado Plateau. Ce plateau s'est soulevé d'un seul tenant il y a combien de temps ?",
+          "options": ["500 000 ans", "5-10 millions d'années", "50 millions d'années", "200 millions d'années"],
+          "correct": 1,
+          "explanation": "5 à 10 millions d'années ! 340 000 km² soulevés comme un piston géant, sans se fracturer. C'est ce soulèvement qui a exposé les couches de roches et permis aux rivières de les sculpter. Tout ce qu'on a vu — Grand Canyon, Zion, Bryce, Arches — c'est cet accident géologique.",
+          "link": "📍 Dernier jour du voyage — tout ce qu'on a vu vient de ce soulèvement titanesque"
+        },
+        {
+          "level": "expert",
+          "text": "Rocky Mountain Oysters est un plat 'classique' du Colorado. Qu'est-ce que c'est VRAIMENT ?",
+          "options": ["Des huîtres de montagne (un champignon local)", "Des testicules de taureau panés et frits", "Des moules de rivière de montagne", "Des palourdes d'eau douce du Colorado"],
+          "correct": 1,
+          "explanation": "Oui. Des testicules de taureau. Panés et frits. C'est un classique du Colorado — on peut les essayer au Buckhorn Exchange, le plus vieux restaurant de Denver (depuis 1893). Oser ou ne pas oser, telle est la question...",
+          "link": "📍 Si le cœur vous en dit, le Buckhorn Exchange est en ville. Sinon, le green chili est très bien aussi 😏"
+        },
+        {
+          "level": "expert",
+          "text": "L'air de Denver est 17% moins dense qu'au niveau de la mer. Quel effet concret cela a-t-il sur le bronzage ?",
+          "options": ["On bronze 5% plus vite", "On bronze 17% plus vite car il y a 17% moins de filtrage UV", "On ne bronze pas du tout — le froid empêche les UV", "On bronze la nuit grâce à la réflexion de la neige"],
+          "correct": 1,
+          "explanation": "17% moins d'atmosphère = 17% moins de filtrage des UV = bronzage accéléré ! C'est aussi pourquoi les coups de soleil sont plus rapides en altitude. Crème solaire obligatoire même si on est en ville aujourd'hui.",
+          "link": "📍 Attention au soleil de Denver — on bronze vite à un mile d'altitude"
+        },
+        {
+          "level": "wtaf",
+          "text": "Combien de brasseries artisanales Denver compte-t-elle — la plus forte densité des USA ?",
+          "options": ["120", "250", "400+", "800"],
+          "correct": 2,
+          "explanation": "Plus de 400 brasseries artisanales ! La plus forte concentration des États-Unis. L'altitude affecte la fermentation (plus rapide en basse pression) et l'absorption d'alcool (air moins dense). Deux pintes à Denver = trois pintes au niveau de la mer !",
+          "link": "📍 Ce soir dans RiNo, dernier dîner ensemble — choisissez bien votre brasserie"
+        },
+        {
+          "level": "cinema",
+          "text": "Dernier jour, dernière question ciné ! Quel film de Stanley Kubrick utilise Monument Valley pour représenter... une autre planète ?",
+          "options": ["Shining", "Orange Mécanique", "2001, l'Odyssée de l'Espace", "Full Metal Jacket"],
+          "correct": 2,
+          "explanation": "2001, l'Odyssée de l'Espace (1968) ! Kubrick a choisi Monument Valley pour les séquences 'planète' du début car l'endroit ressemble à un autre monde. Quand on y réfléchit, tout l'Ouest américain qu'on a traversé ressemble à une collection de planètes différentes.",
+          "link": "📍 On a marché sur Mars (Factory Butte), sur la Lune (Moonscape), et sur des planètes de cinéma pendant 14 jours. Quel voyage !"
+        }
+      ]
+    }
+  ]
+}
