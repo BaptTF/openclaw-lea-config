@@ -317,12 +317,15 @@ pinInput.addEventListener('input', async function() {
 
 function logout(){sessionStorage.clear();location.reload();}
 
-function clearCache(){
+async function clearCache(){
   if(!confirm('Vider le cache et recharger ?\n(Les scores du quiz sont conservés)')) return;
   if('serviceWorker' in navigator){
-    navigator.serviceWorker.getRegistrations().then(regs=>regs.forEach(r=>r.unregister()));
+    const regs = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(regs.map(r=>r.unregister()));
   }
-  caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k)))).then(()=>location.reload(true));
+  const keys = await caches.keys();
+  await Promise.all(keys.map(k=>caches.delete(k)));
+  window.location.href = window.location.pathname + '?v=' + Date.now();
 }
 
 function unlock(){
