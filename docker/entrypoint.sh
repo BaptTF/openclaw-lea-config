@@ -29,6 +29,15 @@ export HOME=/home/node
 CONFIG_FILE="$HOME/.openclaw/openclaw.json"
 mkdir -p "$HOME/.openclaw"
 
+# Mnemon persistent memory setup
+# Mnemon stores its DB in ~/.mnemon/ which is on the overlay filesystem.
+# We keep the real data in ~/.openclaw/mnemon/ (persistent volume) and symlink.
+if [ -d "$HOME/.openclaw/mnemon" ] && [ ! -L "$HOME/.mnemon" ]; then
+  rm -rf "$HOME/.mnemon" 2>/dev/null || true
+  ln -sf "$HOME/.openclaw/mnemon" "$HOME/.mnemon"
+  echo "==> Mnemon memory: symlinked ~/.mnemon -> ~/.openclaw/mnemon"
+fi
+
 # Fix ownership on data directory BEFORE setup so node user can write
 if [ "$(id -u)" = "0" ]; then
   chown -R node:node "$HOME/.openclaw" || {
