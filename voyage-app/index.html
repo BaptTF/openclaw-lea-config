@@ -759,7 +759,7 @@ function quizRender(){
   // Explanation (shown if answered)
   if(wasAnswered){
     html += `<div class="qexplain">${q.explanation}${q.link?'<span class="qlink">'+q.link+'</span>':''}</div>`;
-    html += quizPlayersHTML(qid, q);
+    if(quizAnswered[qid]===q.correct) html += quizPlayersHTML(qid, q);
     html += quizNextBtnHTML();
   }
 
@@ -813,7 +813,7 @@ function quizAnswer(chosen){
 
   // Inject explanation + players + next
   let extra = `<div class="qexplain">${q.explanation}${q.link?'<span class="qlink">'+q.link+'</span>':''}</div>`;
-  extra += quizPlayersHTML(qid, q);
+  if(chosen===q.correct) extra += quizPlayersHTML(qid, q);
   extra += quizNextBtnHTML();
   slide.insertAdjacentHTML('beforeend', extra);
 }
