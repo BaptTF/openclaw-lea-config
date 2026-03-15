@@ -205,6 +205,11 @@ h2.section-title{font-size:1.15em;margin:18px 0 10px;padding-left:4px}
 <!-- APP -->
 <div id="app" style="display:none">
 
+<div style="display:flex;justify-content:flex-end;gap:8px;padding:8px 12px 0">
+  <button onclick="clearCache()" style="font-size:.7em;color:var(--muted);padding:4px 10px;border-radius:8px;background:var(--card)">🔄 Vider cache</button>
+  <button onclick="logout()" style="font-size:.7em;color:var(--muted);padding:4px 10px;border-radius:8px;background:var(--card)">🚪 Déconnexion</button>
+</div>
+
 <!-- TAB: JOUR -->
 <div class="tab active" id="tabDay">
   <div id="dayContent"></div>
@@ -311,6 +316,14 @@ pinInput.addEventListener('input', async function() {
 });
 
 function logout(){sessionStorage.clear();location.reload();}
+
+function clearCache(){
+  if(!confirm('Vider le cache et recharger ?\n(Les scores du quiz sont conservés)')) return;
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.getRegistrations().then(regs=>regs.forEach(r=>r.unregister()));
+  }
+  caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k)))).then(()=>location.reload(true));
+}
 
 function unlock(){
   document.getElementById('auth').classList.add('hidden');
