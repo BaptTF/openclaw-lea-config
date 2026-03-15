@@ -1,0 +1,59 @@
+# docker-compose.potager.yml
+# Site potager Camille — auth GitHub via Traefik (external)
+
+services:
+  oauth2-proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy:latest
+    container_name: potager-oauth
+    restart: always
+    command:
+      - --provider=github
+      - --client-id=${GITHUB_CLIENT_ID}
+      - --client-secret=${GITHUB_CLIENT_SECRET}
+      - --cookie-secret=${COOKIE_SECRET}
+      - --github-user=rjullien,jlncamille,BaptTF,NicoleJ06
+      - --email-domain=*
+      - --upstream=http://potager-nginx:80
+      - --http-address=0.0.0.0:4180
+      - --redirect-url=https://${POTAGER_DOMAIN:-potager.bapttf.com}/oauth2/callback
+      - --reverse-proxy=true
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.potager.rule=Host(`${POTAGER_DOMAIN:-potager.bapttf.com}`)
+      - traefik.http.routers.potager.entrypoints=websecure
+      - traefik.http.routers.potager.tls.certresolver=letsencrypt
+      - traefik.http.services.potager.loadbalancer.server.port=4180
+    networks:
+      - traefik
+
+  potager-nginx:
+    image: nginx:alpine
+    container_name: potager-nginx
+    restart: always
+    volumes:
+      - ./potager-site:/usr/share/nginx/html:ro
+    networks:
+      - traefik
+
+  potager-updater:
+    image: alpine/git:latest
+    container_name: potager-updater
+    restart: always
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        cd /site
+        git clone -b site https://github.com/rjullien/camille-potager.git . 2>/dev/null || true
+        while true; do
+          git pull -q origin site
+          sleep 86400
+        done
+    volumes:
+      - ./potager-site:/site
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
