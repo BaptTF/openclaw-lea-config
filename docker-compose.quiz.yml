@@ -1,5 +1,6 @@
 # docker-compose.quiz.yml
-# App Road Trip USA 2026 — PWA offline (pas d'auth, PIN dans l'app)
+# App Road Trip USA 2026 — PWA offline
+# Pas d'auth server-side (PIN dans l'app côté client)
 
 services:
   quiz-pwa:
