@@ -3,15 +3,15 @@
 # Pas d'auth server-side (PIN dans l'app côté client)
 
 services:
-  quiz-pwa:
+  voyage-app:
     image: nginx:alpine
-    container_name: quiz-pwa
+    container_name: voyage-app
     restart: always
     volumes:
-      - ./quiz-pwa:/usr/share/nginx/html:ro
+      - ./voyage-app:/usr/share/nginx/html:ro
     labels:
       - traefik.enable=true
-      - traefik.http.routers.quiz.rule=Host(`${QUIZ_DOMAIN:-quiz.bapttf.com}`)
+      - traefik.http.routers.quiz.rule=Host(`${VOYAGE_DOMAIN:-voyage.bapttf.com}`)
       - traefik.http.routers.quiz.entrypoints=websecure
       - traefik.http.routers.quiz.tls.certresolver=letsencrypt
       - traefik.http.services.quiz.loadbalancer.server.port=80
