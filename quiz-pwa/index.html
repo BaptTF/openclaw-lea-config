@@ -2,310 +2,681 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#e94560">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Quiz Road Trip">
-<link rel="apple-touch-icon" href="icon-192.png">
-<title>🧠 Quiz Road Trip</title>
+<meta name="theme-color" content="#1a1a2e">
+<title>Juju's Adventures — USA 2026</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { 
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #1a1a2e; color: #eee; padding: 12px;
-    max-width: 500px; margin: 0 auto;
-    -webkit-tap-highlight-color: transparent;
-  }
-  h1 { font-size: 1.3em; text-align: center; margin: 8px 0; }
-  .day-info { text-align: center; color: #aaa; font-size: 0.85em; margin-bottom: 12px; }
-  .question-card {
-    background: #16213e; border-radius: 12px; padding: 16px;
-    margin-bottom: 12px; border-left: 4px solid #e94560;
-  }
-  .q-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-  .q-number { color: #e94560; font-weight: bold; }
-  .q-level { font-size: 0.8em; }
-  .q-text { font-size: 1.05em; line-height: 1.4; margin-bottom: 12px; }
-  .q-options { list-style: none; }
-  .q-options li { 
-    background: #0f3460; padding: 10px 12px; border-radius: 8px;
-    margin-bottom: 6px; cursor: pointer; transition: all 0.2s;
-  }
-  .q-options li:active { transform: scale(0.98); }
-  .q-options li.correct { background: #1b8a2d !important; }
-  .q-options li.wrong { background: #8a1b1b !important; opacity: 0.6; }
-  .q-answer { 
-    display: none; background: #1b4a1b; border-radius: 8px;
-    padding: 12px; margin-top: 8px; font-size: 0.9em; line-height: 1.4;
-  }
-  .q-answer.show { display: block; }
-  .q-link { color: #4ecdc4; font-style: italic; margin-top: 6px; display: block; }
-  .players-title { font-size: 1em; margin-bottom: 8px; color: #e94560; text-align: center; }
-  .players-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
-  .player-btn {
-    background: #16213e; border: 2px solid #0f3460; border-radius: 10px;
-    padding: 10px 6px; text-align: center; cursor: pointer;
-    transition: all 0.15s; user-select: none; -webkit-user-select: none;
-  }
-  .player-btn:active { transform: scale(0.95); background: #1b8a2d; border-color: #1b8a2d; }
-  .player-btn .name { font-size: 0.9em; font-weight: bold; }
-  .player-btn .score { font-size: 1.2em; margin-top: 2px; color: #4ecdc4; }
-  .player-btn .streak { font-size: 0.7em; color: #ffd93d; }
-  .controls { display: flex; gap: 8px; margin: 12px 0; }
-  .btn {
-    background: #e94560; border: none; color: white; padding: 10px 16px;
-    border-radius: 8px; font-size: 0.9em; cursor: pointer; flex: 1;
-    text-align: center;
-  }
-  .btn:active { opacity: 0.8; transform: scale(0.98); }
-  .btn.secondary { background: #0f3460; }
-  .btn.small { padding: 6px 10px; font-size: 0.8em; flex: none; }
-  .nobody-btn { text-align: center; margin-top: 4px; }
-  .hidden { display: none !important; }
-  .scoreboard { background: #16213e; border-radius: 12px; padding: 16px; margin-top: 12px; }
-  .score-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #0f3460; }
-  .score-row:last-child { border: none; }
-  .score-rank { width: 30px; font-size: 1.2em; }
-  .score-name { flex: 1; }
-  .score-pts { font-weight: bold; color: #4ecdc4; font-size: 1.1em; }
-  .popup {
-    position: fixed; top: 40%; left: 50%; transform: translate(-50%,-50%);
-    background: #1b8a2d; color: white; font-size: 1.5em; font-weight: bold;
-    padding: 16px 32px; border-radius: 16px; z-index: 100; pointer-events: none;
-    animation: pop 0.6s forwards;
-  }
-  @keyframes pop { 0%{opacity:0;scale:0.5} 30%{opacity:1;scale:1.1} 100%{opacity:0;scale:1;translate:0 -30px} }
-  .end-screen { text-align: center; padding: 20px; }
-  .end-screen h2 { margin-bottom: 16px; }
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#1a1a2e;--card:#16213e;--accent:#e94560;--sec:#4ecdc4;--text:#eee;--muted:#8892b0;--radius:14px;--nav-h:62px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden;padding-bottom:calc(var(--nav-h)+8px)}
+button{font:inherit;border:none;cursor:pointer;background:none;color:inherit}
+input{font:inherit;border:none;outline:none}
+
+/* AUTH */
+#auth{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center}
+#auth.hidden{display:none}
+#auth h1{font-size:1.8em;margin-bottom:4px}
+#auth p{color:var(--muted);font-size:.9em;max-width:320px}
+#auth .pin-row{display:flex;gap:10px;margin-top:12px}
+#auth .pin-dot{width:48px;height:56px;background:var(--card);border-radius:12px;font-size:1.6em;text-align:center;line-height:56px;color:var(--accent);border:2px solid transparent;transition:.2s}
+#auth .pin-dot.active{border-color:var(--accent)}
+#auth .pin-dot.filled{border-color:var(--sec);color:var(--sec)}
+#auth input.pin-input{position:absolute;opacity:0;width:1px}
+#auth .hint{color:var(--muted);font-size:.78em;margin-top:8px}
+#auth .err{color:var(--accent);font-size:.85em;min-height:22px}
+
+/* NAV */
+nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:var(--card);display:flex;z-index:100;border-top:1px solid rgba(255,255,255,.06);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:.65em;color:var(--muted);transition:.15s}
+nav button.active{color:var(--accent)}
+nav button .ico{font-size:1.6rem}
+
+/* TABS */
+.tab{display:none;padding:16px 16px 8px;animation:fadeIn .25s}
+.tab.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* COMMON */
+.card{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.card h3{font-size:1em;margin-bottom:6px}
+.badge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:.72em;font-weight:600}
+.badge-accent{background:var(--accent);color:#fff}
+.badge-sec{background:var(--sec);color:#111}
+h2.section-title{font-size:1.15em;margin:18px 0 10px;padding-left:4px}
+
+/* DAY TAB */
+.day-header{text-align:center;margin-bottom:14px}
+.day-header .day-num{font-size:2.4em;font-weight:800;color:var(--accent);line-height:1}
+.day-header .day-date{color:var(--muted);font-size:.82em;margin-top:2px}
+.day-header .day-label{font-size:1.05em;margin-top:6px;font-weight:600}
+.day-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.day-nav button{width:44px;height:44px;border-radius:50%;background:var(--card);font-size:1.3em;display:flex;align-items:center;justify-content:center}
+.day-nav button:disabled{opacity:.25}
+.day-info-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.day-info-row .info-chip{background:rgba(78,205,196,.12);color:var(--sec);padding:6px 12px;border-radius:10px;font-size:.78em;flex:1;text-align:center;min-width:90px}
+.timeline-item{display:flex;gap:10px;padding:8px 0;border-left:2px solid var(--accent);margin-left:8px;padding-left:14px;position:relative}
+.timeline-item::before{content:'';position:absolute;left:-5px;top:12px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.timeline-item .tl-time{color:var(--sec);font-weight:700;font-size:.82em;min-width:44px;flex-shrink:0}
+.timeline-item .tl-desc{font-size:.85em;color:var(--text)}
+.hotel-card{background:linear-gradient(135deg,rgba(233,69,96,.1),rgba(78,205,196,.08));border:1px solid rgba(233,69,96,.2);border-radius:var(--radius);padding:14px;margin-top:10px}
+.hotel-card .hotel-name{font-weight:700;color:var(--accent)}
+.hotel-card .hotel-detail{font-size:.8em;color:var(--muted);margin-top:4px}
+.countdown-box{text-align:center;padding:30px 16px}
+.countdown-box .cd-num{font-size:3.5em;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--sec));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.countdown-box .cd-label{color:var(--muted);font-size:.9em;margin-top:4px}
+
+/* ROUTE TAB */
+.route-card{background:var(--card);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;transition:.2s}
+.route-card .rc-header{padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.route-card .rc-emoji{font-size:1.5em;flex-shrink:0}
+.route-card .rc-info{flex:1}
+.route-card .rc-day{font-weight:700;font-size:.78em;color:var(--accent)}
+.route-card .rc-label{font-size:.88em;margin-top:2px}
+.route-card .rc-dist{font-size:.72em;color:var(--muted);margin-top:2px}
+.route-card .rc-detail{padding:0 16px 14px;font-size:.82em;color:var(--muted);display:none;border-top:1px solid rgba(255,255,255,.06);padding-top:10px}
+.route-card.open .rc-detail{display:block}
+.phase-label{font-size:.75em;color:var(--sec);font-weight:700;padding:10px 0 4px;margin-left:4px}
+
+/* CULTURE TAB */
+.culture-zone{margin-bottom:16px}
+.culture-zone .cz-title{font-size:1.05em;font-weight:700;padding:12px 16px;background:var(--card);border-radius:var(--radius) var(--radius) 0 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.culture-zone .cz-title .arrow{transition:.2s;font-size:.8em}
+.culture-zone.open .cz-title .arrow{transform:rotate(180deg)}
+.culture-zone .cz-body{display:none;background:rgba(22,33,62,.6);border-radius:0 0 var(--radius) var(--radius);padding:14px 16px;font-size:.88em;line-height:1.6}
+.culture-zone.open .cz-body{display:block}
+.fun-fact{background:rgba(233,69,96,.08);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 10px 10px 0;margin:10px 0;font-size:.84em}
+.fun-fact strong{color:var(--accent)}
+.culture-section{margin-bottom:8px}
+.culture-section p{margin-bottom:8px;color:var(--muted)}
+
+/* QUIZ TAB */
+.quiz-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.quiz-header select{background:var(--card);color:var(--text);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 10px;font-size:.82em}
+.quiz-q{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:10px}
+.quiz-q .q-level{font-size:.7em;font-weight:700;margin-bottom:6px}
+.quiz-q .q-text{font-size:.92em;margin-bottom:12px;line-height:1.5}
+.quiz-q .q-options{display:flex;flex-direction:column;gap:6px}
+.quiz-q .q-opt{padding:10px 14px;background:rgba(255,255,255,.05);border-radius:10px;font-size:.85em;cursor:pointer;transition:.15s;border:2px solid transparent}
+.quiz-q .q-opt:hover{background:rgba(255,255,255,.08)}
+.quiz-q .q-opt.correct{background:rgba(78,205,196,.15);border-color:var(--sec);color:var(--sec)}
+.quiz-q .q-opt.wrong{background:rgba(233,69,96,.12);border-color:var(--accent);color:var(--accent);opacity:.7}
+.quiz-q .q-opt.disabled{pointer-events:none}
+.quiz-q .q-explain{display:none;margin-top:10px;padding:10px 14px;background:rgba(78,205,196,.08);border-radius:10px;font-size:.82em;line-height:1.5;color:var(--sec)}
+.quiz-q .q-explain.show{display:block}
+.quiz-q .q-points{display:none;margin-top:8px;flex-wrap:wrap;gap:6px}
+.quiz-q .q-points.show{display:flex}
+.quiz-q .q-points button{padding:6px 12px;border-radius:8px;font-size:.78em;font-weight:600;background:rgba(233,69,96,.15);color:var(--accent);transition:.15s}
+.quiz-q .q-points button:hover{background:rgba(233,69,96,.25)}
+.quiz-q .q-points button.awarded{background:var(--sec);color:#111}
+.scoreboard{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.scoreboard h3{font-size:.95em;margin-bottom:10px}
+.sb-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.sb-row:last-child{border:none}
+.sb-row .sb-name{font-size:.88em}
+.sb-row .sb-score{font-weight:700;color:var(--sec);font-size:.95em}
+.sb-row:first-child .sb-score{color:var(--accent);font-size:1.05em}
+
+/* LEVEL COLORS */
+.lvl-easy{color:#4ecdc4}.lvl-medium{color:#f7b731}.lvl-expert{color:#e94560}.lvl-wtaf{color:#a55eea}.lvl-cinema{color:#fc5c65}
 </style>
 </head>
 <body>
 
 <!-- AUTH SCREEN -->
 <div id="auth">
-  <h1>🧠 Quiz Road Trip</h1>
-  <p style="color:#aaa;text-align:center;margin:20px 0;">Entrez le code pour accéder au quiz</p>
-  <div style="text-align:center;">
-    <input type="password" id="pin" placeholder="Code..." 
-           style="background:#0f3460;border:2px solid #16213e;color:#eee;padding:14px;border-radius:10px;font-size:1.2em;width:200px;text-align:center;"
-           onkeypress="if(event.key==='Enter')checkPin()">
-    <br><br>
-    <button class="btn" onclick="checkPin()" style="width:200px;">🔓 Entrer</button>
-    <p id="pin-error" style="color:#e94560;margin-top:10px;display:none;">Code incorrect !</p>
+  <div style="font-size:3em;margin-bottom:4px">🌎</div>
+  <h1>Juju's Adventures</h1>
+  <p>Road Trip USA 2026<br>Las Vegas → Denver</p>
+  <p style="color:var(--accent);font-size:.82em;margin-top:6px">Le code sera donné le jour J 😏</p>
+  <div class="pin-row" id="pinDots">
+    <div class="pin-dot" id="d0"></div>
+    <div class="pin-dot" id="d1"></div>
+    <div class="pin-dot" id="d2"></div>
+    <div class="pin-dot" id="d3"></div>
   </div>
-  <p style="color:#444;text-align:center;margin-top:40px;font-size:0.7em;">Le code sera donné le jour J dans la voiture 😏</p>
+  <input type="tel" class="pin-input" id="pinInput" maxlength="4" autocomplete="off" inputmode="numeric" autofocus>
+  <div class="err" id="pinErr"></div>
+  <div class="hint">Code à 4 chiffres</div>
 </div>
 
-<div id="game" class="hidden">
-  <div style="display:flex; justify-content:space-between; align-items:center;">
-    <h1>🧠 Quiz Road Trip</h1>
-    <button class="btn small secondary" onclick="toggleScoreboard()">🏆</button>
-  </div>
-  <div class="day-info" id="day-info">5 questions sample — teste l'app !</div>
+<!-- APP -->
+<div id="app" style="display:none">
 
-  <div id="scoreboard-panel" class="hidden">
-    <div class="scoreboard" id="sb"></div>
-    <div class="controls"><button class="btn secondary" onclick="toggleScoreboard()">← Retour</button>
-    <button class="btn" onclick="resetScores()">🔄 Reset</button></div>
-  </div>
-
-  <div id="quiz-panel">
-    <div class="question-card">
-      <div class="q-header">
-        <span class="q-number" id="qnum"></span>
-        <span class="q-level" id="qlvl"></span>
-      </div>
-      <div class="q-text" id="qtxt"></div>
-      <ul class="q-options" id="qopts"></ul>
-      <div class="q-answer" id="qans"></div>
-    </div>
-
-    <div id="award" class="hidden">
-      <div class="players-title">✅ Qui a trouvé ?</div>
-      <div class="players-grid" id="pgrid"></div>
-      <div class="nobody-btn"><button class="btn small secondary" onclick="skip()">Personne 😅</button></div>
-    </div>
-
-    <div class="controls">
-      <button class="btn secondary" id="revealBtn" onclick="reveal()">👁️ Révéler</button>
-      <button class="btn hidden" id="nextBtn" onclick="next()">➡️ Suivante</button>
-    </div>
-  </div>
-
-  <div id="endscreen" class="hidden end-screen">
-    <h2>🏆 Quiz terminé !</h2>
-    <div class="scoreboard" id="endsb"></div>
-    <div class="controls" style="margin-top:16px;">
-      <button class="btn" onclick="restart()">🔄 Rejouer</button>
-    </div>
-  </div>
+<!-- TAB: JOUR -->
+<div class="tab active" id="tabDay">
+  <div id="dayContent"></div>
 </div>
+
+<!-- TAB: ROUTE -->
+<div class="tab" id="tabRoute">
+  <h2 class="section-title" style="margin-top:4px">🗺️ Itinéraire complet</h2>
+  <div style="text-align:center;margin-bottom:12px">
+    <span class="badge badge-accent">2 524 km</span>
+    <span class="badge badge-sec" style="margin-left:6px">5 parcs nationaux</span>
+    <span class="badge" style="background:rgba(255,255,255,.1);margin-left:6px">4 États</span>
+  </div>
+  <div id="routeList"></div>
+</div>
+
+<!-- TAB: CULTURE -->
+<div class="tab" id="tabCulture">
+  <h2 class="section-title" style="margin-top:4px">📚 Carnet Culturel</h2>
+  <p style="color:var(--muted);font-size:.8em;margin-bottom:14px">Tap une zone pour explorer • Condensé du guide de voyage</p>
+  <div id="cultureList"></div>
+</div>
+
+<!-- TAB: QUIZ -->
+<div class="tab" id="tabQuiz">
+  <div class="quiz-header">
+    <h2 style="font-size:1.1em">🧠 Quiz du Jour</h2>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button onclick="toggleScoreboard()" style="font-size:1.2em">🏆</button>
+      <select id="quizDaySelect" onchange="renderQuiz(+this.value)"></select>
+    </div>
+  </div>
+  <div id="scoreboardBox" class="scoreboard" style="display:none">
+    <h3>🏆 Classement Cumulé</h3>
+    <div id="sbRows"></div>
+  </div>
+  <div id="quizQuestions"></div>
+</div>
+
+</div><!-- /app -->
+
+<!-- BOTTOM NAV -->
+<nav id="nav" style="display:none">
+  <button class="active" onclick="switchTab('tabDay',this)"><span class="ico">📋</span>Jour</button>
+  <button onclick="switchTab('tabRoute',this)"><span class="ico">🗺️</span>Route</button>
+  <button onclick="switchTab('tabCulture',this)"><span class="ico">📚</span>Culture</button>
+  <button onclick="switchTab('tabQuiz',this)"><span class="ico">🧠</span>Quiz</button>
+</nav>
 
 <script>
-// Auth - PIN code (hashed, not plaintext)
-// Change this hash to change the PIN. Default: "2026"
-var PIN_HASH = '4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5';
-function sha256(s){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(b=>Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join(''));}
-function checkPin(){
-  var v=document.getElementById('pin').value;
-  sha256(v).then(function(h){
-    if(h===PIN_HASH){
-      document.getElementById('auth').classList.add('hidden');
-      document.getElementById('game').classList.remove('hidden');
-      sessionStorage.setItem('quizAuth','1');
-    } else {
-      document.getElementById('pin-error').style.display='block';
-      document.getElementById('pin').value='';
-    }
-  });
-}
-// Auto-login if already authenticated this session
-if(sessionStorage.getItem('quizAuth')==='1'){
+// ===================== AUTH =====================
+const PIN_VISITOR = '158a323a7ba44870f23d96f1516dd70aa48e9a72db4ebb026b0a89e212a208ab'; // 2026
+const PIN_ADMIN = '73cbb09e6f1915f80be7b6cf511d3de1c10c8b8641fcc18a725fac3ab3a7f7e1'; // admin
+let isAdmin = false;
+const pinInput = document.getElementById('pinInput');
+const pinErr = document.getElementById('pinErr');
+
+if (sessionStorage.getItem('auth') === 'admin') { isAdmin = true; unlock(); }
+else if (sessionStorage.getItem('auth') === 'visitor') { isAdmin = false; unlock(); }
+
+document.getElementById('auth').addEventListener('click', () => pinInput.focus());
+pinInput.addEventListener('input', async function() {
+  const v = this.value.replace(/\D/g,'').slice(0,8);
+  this.value = v;
+  for(let i=0;i<4;i++){
+    const d=document.getElementById('d'+i);
+    d.textContent = v[i] ? '●' : '';
+    d.className = 'pin-dot' + (i===v.length ? ' active' : '') + (v[i] ? ' filled' : '');
+  }
+  if(v.length>=4){
+    const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)))).map(b=>b.toString(16).padStart(2,'0')).join('');
+    if(hash===PIN_ADMIN){isAdmin=true;sessionStorage.setItem('auth','admin');unlock();}
+    else if(hash===PIN_VISITOR){isAdmin=false;sessionStorage.setItem('auth','visitor');unlock();}
+    else{pinErr.textContent='Code incorrect 🙃';this.value='';for(let i=0;i<4;i++){const d=document.getElementById('d'+i);d.textContent='';d.className='pin-dot';}}
+  } else pinErr.textContent='';
+});
+
+function unlock(){
   document.getElementById('auth').classList.add('hidden');
-  document.getElementById('game').classList.remove('hidden');
-}
-</script>
-
-<script>
-var P = [
-  {n:'René',s:0,k:0},{n:'Nicole',s:0,k:0},{n:'Alexandre',s:0,k:0},
-  {n:'Dinah',s:0,k:0},{n:'Laurine',s:0,k:0}
-];
-var LV = {
-  easy:{e:'⭐',l:'Facile',p:1,c:'#4ecdc4'},
-  medium:{e:'⭐⭐',l:'Moyen',p:2,c:'#ffd93d'},
-  expert:{e:'⭐⭐⭐',l:'Expert',p:3,c:'#e94560'},
-  wtaf:{e:'🤯',l:'WTAF',p:5,c:'#ff6b6b'},
-  cinema:{e:'🎬',l:'Ciné',p:2,c:'#a29bfe'}
-};
-var Q = [
-  {v:'easy',t:"Instagram a fait passer Horseshoe Bend de 100 000 à combien de visiteurs par an ?",
-   o:['500 000','1 million','2 millions','5 millions'],c:2,
-   x:"2 millions ! Le canyon n'a pas bougé d'un millimètre, mais il coûte maintenant 10$ l'entrée.",
-   k:"📍 On y sera cet après-midi à 16h"},
-  {v:'medium',t:"Quelle est la particularité de la \"Great Unconformity\" au Grand Canyon ?",
-   o:['Une faille sismique active',"1,2 milliard d'années de roches manquantes",'Le point le plus profond','Une grotte souterraine'],c:1,
-   x:"Entre le Vishnu Schist (1,7 Md d'années) et les strates au-dessus, il manque 1,2 milliard d'années. Personne ne sait pourquoi.",
-   k:"📍 On verra cette ligne au South Rim"},
-  {v:'expert',t:"Pourquoi le Navajo fry bread existe-t-il ?",
-   o:['Recette ancestrale millénaire','Inventé pendant la Longue Marche de 1864','Apporté par les colons espagnols','Créé pour les touristes en 1950'],c:1,
-   x:"En 1864, l'armée US a forcé 8000 Navajos à marcher 500 km. Ils n'avaient que farine, sucre et saindoux. Le fry bread est né de la survie.",
-   k:"📍 On pourra en goûter au Navajo Village"},
-  {v:'wtaf',t:"Combien de fois changes-tu d'heure en traversant 120 km d'autoroute en Arizona ?",
-   o:['0 fois','1 fois','2 fois','4 fois'],c:3,
-   x:"4 FOIS ! Arizona → Réserve Navajo → Réserve Hopi → Réserve Navajo → Arizona. Le chaos total.",
-   k:"📍 On vivra ce délire sur la route"},
-  {v:'cinema',t:"Dans quel film la scène finale est tournée à Dead Horse Point ?",
-   o:['Indiana Jones 3','Thelma & Louise','127 Hours','Mission Impossible 2'],c:1,
-   x:"Thelma & Louise (1991) — la Thunderbird plonge dans le vide. On sera au bord du MÊME précipice.",
-   k:"📍 Dead Horse Point, jour 12"}
-];
-var ci=0, shown=false;
-
-function render(){
-  if(ci>=Q.length){endGame();return}
-  var q=Q[ci],lv=LV[q.v];
-  shown=false;
-  document.getElementById('qnum').textContent='Question '+(ci+1)+'/'+Q.length;
-  document.getElementById('qlvl').textContent=lv.e+' '+lv.l+' — '+lv.p+'pt'+(lv.p>1?'s':'');
-  document.getElementById('qlvl').style.color=lv.c;
-  document.getElementById('qtxt').textContent=q.t;
-  var h='';for(var i=0;i<q.o.length;i++)h+='<li onclick="pick('+i+')" id="o'+i+'">'+String.fromCharCode(65+i)+') '+q.o[i]+'</li>';
-  document.getElementById('qopts').innerHTML=h;
-  document.getElementById('qans').className='q-answer';
-  document.getElementById('award').classList.add('hidden');
-  document.getElementById('revealBtn').classList.remove('hidden');
-  document.getElementById('nextBtn').classList.add('hidden');
-  document.getElementById('quiz-panel').classList.remove('hidden');
-  document.getElementById('endscreen').classList.add('hidden');
+  document.getElementById('app').style.display='';
+  document.getElementById('nav').style.display='';
+  if(!isAdmin) injectTeasers();
+  initApp();
 }
 
-function pick(i){if(!shown)reveal(i)}
+function injectTeasers(){
+  // Teaser overlays for visitor mode
+  const teaserCSS = `
+    .teaser-overlay {
+      position:absolute;top:0;left:0;right:0;bottom:0;z-index:50;
+      background:rgba(26,26,46,0.92);backdrop-filter:blur(8px);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:30px;text-align:center;border-radius:12px;
+    }
+    .teaser-overlay .teaser-emoji{font-size:3em;margin-bottom:16px;}
+    .teaser-overlay .teaser-title{font-size:1.2em;font-weight:bold;color:#e94560;margin-bottom:12px;}
+    .teaser-overlay .teaser-text{color:#aaa;line-height:1.5;font-size:0.95em;}
+    .teaser-overlay .teaser-badge{display:inline-block;background:#e94560;color:white;padding:6px 16px;border-radius:20px;font-size:0.8em;margin-top:16px;}
+    .tab-content{position:relative;}
+  `;
+  const style=document.createElement('style');style.textContent=teaserCSS;document.head.appendChild(style);
 
-function reveal(sel){
-  if(shown)return;shown=true;
-  var q=Q[ci];
-  for(var i=0;i<q.o.length;i++){
-    var el=document.getElementById('o'+i);
-    if(i===q.c)el.classList.add('correct');
-    else if(i===sel)el.classList.add('wrong');
+  const teasers = {
+    tabJour: {emoji:'📋',title:'Programme jour par jour',text:'Le programme détaillé sera dévoilé à J-7...<br><br>🕐 Horaires, 🏨 hôtels, 🎯 activités<br>Tout sera là, patience !',badge:'Disponible le 10 avril'},
+    tabRoute: {emoji:'🗺️',title:'2 524 km · 5 parcs · 4 États',text:'L\'itinéraire complet à travers le Sud-Ouest américain...<br><br>15 jours de road trip, des routes mythiques,<br>des paysages à couper le souffle 🏜️',badge:'Disponible le jour du départ'},
+    tabCulture: {emoji:'📚',title:'Carnet Culturel',text:'Géologie, histoire, Navajos, mormons, cuisine locale...<br><br>Un guide pour devenir incollable.<br>À lire dans l\'avion ✈️<br><br><em>Ceux qui lisent le carnet auront un AVANTAGE au quiz 😏</em>',badge:'Disponible le 10 avril'},
+    tabQuiz: {emoji:'🧠',title:'140 questions vous attendent',text:'10 questions par jour de route, adaptées au programme.<br><br>⭐ Facile → 🤯 WTAF<br>Classement cumulé + prix 🏆<br><br><em>Ceux qui ont lu le carnet culturel marqueront plus de points...</em>',badge:'Disponible en voiture'}
+  };
+
+  for(const [tabId, t] of Object.entries(teasers)){
+    const tab = document.getElementById(tabId);
+    if(!tab)continue;
+    tab.style.position='relative';
+    const overlay = document.createElement('div');
+    overlay.className='teaser-overlay';
+    overlay.innerHTML=`<div class="teaser-emoji">${t.emoji}</div><div class="teaser-title">${t.title}</div><div class="teaser-text">${t.text}</div><div class="teaser-badge">🔒 ${t.badge}</div>`;
+    tab.appendChild(overlay);
   }
-  var a=document.getElementById('qans');
-  a.innerHTML='💡 '+q.x+(q.k?'<span class="q-link">'+q.k+'</span>':'');
-  a.className='q-answer show';
-  document.getElementById('award').classList.remove('hidden');
-  document.getElementById('revealBtn').classList.add('hidden');
-  renderPlayers();
 }
 
-function renderPlayers(){
-  var q=Q[ci],lv=LV[q.v],h='';
-  for(var i=0;i<P.length;i++){
-    h+='<div class="player-btn" onclick="award('+i+')"><div class="name">'+P[i].n+'</div><div class="score">'+P[i].s+' pts</div>';
-    if(P[i].k>=2)h+='<div class="streak">🔥'+P[i].k+'</div>';
-    h+='</div>';
+// ===================== DATA =====================
+const TRIP_START = new Date('2026-04-17');
+const TRIP_END = new Date('2026-05-01');
+const PLAYERS = ['René','Nicole','Alexandre','Dinah','Laurine'];
+
+const DAYS = [
+  {day:1,date:'17 avr',dow:'Ven',emoji:'✈️',from:'Las Vegas',to:'Chloride, AZ',dist:'141 km',dur:'1h35',label:'Arrivée Las Vegas → Chloride',hotel:'Shep\'s Miners Inn (Airbnb)',hotelNote:'3 chambres, ghost town Route 66 — 142€',
+   timeline:[{t:'15:30',d:'Récupération voiture Alamo'},{t:'16:00',d:'Courses rapides — Vons'},{t:'17:00',d:'Retour aéroport (Alexandre+Dinah)'},{t:'17:30',d:'🚗 DÉPART vers Chloride'},{t:'19:05',d:'Arrivée Chloride'},{t:'20:00',d:'Dîner (préparé sur place)'}],
+   highlights:['Ghost town Route 66 (300 habitants)','Silence absolu vs Kingman (100 trains/jour)','Fresques psychédéliques de Roy Purcell']},
+  {day:2,date:'18 avr',dow:'Sam',emoji:'🏜️',from:'Chloride',to:'Grand Canyon',dist:'315 km',dur:'3h20',label:'Grand Canyon South Rim',hotel:'Yavapai Lodge',hotelNote:'2 chambres — 185€/ch',
+   timeline:[{t:'07:30',d:'DÉPART Chloride'},{t:'08:00',d:'📸 Arrêt photo Kingman Route 66'},{t:'08:10',d:'🍳 Petit-déj Mr. D\'z Route 66 Diner'},{t:'11:30',d:'Arrivée Grand Canyon South Rim'},{t:'11:45',d:'🎫 America the Beautiful Pass (80$)'},{t:'13:00',d:'Exploration viewpoints'},{t:'18:30',d:'🌅 Coucher de soleil Hopi Point'},{t:'19:30',d:'🍽️ Dîner El Tovar (réservé)'}],
+   highlights:['1,6 km de profondeur — 1,84 Md d\'années','Dîner El Tovar (depuis 1905)','Coucher de soleil Hopi Point']},
+  {day:3,date:'19 avr',dow:'Dim',emoji:'🌀',from:'Grand Canyon',to:'Page, AZ',dist:'217 km',dur:'2h30',label:'Route → Page + Horseshoe Bend',hotel:'Airbnb Page (Julie)',hotelNote:'Perle rare ⭐4.92 — 274€',
+   timeline:[{t:'05:30',d:'🌅 Lever de soleil Mather Point'},{t:'09:00',d:'DÉPART via Desert View Drive'},{t:'11:30',d:'Arrivée Page'},{t:'11:45',d:'🍽️ Brunch Ranch House Grille'},{t:'17:00',d:'🚗 Vers Horseshoe Bend'},{t:'17:45',d:'🌅 HORSESHOE BEND — coucher de soleil'},{t:'19:30',d:'Dîner à Page'}],
+   highlights:['305 m de vide — le méandre Instagram','Lever de soleil Grand Canyon','Desert View Drive (vérifier ouverture)']},
+  {day:4,date:'20 avr',dow:'Lun',emoji:'✨',from:'Page, AZ',to:'Mesquite, NV',dist:'300 km',dur:'3h30',label:'Antelope Canyon + Coral Pink → Mesquite',hotel:'Virgin River Casino',hotelNote:'3 chambres — ~132€ total',
+   timeline:[{t:'08:30',d:'🍳 Petit-déj Ranch House Grille'},{t:'10:00',d:'Check-out Airbnb'},{t:'11:35',d:'Check-in Antelope Canyon (45 min avant!)'},{t:'12:20',d:'⭐ UPPER ANTELOPE CANYON'},{t:'14:30',d:'DÉPART vers Mesquite'},{t:'15:45',d:'⭐ CORAL PINK SAND DUNES (30 min)'},{t:'18:15',d:'Arrivée Mesquite'}],
+   highlights:['Light beams Antelope 12h20 (créneau parfait)','Dunes roses uniques au monde','Terre Navajo sacrée']},
+  {day:5,date:'21 avr',dow:'Mar',emoji:'🎰',from:'Mesquite, NV',to:'Las Vegas',dist:'160 km',dur:'1h50',label:'Valley of Fire → Vegas + KÀ',hotel:'Luxor (R+N+L) / LINQ (A+D)',hotelNote:'Via Google Next + Booking',
+   timeline:[{t:'09:30',d:'DÉPART Mesquite'},{t:'10:20',d:'🔥 VALLEY OF FIRE (45 min)'},{t:'12:00',d:'🛍️ Las Vegas North Premium Outlets'},{t:'14:00',d:'Check-in hôtels'},{t:'15:30',d:'Temps libre (piscine, Strip)'},{t:'20:30',d:'🎭 SPECTACLE KÀ — MGM Grand'}],
+   highlights:['Valley of Fire — roches rouges 150 M ans','Shopping Outlets','KÀ du Cirque du Soleil (scène de 80 tonnes)']},
+  {day:6,date:'22 avr',dow:'Mer',emoji:'☁️',from:'Las Vegas',to:'Las Vegas',dist:'0 km',dur:'-',label:'Google Cloud Next — Jour 1',hotel:'Luxor / LINQ',hotelNote:'Même hôtels',
+   timeline:[{t:'09:00',d:'Keynotes Google Cloud Next'},{t:'12:00',d:'Sessions après-midi'},{t:'18:00',d:'Networking soir'}],
+   highlights:['Conférence Google Cloud Next (René+Laurine)','Journée libre pour Nicole, Alex, Dinah','Fremont Street, Neon Museum, High Roller...']},
+  {day:7,date:'23 avr',dow:'Jeu',emoji:'☁️',from:'Las Vegas',to:'Las Vegas',dist:'0 km',dur:'-',label:'Google Cloud Next — Jour 2',hotel:'Luxor / LINQ',hotelNote:'Même hôtels',
+   timeline:[{t:'09:00',d:'Sessions techniques'},{t:'12:00',d:'Workshops & Expo'},{t:'18:00',d:'Événements soir'}],
+   highlights:['Dernier jour de conf','Options: Red Rock Canyon, Mob Museum','Préparer départ Utah demain']},
+  {day:8,date:'24 avr',dow:'Ven',emoji:'🏡',from:'Las Vegas',to:'Hurricane, UT',dist:'190 km',dur:'2h00',label:'Fin conf → Hurricane (près Zion)',hotel:'Farmhouse Airbnb',hotelNote:'Tiffany & Chris — 266€ • Jacuzzi!',
+   timeline:[{t:'09:00',d:'Dernier matin Google Next'},{t:'15:30',d:'Récupération groupe'},{t:'16:00',d:'🚗 DÉPART Vegas'},{t:'⚠️','d':'Passage Utah = +1h (horloge avance)'},{t:'19:00',d:'Arrivée Hurricane'},{t:'20:00',d:'🛁 Jacuzzi (si demandé le matin!)'}],
+   highlights:['⚠️ Changement heure: on PERD 1h','Farmhouse avec jacuzzi sous les étoiles','Demain: Zion + Angel\'s Landing']},
+  {day:9,date:'25 avr',dow:'Sam',emoji:'⛰️',from:'Hurricane, UT',to:'Orderville',dist:'110 km',dur:'2h30',label:'Grafton + Zion (Angel\'s Landing)',hotel:'Reilly\'s Zion Hideaway',hotelNote:'Cabane 3ch+2sdb — 314€',
+   timeline:[{t:'07:00',d:'🍳 Main Street Cafe, Hurricane'},{t:'08:15',d:'🤠 GRAFTON GHOST TOWN (45 min)'},{t:'09:20',d:'Arrivée Zion, navette'},{t:'09:45',d:'⭐ RANDONNÉES ZION (Angel\'s Landing!)'},{t:'14:30',d:'Déjeuner picnic'},{t:'15:30',d:'Traversée tunnel Zion → Mt Carmel'},{t:'16:15',d:'Check-in cabane'}],
+   highlights:['Angel\'s Landing — 45cm de large, 300m de vide','Grafton: décor Butch Cassidy','21 lacets Walter\'s Wiggles']},
+  {day:10,date:'26 avr',dow:'Dim',emoji:'🔮',from:'Orderville',to:'Bryce Canyon',dist:'100 km',dur:'1h15',label:'Bryce Canyon — Hoodoos',hotel:'Ruby\'s Inn',hotelNote:'3 chambres — ~81€/ch • Petit-déj inclus',
+   timeline:[{t:'07:00',d:'🍳 Thunderbird Restaurant (depuis 1931)'},{t:'08:00',d:'DÉPART vers Bryce'},{t:'09:30',d:'⭐ NAVAJO LOOP + QUEEN\'S GARDEN'},{t:'12:30',d:'Déjeuner picnic'},{t:'13:30',d:'Exploration viewpoints'},{t:'18:30',d:'🌅 Coucher de soleil Sunset Point'},{t:'21:00',d:'🌌 Ciel étoilé (7 500 étoiles!)'}],
+   highlights:['Hoodoos sculptés par la glace (200 cycles gel/an)','Navajo Loop — descente parmi les colonnes','Dark Sky Park: 7 500 étoiles à l\'œil nu']},
+  {day:11,date:'27 avr',dow:'Lun',emoji:'👋',from:'Bryce Canyon',to:'Moab, UT',dist:'470 km',dur:'~5h',label:'🚨 Départ Laurine → Route scénique → Moab',hotel:'Aarchway Inn',hotelNote:'1 chambre 4 pers — 325€ (2 nuits)',
+   timeline:[{t:'08:00',d:'🍳 Buffet Ruby\'s Inn (dernier avec Laurine)'},{t:'09:45',d:'DÉPART vers Beaver'},{t:'11:15',d:'🍽️ Dernier repas — Timberline Restaurant'},{t:'13:05',d:'👋 Au revoir Laurine (bus → Vegas → Nice)'},{t:'14:20',d:'🛁 RED HILL HOT SPRINGS (gratuit!)'},{t:'15:40',d:'⭐ CAPITOL REEF — pétroglyphes'},{t:'16:55',d:'⭐ FACTORY BUTTE / MOONSCAPE'},{t:'19:40',d:'Arrivée Moab'}],
+   highlights:['🚨 Laurine nous quitte à Beaver','Sources chaudes gratuites Monroe','Capitol Reef + Factory Butte (paysage martien)']},
+  {day:12,date:'28 avr',dow:'Mar',emoji:'🪨',from:'Moab',to:'Moab',dist:'~50 km',dur:'-',label:'Arches National Park',hotel:'Aarchway Inn (2e nuit)',hotelNote:'Petit-déj inclus',
+   timeline:[{t:'07:00',d:'🍳 Buffet Aarchway Inn'},{t:'07:45',d:'Windows Section + Double Arch'},{t:'09:00',d:'Balanced Rock'},{t:'09:30',d:'Devils Garden — Landscape Arch (93m!)'},{t:'11:15',d:'🍔 Milt\'s Stop & Eat (depuis 1954)'},{t:'12:00',d:'Park Avenue'},{t:'17:00',d:'⭐ DELICATE ARCH — rando coucher de soleil'},{t:'20:00',d:'Dîner Moab'}],
+   highlights:['2 000+ arches naturelles','Delicate Arch au sunset — LA photo du voyage','Landscape Arch: 93m, la plus longue du monde']},
+  {day:13,date:'29 avr',dow:'Mer',emoji:'🏔️',from:'Moab, UT',to:'Denver, CO',dist:'570 km',dur:'5h30',label:'Moab → Denver (via I-70)',hotel:'Airbnb Denver (Julie)',hotelNote:'Elegant Flat RiNo — 441€ (2 nuits)',
+   timeline:[{t:'06:00',d:'🌅 Mesa Arch lever de soleil (Canyonlands)'},{t:'07:30',d:'🍳 Buffet Aarchway Inn'},{t:'09:00',d:'DÉPART vers Denver'},{t:'10:45',d:'☕ Pause Grand Junction'},{t:'12:15',d:'Reprise route — Eisenhower Tunnel (3 401m)'},{t:'16:00',d:'Arrivée Denver'},{t:'18:00',d:'Exploration Downtown'},{t:'20:00',d:'Dîner RiNo'}],
+   highlights:['Mesa Arch au lever du soleil','Eisenhower Tunnel: Continental Divide','Denver: Mile High City, 400+ brasseries']},
+  {day:14,date:'30 avr',dow:'Jeu',emoji:'🎉',from:'Denver',to:'Denver',dist:'0 km',dur:'-',label:'Journée libre Denver — Dernier jour',hotel:'Airbnb Denver (2e nuit)',hotelNote:'Check-out demain 11h',
+   timeline:[{t:'08:30',d:'🍳 Snooze (brunch spot)'},{t:'10:00',d:'🏛️ Colorado State Capitol (marche du Mile High!)'},{t:'11:00',d:'⭐ DENVER MINT — visite gratuite'},{t:'12:30',d:'Déjeuner Downtown / Union Station'},{t:'14:00',d:'Après-midi au choix'},{t:'19:30',d:'🍽️ DERNIER DÎNER ENSEMBLE'}],
+   highlights:['State Capitol: 13e ou 18e marche?','Denver Mint: milliards de pièces/an','Dernier dîner — green chili & craft beer']},
+  {day:15,date:'1 mai',dow:'Ven',emoji:'✈️',from:'Denver',to:'✈️ Retour',dist:'50 km',dur:'0h45',label:'Vols retour — Fin du voyage!',hotel:'—',hotelNote:'',
+   timeline:[{t:'07:30',d:'🍳 Dernier petit-déj ensemble'},{t:'09:00',d:'DÉPART vers aéroport DEN'},{t:'09:45',d:'Retour voiture Alamo'},{t:'11:25',d:'✈️ Vol René+Nicole → Montréal'},{t:'12:30',d:'✈️ Vol Alexandre+Dinah → Paris'}],
+   highlights:['René+Nicole: 5 jours à Montréal','Alexandre+Dinah: retour Paris via SLC','2 524 km de souvenirs inoubliables']}
+];
+
+// CULTURE DATA (condensé)
+const CULTURE = [
+  {title:'🎰 Zone 1 — Las Vegas & le Mojave',sub:'Chloride, Valley of Fire, Vegas • J1, J5-8',sections:[
+    {h:'Chloride — Ghost Town Route 66',p:'Née en 1863 avec la découverte de chlorure d\'argent. À son apogée: 75 mines, 5 000 habitants, 3e ville d\'Arizona. Le crash de l\'argent de 1893 a tout tué en un an. Aujourd\'hui: 300 âmes et les fresques psychédéliques de Roy Purcell (peintes avec de l\'urine animale pour la durabilité!).'},
+    {h:'La Route 66 — Mother Road',p:'Inaugurée le 11 novembre 1926: 3 940 km de Chicago à Santa Monica. Le Dust Bowl des années 30 a poussé 400 000 familles d\'Oklahoma à tout quitter. Steinbeck les a immortalisés dans Les Raisins de la Colère. Déclassée en 1985.'},
+    {h:'Valley of Fire',p:'Grès rouge de 150 millions d\'années — du sable fossilisé de l\'ère des dinosaures. Les roches sont d\'un rouge incandescent qui semble en feu au coucher du soleil.'},
+    {h:'Las Vegas ne devrait pas exister',p:'Construite dans le Mojave (10 cm de pluie/an), Vegas a RÉDUIT sa conso d\'eau de 47% malgré 850 000 nouveaux habitants. Programme "Cash for Grass" (3$/sq ft pour arracher la pelouse), recyclage 99%, "Water Police". Le Strip: moins de 3% de l\'eau de la ville.'},
+    {h:'KÀ — Le spectacle',p:'Scène de 80 tonnes, pivote à 360°, s\'incline à 100° vertical. 6 millions de lignes de code (plus qu\'un Boeing 787). 165 millions $ — le plus cher jamais produit en 2004.'}
+  ],facts:[
+    'On a failli dormir à Kingman: 100 trains BNSF/jour, klaxon toutes les 15 min. Chloride = silence absolu et 80€ d\'économie.',
+    'Le "Luxor Sky Beam" est le faisceau le plus puissant au monde (315 000 watts). Il attire des milliards d\'insectes... et des milliers de chauves-souris qui viennent festoyer!',
+    'La "bath tub ring" blanche du Lake Mead mesure 40 m de haut — l\'ancien niveau d\'eau. Le lac a perdu 70% de son volume depuis 2000.'
+  ]},
+  {title:'🏜️ Zone 2 — Grand Canyon & Page',sub:'South Rim, Horseshoe Bend, Antelope Canyon • J2-4',sections:[
+    {h:'Le Grand Canyon — 1,2 Md d\'années manquantes',p:'1,6 km de profondeur, 40 couches de roches. Au fond: le Vishnu Schist (1,84 Md d\'années). Mais entre le fond et le dessus, il manque 1,2 milliard d\'années — la "Great Unconformity". Personne ne sait ce qui s\'est passé.'},
+    {h:'Horseshoe Bend — Le méandre viral',p:'305 m de chute libre. Virage de 270°, 540 m de large. Jusqu\'en 2012: ni panneau, ni parking. Puis Instagram. De 100 000 visiteurs (2015) à 2 millions (2023). Le canyon n\'a pas changé d\'un millimètre.'},
+    {h:'Antelope Canyon — Cathédrale Navajo',p:'En navajo: "l\'endroit où l\'eau coule à travers les rochers". Le 12 août 1997, une crue-éclair: l\'eau monte de 6 m en minutes, 11 morts. Les murs lisses sont poncés par l\'eau chargée de sable depuis des millions d\'années.'},
+    {h:'Coral Pink Sand Dunes',p:'Couleur unique grâce à l\'effet Venturi: le vent s\'accélère entre 2 chaînes de montagnes, arrache du grès rouge. Chaque grain = quartz + rouille microscopique. Seul habitat du Welsh\'s milkweed (pousse nulle part ailleurs sur Terre).'}
+  ],facts:[
+    'John Wesley Powell a descendu le Colorado en 1869 — borgne, avec un seul bras. 3 mois en bateau pour découvrir des roches de 1,84 milliard d\'années.',
+    'Horseshoe Bend: dans quelques millions d\'années, le fleuve percera l\'isthme pour former un pont naturel, comme Rainbow Bridge.',
+    'Antelope Canyon: visite UNIQUEMENT avec guide Navajo. Les light beams ne durent que 2h/jour (notre créneau 12h20 = parfait).'
+  ]},
+  {title:'⛰️ Zone 3 — Zion & Bryce',sub:'Angel\'s Landing, Grafton, Hoodoos • J9-10',sections:[
+    {h:'Angel\'s Landing — "Seul un ange..."',p:'Frederick Fisher (1916): "Only an angel could land on it." Chaînes installées à la main par Walter Ruesch en 1926. 21 lacets vertigineux (Walter\'s Wiggles). Dernière section: 45-60 cm de large, 300 m de vide. Au moins 16 morts.'},
+    {h:'Zion — Le canyon qui pleure',p:'Slot canyon monumental: 600 m de profondeur, parois parfois à 6 m. Le grès Navajo est poreux (20-30%) — il absorbe la pluie comme une éponge puis la relâche: les "weeping walls" couvertes de fougères et jardins suspendus.'},
+    {h:'Bryce Canyon — Pas un canyon!',p:'Aucune rivière ne l\'a creusé. C\'est le bord du plateau qui s\'érode vers l\'intérieur. Nommé par Ebenezer Bryce (1875): "It\'s a hell of a place to lose a cow." Les hoodoos sont sculptés par la GLACE (200 cycles gel/dégel/an), pas le vent.'},
+    {h:'Grafton Ghost Town',p:'Village mormon fondé en 1862, abandonné après crues et conflits. Décor de Butch Cassidy et le Kid (1969). Gratuit, 5 km de piste.'}
+  ],facts:[
+    'Le grès mouillé de Zion = savon. La majorité des morts arrivent par temps de pluie. Si mouillé → Scout Lookout (95% de la vue, sans chaînes).',
+    'Bryce culmine à 2 778 m — point le plus haut du voyage. "International Dark Sky Park": 7 500 étoiles à l\'œil nu (vs 2 000 en ville).',
+    'Thor\'s Hammer perdra sa tête dans quelques milliers d\'années. Dans 3 millions d\'années, l\'amphithéâtre n\'existera plus. On le voit dans un instant géologique parfait.'
+  ]},
+  {title:'🪨 Zone 4 — Capitol Reef, Arches & Moab',sub:'Factory Butte, Delicate Arch, Dead Horse Point • J11-12',sections:[
+    {h:'Capitol Reef — Le récif infranchissable',p:'Le Waterpocket Fold: pli de 160 km, muraille infranchissable. Dômes blancs = Capitole de Washington + "reef" = barrière. La vallée de Fruita, isolée jusqu\'en 1962, a des vergers centenaires encore productifs. Pétroglyphes Fremont (600-1300 apr. J.-C.).'},
+    {h:'Factory Butte — Mars sur Terre',p:'La NASA y teste ses rovers depuis 2001. Monolithe de 490 m sur des badlands de Mancos Shale — fond marin de 75-90 millions d\'années. On marche sur un ancien océan qui ressemble à une autre planète.'},
+    {h:'Arches — Tout commence par du sel',p:'2 000+ arches. Sous le grès: 900 m de sel (300 M d\'années). Le sel se dissout, déstabilise la roche → failles → "ailettes" → arches. Wall Arch (22 m) s\'est effondrée une nuit en 2008. Landscape Arch (93 m) perd des blocs régulièrement. On perd ~1 arche/décennie.'},
+    {h:'Dead Horse Point',p:'Mesa à 600 m au-dessus du Colorado, isthme de 30 m. Cowboys y parquaient les mustangs. Légende: des chevaux abandonnés morts de soif — la rivière visible mais inaccessible. Scène de Thelma & Louise et Mission Impossible 2.'},
+    {h:'Moab — De l\'uranium au VTT',p:'Boom uranium 1952-1964 (Charlie Steen, millionnaire overnight). Héritage: 16 M tonnes de déchets radioactifs le long du Colorado. 2e boom: outdoor. 5 000 habitants, 3 millions de visiteurs/an.'}
+  ],facts:[
+    'Delicate Arch (14 m) est sur les plaques d\'immatriculation de l\'Utah. Edward Abbey l\'a escaladée ivre en 1956 quand il était ranger à Arches.',
+    'Edward Abbey a demandé à être enterré illégalement dans le désert, dans un sac de couchage. Ses amis l\'ont fait — l\'emplacement est secret.',
+    'Le Timed Entry d\'Arches a été supprimé en 2026 — entrée libre avec le pass America the Beautiful!'
+  ]},
+  {title:'🏔️ Zone 5 — Denver & les Rocheuses',sub:'I-70, Mile High City • J13-14',sections:[
+    {h:'Des montagnes sur des montagnes mortes',p:'Les Rocheuses (70 M ans) ne sont pas les originales. Des "Ancestral Rockies" existaient 300 M ans avant et se sont érodées. Le grès rouge de Red Rocks = leurs débris. Eisenhower Tunnel (I-70): plus haut tunnel US à 3 401 m, perce la Continental Divide.'},
+    {h:'Denver — Mile High City',p:'1 609 m (1 mile exact). 13e marche du Capitole gravée "One Mile Above Sea Level" (1947)... mais c\'est la 18e (GPS 2003). L\'eau bout à 95°C. Les home runs volent 9% plus loin. L\'air est 17% moins dense → bronzage accéléré.'},
+    {h:'Denver Mint',p:'Frappe des milliards de pièces/an depuis 1906. Bâtiment de 1904 classé patrimoine. Toutes les pièces frappées ici portent un petit "D".'},
+    {h:'Bière & Altitude',p:'400+ brasseries artisanales — plus forte densité des US. L\'altitude accélère la fermentation ET l\'absorption d\'alcool. Deux pintes à Denver = trois au niveau de la mer. Les Chinook winds peuvent faire monter la température de 30°C en quelques heures.'}
+  ],facts:[
+    'Patricia Schroeder, 1re femme congresswoman du Colorado, a brisé la superstition minière en entrant dans l\'Eisenhower Tunnel (les femmes y étaient interdites).',
+    'Rocky Mountain Oysters: ce ne sont PAS des huîtres. Ce sont des testicules de taureau panés et frits. Classique du Colorado. Oser ou pas? 😏',
+    'Les balles de baseball du Coors Field sont stockées dans un humidificateur pour compenser l\'air sec de Denver qui les fait voler trop loin.'
+  ]},
+  {title:'🔴 Fils Rouges du Voyage',sub:'Thèmes qui traversent tout le road trip',sections:[
+    {h:'Le Colorado — Le fleuve qui meurt',p:'2 330 km. Alimente 40 millions de personnes. Sur-alloué depuis 1922. Depuis 1998, il n\'atteint plus la mer — il meurt dans le sable à 150 km du Golfe de Californie. On le croise au Grand Canyon (1 600 m), Horseshoe Bend (305 m) et Dead Horse Point (600 m). De plus en plus faible.'},
+    {h:'La Terre des Navajos',p:'1864: 9 000 Navajos forcés de marcher 480 km (Longue Marche). Des centaines morts. Internés 4 ans. Le fry bread = pain de survie né des rations gouvernementales. Navajo Nation: 71 000 km², 170 000 habitants. Antelope Canyon est sur leur terre sacrée.'},
+    {h:'Les Mormons et l\'Utah',p:'1847: Brigham Young, 70 000 mormons fuient les persécutions. "This is the right place." Colonisation méthodique de chaque vallée. Hurricane (J8) fondée par des familles mormones. Bière en épicerie limitée à 5%. Alcool fort = State Liquor Stores (fermés dimanche).'},
+    {h:'Edward Abbey — Le punk du désert',p:'Ranger à Arches (1950s). Desert Solitaire (1968) = chef-d\'œuvre. The Monkey Wrench Gang (1975) = 4 amis planifient de faire sauter le Glen Canyon Dam → inspiré Earth First! Enterré illégalement dans le désert, en sac de couchage.'}
+  ],facts:[
+    'Tout le rouge du voyage = de la rouille. Chaque grain de sable est un quartz recouvert d\'oxyde de fer. On marche sur un désert qui rouille depuis 190 millions d\'années.',
+    'L\'Arizona refuse l\'heure d\'été. Mais la Nation Navajo l\'observe. Résultat: on peut changer d\'heure 4 FOIS en 120 km sur l\'I-40.',
+    '"Anasazi" signifie "anciens ennemis" en navajo — terme péjoratif. Les descendants (Hopi, Zuni) préfèrent "Ancestral Puebloans".'
+  ]},
+  {title:'🍽️ Cuisine locale par zone',sub:'Ce qu\'il faut goûter sur place',sections:[
+    {h:'Vegas & Nevada',p:'Buffets de casino (tradition depuis les années 50). In-N-Out Burger (demander "Animal Style"). Tacos de rue (communauté mexicaine 30%+).'},
+    {h:'Arizona & terre Navajo',p:'Navajo taco (fry bread + garniture = pain de survie devenu fierté). Blue corn tortillas. Mutton stew (ragoût de mouton traditionnel).'},
+    {h:'Utah',p:'Fry sauce (ketchup + mayo, les locaux en mettent sur TOUT). Funeral potatoes (gratin mormon servi... aux funérailles). Scones de l\'Utah = fry bread + miel-beurre (rien à voir avec les British!).'},
+    {h:'Moab',p:'Milt\'s Stop & Eat (burgers depuis 1954). Dead Horse Amber Ale & Rocket Bike Lager (Moab Brewery). L\'altitude affecte la carbonatation.'},
+    {h:'Denver',p:'Green chili (ragoût de piment vert sur tout!). Rocky Mountain Oysters (testicules de taureau panées — oser ou pas). 400+ brasseries artisanales dans RiNo.'}
+  ],facts:[]}
+];
+
+// QUIZ DATA (loaded inline — will be populated)
+let QUIZ_DATA = null;
+
+// ===================== APP INIT =====================
+let currentDay = 0;
+let scores = {};
+
+function initApp() {
+  // Load scores
+  try { scores = JSON.parse(localStorage.getItem('quizScores2026') || '{}'); } catch(e) { scores = {}; }
+  PLAYERS.forEach(p => { if(!scores[p]) scores[p] = 0; });
+
+  // Detect current day
+  const now = new Date();
+  const tripDay = Math.floor((now - TRIP_START) / 86400000) + 1;
+  if (tripDay >= 1 && tripDay <= DAYS.length) currentDay = tripDay - 1;
+  else currentDay = 0;
+
+  renderDay(currentDay);
+  renderRoute();
+  renderCulture();
+  loadQuiz();
+}
+
+// ===================== TAB SWITCHING =====================
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ===================== DAY TAB =====================
+function renderDay(idx) {
+  currentDay = idx;
+  const d = DAYS[idx];
+  const now = new Date();
+  const tripDay = Math.floor((now - TRIP_START) / 86400000) + 1;
+  
+  let html = '';
+  
+  // Countdown if before trip
+  if (now < TRIP_START) {
+    const diff = Math.ceil((TRIP_START - now) / 86400000);
+    html += `<div class="countdown-box"><div class="cd-num">J-${diff}</div><div class="cd-label">avant le départ! 🛫</div></div>`;
   }
-  document.getElementById('pgrid').innerHTML=h;
+  
+  // Day navigation
+  html += `<div class="day-nav">
+    <button onclick="renderDay(${idx-1})" ${idx===0?'disabled':''}>&larr;</button>
+    <span style="color:var(--muted);font-size:.78em">Jour ${d.day}/${DAYS.length}</span>
+    <button onclick="renderDay(${idx+1})" ${idx===DAYS.length-1?'disabled':''}>&rarr;</button>
+  </div>`;
+  
+  // Header
+  html += `<div class="day-header">
+    <div class="day-num">${d.emoji} J${d.day}</div>
+    <div class="day-date">${d.dow} ${d.date} 2026</div>
+    <div class="day-label">${d.label}</div>
+  </div>`;
+  
+  // Info chips
+  if (d.dist !== '0 km') {
+    html += `<div class="day-info-row">
+      <div class="info-chip">🚗 ${d.dist}</div>
+      <div class="info-chip">⏱️ ${d.dur}</div>
+    </div>`;
+  }
+  if (d.from && d.to && d.from !== d.to) {
+    html += `<div class="day-info-row"><div class="info-chip" style="flex:1">${d.from} → ${d.to}</div></div>`;
+  }
+  
+  // Highlights
+  html += '<div class="card"><h3>✨ Points forts</h3>';
+  d.highlights.forEach(h => { html += `<div style="padding:4px 0;font-size:.85em;color:var(--muted)">• ${h}</div>`; });
+  html += '</div>';
+  
+  // Timeline
+  html += '<h2 class="section-title">📍 Programme</h2>';
+  d.timeline.forEach(t => {
+    html += `<div class="timeline-item"><span class="tl-time">${t.t}</span><span class="tl-desc">${t.d}</span></div>`;
+  });
+  
+  // Hotel
+  if (d.hotel && d.hotel !== '—') {
+    html += `<div class="hotel-card"><div class="hotel-name">🏨 ${d.hotel}</div><div class="hotel-detail">${d.hotelNote}</div></div>`;
+  }
+  
+  document.getElementById('dayContent').innerHTML = html;
 }
 
-function award(pi){
-  var q=Q[ci],lv=LV[q.v],p=P[pi];
-  p.s+=lv.p;p.k++;
-  var bonus='';
-  if(p.k===3){p.s+=2;bonus=' 🔥+2!';}
-  for(var i=0;i<P.length;i++)if(i!==pi)P[i].k=0;
-  popup(p.n+' +'+lv.p+'pt'+(lv.p>1?'s':'')+bonus);
-  renderPlayers();
-  setTimeout(function(){ci++;render()},900);
+// ===================== ROUTE TAB =====================
+function renderRoute() {
+  let html = '';
+  html += '<div class="phase-label">PHASE 1 — 5 voyageurs (René, Nicole, Alexandre, Dinah, Laurine)</div>';
+  DAYS.forEach((d, i) => {
+    if (i === 10) html += '<div class="phase-label">PHASE 2 — 4 voyageurs (sans Laurine)</div>';
+    if (i === 14) html += '<div class="phase-label">PHASE 3 — René + Nicole → Montréal ✈️</div>';
+    html += `<div class="route-card" id="rc${i}">
+      <div class="rc-header" onclick="document.getElementById('rc${i}').classList.toggle('open')">
+        <span class="rc-emoji">${d.emoji}</span>
+        <div class="rc-info">
+          <div class="rc-day">Jour ${d.day} — ${d.dow} ${d.date}</div>
+          <div class="rc-label">${d.label}</div>
+          <div class="rc-dist">${d.dist !== '0 km' ? d.dist+' • '+d.dur : 'Sur place'}</div>
+        </div>
+      </div>
+      <div class="rc-detail">
+        ${d.highlights.map(h=>'• '+h).join('<br>')}
+        ${d.hotel && d.hotel !== '—' ? '<br>🏨 '+d.hotel : ''}
+      </div>
+    </div>`;
+  });
+  document.getElementById('routeList').innerHTML = html;
 }
 
-function skip(){
-  for(var i=0;i<P.length;i++)P[i].k=0;
-  ci++;render();
+// ===================== CULTURE TAB =====================
+function renderCulture() {
+  let html = '';
+  CULTURE.forEach((zone, zi) => {
+    html += `<div class="culture-zone" id="cz${zi}">
+      <div class="cz-title" onclick="document.getElementById('cz${zi}').classList.toggle('open')">
+        <span>${zone.title}<br><small style="color:var(--muted);font-weight:400">${zone.sub}</small></span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="cz-body">`;
+    zone.sections.forEach(s => {
+      html += `<div class="culture-section"><h3 style="color:var(--sec);font-size:.92em;margin-bottom:6px">${s.h}</h3><p>${s.p}</p></div>`;
+    });
+    if (zone.facts.length) {
+      html += '<div style="margin-top:6px">';
+      zone.facts.forEach(f => {
+        html += `<div class="fun-fact"><strong>💡 Le saviez-vous ?</strong><br>${f}</div>`;
+      });
+      html += '</div>';
+    }
+    html += '</div></div>';
+  });
+  document.getElementById('cultureList').innerHTML = html;
 }
 
-function next(){ci++;render();}
-
-function popup(t){
-  var d=document.createElement('div');d.className='popup';d.textContent=t;
-  document.body.appendChild(d);setTimeout(function(){d.remove()},700);
+// ===================== QUIZ TAB =====================
+function loadQuiz() {
+  // Inline quiz data
+  fetch('questions.json').then(r=>r.ok?r.json():null).then(data=>{
+    if(data){QUIZ_DATA=data;setupQuiz();}
+  }).catch(()=>{
+    // Try inline
+    QUIZ_DATA = null;
+  });
+  // Also try embedded approach — setup immediately if we have data
+  setTimeout(()=>{if(!QUIZ_DATA)setupQuizFallback();},1000);
 }
 
+function setupQuiz(){
+  const sel = document.getElementById('quizDaySelect');
+  sel.innerHTML = '';
+  QUIZ_DATA.days.forEach(d=>{
+    const opt = document.createElement('option');
+    opt.value = d.day;
+    opt.textContent = `J${d.day} — ${d.label.substring(0,30)}`;
+    sel.appendChild(opt);
+  });
+  // Auto-detect day
+  const now = new Date();
+  const tripDay = Math.floor((now - TRIP_START)/86400000)+1;
+  if(tripDay>=1&&tripDay<=14) sel.value=tripDay;
+  else sel.value=1;
+  renderQuiz(+sel.value);
+}
+
+function setupQuizFallback(){
+  const sel = document.getElementById('quizDaySelect');
+  sel.innerHTML = '<option value="0">Chargement...</option>';
+  document.getElementById('quizQuestions').innerHTML = '<div class="card"><p style="color:var(--muted);text-align:center">📱 Fichier questions.json non trouvé.<br>Placez-le à côté de index.html</p></div>';
+}
+
+function renderQuiz(dayNum){
+  if(!QUIZ_DATA) return;
+  const dayData = QUIZ_DATA.days.find(d=>d.day===dayNum);
+  if(!dayData){document.getElementById('quizQuestions').innerHTML='<div class="card"><p style="color:var(--muted)">Pas de questions pour ce jour</p></div>';return;}
+  
+  let html = `<div style="text-align:center;margin-bottom:12px;font-size:.85em;color:var(--muted)">${dayData.label}</div>`;
+  const answered = JSON.parse(localStorage.getItem('quizAnswered2026')||'{}');
+  
+  dayData.questions.forEach((q,qi)=>{
+    const qid = `d${dayNum}q${qi}`;
+    const wasAnswered = answered[qid] !== undefined;
+    const levelClass = 'lvl-'+(q.level==='wtaf'?'wtaf':q.level);
+    const levelLabel = {easy:'⭐ Facile',medium:'⭐⭐ Moyen',expert:'🔥 Expert',wtaf:'🤯 WTAF',cinema:'🎬 Ciné'}[q.level]||q.level;
+    const pts = {easy:1,medium:2,expert:3,wtaf:5,cinema:2}[q.level]||1;
+    
+    html += `<div class="quiz-q" id="${qid}">
+      <div class="q-level ${levelClass}">${levelLabel} • ${pts} pt${pts>1?'s':''}</div>
+      <div class="q-text">${q.text}</div>
+      <div class="q-options">`;
+    q.options.forEach((opt,oi)=>{
+      let cls = wasAnswered ? 'disabled' : '';
+      if(wasAnswered){
+        if(oi===q.correct) cls += ' correct';
+        else if(oi===answered[qid]) cls += ' wrong';
+      }
+      html += `<div class="q-opt ${cls}" onclick="answerQ('${qid}',${dayNum},${qi},${oi})">${opt}</div>`;
+    });
+    html += `</div>
+      <div class="q-explain ${wasAnswered?'show':''}" id="${qid}ex">${q.explanation}${q.link?'<br><em style="color:var(--accent)">'+q.link+'</em>':''}</div>
+      <div class="q-points ${wasAnswered?'show':''}" id="${qid}pts">`;
+    PLAYERS.forEach(p=>{
+      // Check if laurine is still in group for this day
+      if(p==='Laurine' && dayNum > 10) return;
+      const awardKey = qid+'_'+p;
+      const awarded = localStorage.getItem(awardKey);
+      html += `<button class="${awarded?'awarded':''}" onclick="awardPoint('${qid}',${dayNum},${qi},'${p}',this)">${awarded?'✅ ':''} ${p} +${pts}</button>`;
+    });
+    html += '</div></div>';
+  });
+  
+  document.getElementById('quizQuestions').innerHTML = html;
+  updateScoreboard();
+}
+
+function answerQ(qid, dayNum, qi, chosen){
+  if(!QUIZ_DATA) return;
+  const dayData = QUIZ_DATA.days.find(d=>d.day===dayNum);
+  const q = dayData.questions[qi];
+  const answered = JSON.parse(localStorage.getItem('quizAnswered2026')||'{}');
+  if(answered[qid]!==undefined) return;
+  answered[qid] = chosen;
+  localStorage.setItem('quizAnswered2026',JSON.stringify(answered));
+  
+  // Update UI
+  const container = document.getElementById(qid);
+  const opts = container.querySelectorAll('.q-opt');
+  opts.forEach((o,i)=>{
+    o.classList.add('disabled');
+    if(i===q.correct) o.classList.add('correct');
+    else if(i===chosen) o.classList.add('wrong');
+  });
+  document.getElementById(qid+'ex').classList.add('show');
+  document.getElementById(qid+'pts').classList.add('show');
+}
+
+function awardPoint(qid, dayNum, qi, player, btn){
+  if(!QUIZ_DATA) return;
+  const dayData = QUIZ_DATA.days.find(d=>d.day===dayNum);
+  const q = dayData.questions[qi];
+  const pts = {easy:1,medium:2,expert:3,wtaf:5,cinema:2}[q.level]||1;
+  const awardKey = qid+'_'+player;
+  
+  if(localStorage.getItem(awardKey)){
+    // Remove
+    localStorage.removeItem(awardKey);
+    scores[player] = (scores[player]||0) - pts;
+    btn.classList.remove('awarded');
+    btn.textContent = ` ${player} +${pts}`;
+  } else {
+    // Add
+    localStorage.setItem(awardKey, '1');
+    scores[player] = (scores[player]||0) + pts;
+    btn.classList.add('awarded');
+    btn.textContent = `✅ ${player} +${pts}`;
+  }
+  
+  localStorage.setItem('quizScores2026', JSON.stringify(scores));
+  updateScoreboard();
+}
+
+function updateScoreboard(){
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const medals = ['🥇','🥈','🥉','4️⃣','5️⃣'];
+  let html = '';
+  sorted.forEach(([name,score],i)=>{
+    html += `<div class="sb-row"><span class="sb-name">${medals[i]||''} ${name}</span><span class="sb-score">${score} pts</span></div>`;
+  });
+  document.getElementById('sbRows').innerHTML = html;
+}
+
+let sbVisible = false;
 function toggleScoreboard(){
-  var sp=document.getElementById('scoreboard-panel');
-  var qp=document.getElementById('quiz-panel');
-  if(sp.classList.contains('hidden')){sp.classList.remove('hidden');qp.classList.add('hidden');renderSB('sb');}
-  else{sp.classList.add('hidden');qp.classList.remove('hidden');}
+  sbVisible = !sbVisible;
+  document.getElementById('scoreboardBox').style.display = sbVisible ? '' : 'none';
 }
 
-function renderSB(id){
-  var s=P.slice().sort(function(a,b){return b.s-a.s});
-  var r=['🥇','🥈','🥉','4️⃣','5️⃣'],h='';
-  for(var i=0;i<s.length;i++)h+='<div class="score-row"><span class="score-rank">'+(r[i]||'')+'</span><span class="score-name">'+s[i].n+'</span><span class="score-pts">'+s[i].s+' pts</span></div>';
-  document.getElementById(id).innerHTML=h;
-}
-
-function endGame(){
-  document.getElementById('quiz-panel').classList.add('hidden');
-  document.getElementById('endscreen').classList.remove('hidden');
-  renderSB('endsb');
-}
-
-function resetScores(){
-  if(!confirm('Remettre à zéro ?'))return;
-  for(var i=0;i<P.length;i++){P[i].s=0;P[i].k=0;}
-  ci=0;toggleScoreboard();render();
-}
-
-function restart(){
-  for(var i=0;i<P.length;i++){P[i].s=0;P[i].k=0;}
-  ci=0;render();
-}
-
-render();
+// Service Worker
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
-<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}</script>
 </body>
 </html>
