@@ -93,34 +93,93 @@ h2.section-title{font-size:1.15em;margin:18px 0 10px;padding-left:4px}
 .culture-section{margin-bottom:8px}
 .culture-section p{margin-bottom:8px;color:var(--muted)}
 
-/* QUIZ TAB */
-.quiz-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.quiz-header select{background:var(--card);color:var(--text);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 10px;font-size:.82em}
-.quiz-q{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:10px}
-.quiz-q .q-level{font-size:.7em;font-weight:700;margin-bottom:6px}
-.quiz-q .q-text{font-size:.92em;margin-bottom:12px;line-height:1.5}
-.quiz-q .q-options{display:flex;flex-direction:column;gap:6px}
-.quiz-q .q-opt{padding:10px 14px;background:rgba(255,255,255,.05);border-radius:10px;font-size:.85em;cursor:pointer;transition:.15s;border:2px solid transparent}
-.quiz-q .q-opt:hover{background:rgba(255,255,255,.08)}
-.quiz-q .q-opt.correct{background:rgba(78,205,196,.15);border-color:var(--sec);color:var(--sec)}
-.quiz-q .q-opt.wrong{background:rgba(233,69,96,.12);border-color:var(--accent);color:var(--accent);opacity:.7}
-.quiz-q .q-opt.disabled{pointer-events:none}
-.quiz-q .q-explain{display:none;margin-top:10px;padding:10px 14px;background:rgba(78,205,196,.08);border-radius:10px;font-size:.82em;line-height:1.5;color:var(--sec)}
-.quiz-q .q-explain.show{display:block}
-.quiz-q .q-points{display:none;margin-top:8px;flex-wrap:wrap;gap:6px}
-.quiz-q .q-points.show{display:flex}
-.quiz-q .q-points button{padding:6px 12px;border-radius:8px;font-size:.78em;font-weight:600;background:rgba(233,69,96,.15);color:var(--accent);transition:.15s}
-.quiz-q .q-points button:hover{background:rgba(233,69,96,.25)}
-.quiz-q .q-points button.awarded{background:var(--sec);color:#111}
-.scoreboard{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:14px}
-.scoreboard h3{font-size:.95em;margin-bottom:10px}
-.sb-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}
-.sb-row:last-child{border:none}
-.sb-row .sb-name{font-size:.88em}
-.sb-row .sb-score{font-weight:700;color:var(--sec);font-size:.95em}
-.sb-row:first-child .sb-score{color:var(--accent);font-size:1.05em}
+/* QUIZ TAB — Full-screen one-question-at-a-time UX */
+#tabQuiz{padding:0!important;display:none;flex-direction:column;height:calc(100dvh - var(--nav-h));overflow:hidden}
+#tabQuiz.active{display:flex!important}
 
-/* LEVEL COLORS */
+/* Quiz top bar */
+.quiz-topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--card);border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.quiz-topbar .qt-day{display:flex;align-items:center;gap:8px}
+.quiz-topbar .qt-day button{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);font-size:1em;display:flex;align-items:center;justify-content:center;color:var(--text)}
+.quiz-topbar .qt-day button:disabled{opacity:.2}
+.quiz-topbar .qt-day-label{font-size:.82em;font-weight:700;color:var(--accent);min-width:40px;text-align:center}
+.quiz-topbar .qt-right{display:flex;align-items:center;gap:10px}
+.quiz-topbar .qt-score{font-size:.72em;color:var(--muted)}
+.quiz-topbar .qt-trophy{font-size:1.3em;cursor:pointer}
+
+/* Progress bar */
+.quiz-progress{height:4px;background:rgba(255,255,255,.06);flex-shrink:0;position:relative}
+.quiz-progress .qp-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--sec));transition:width .4s ease;border-radius:0 2px 2px 0}
+.quiz-progress .qp-label{position:absolute;right:12px;top:8px;font-size:.68em;color:var(--muted)}
+
+/* Question card area — takes remaining space */
+.quiz-stage{flex:1;overflow:hidden;position:relative}
+.quiz-slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:20px 16px 16px;overflow-y:auto;transition:opacity .3s ease,transform .3s ease}
+.quiz-slide.entering-right{opacity:0;transform:translateX(40px)}
+.quiz-slide.entering-left{opacity:0;transform:translateX(-40px)}
+.quiz-slide.leaving-right{opacity:0;transform:translateX(-40px)}
+.quiz-slide.leaving-left{opacity:0;transform:translateX(40px)}
+.quiz-slide.active{opacity:1;transform:translateX(0)}
+.quiz-slide.hidden{display:none}
+
+/* Level badge */
+.qlevel{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.72em;font-weight:700;margin-bottom:10px}
+.qlevel-easy{background:rgba(78,205,196,.15);color:#4ecdc4}
+.qlevel-medium{background:rgba(247,183,49,.15);color:#f7b731}
+.qlevel-expert{background:rgba(233,69,96,.15);color:#e94560}
+.qlevel-wtaf{background:rgba(165,94,234,.15);color:#a55eea}
+.qlevel-cinema{background:rgba(252,92,101,.15);color:#fc5c65}
+
+/* Question text */
+.qtext{font-size:1.05em;line-height:1.6;margin-bottom:18px;font-weight:500}
+
+/* Options */
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{padding:14px 16px;background:rgba(255,255,255,.05);border-radius:12px;font-size:.9em;cursor:pointer;transition:all .2s;border:2px solid transparent;line-height:1.4}
+.qopt:active{transform:scale(.98)}
+.qopt.correct{background:rgba(78,205,196,.18);border-color:var(--sec);color:var(--sec)}
+.qopt.wrong{background:rgba(233,69,96,.15);border-color:var(--accent);color:var(--accent);opacity:.7}
+.qopt.dim{opacity:.4;pointer-events:none}
+.qopt.disabled{pointer-events:none}
+
+/* Explanation */
+.qexplain{margin-top:14px;padding:12px 16px;background:rgba(78,205,196,.08);border-radius:12px;font-size:.84em;line-height:1.6;color:var(--sec);animation:fadeIn .3s}
+.qexplain .qlink{color:var(--accent);font-style:italic;margin-top:6px;display:block}
+
+/* Player attribution — "Qui a trouvé ?" */
+.qplayers{margin-top:16px;animation:fadeIn .3s}
+.qplayers-title{font-size:.78em;color:var(--muted);margin-bottom:8px;font-weight:600}
+.qplayers-grid{display:flex;flex-wrap:wrap;gap:8px}
+.qplayer-btn{padding:8px 14px;border-radius:10px;font-size:.82em;font-weight:600;background:rgba(233,69,96,.12);color:var(--accent);transition:all .2s;position:relative;overflow:hidden}
+.qplayer-btn:active{transform:scale(.95)}
+.qplayer-btn.awarded{background:var(--sec);color:#111}
+.qplayer-btn.awarded::after{content:'✓';margin-left:4px}
+.qplayer-btn.nobody{background:rgba(255,255,255,.06);color:var(--muted)}
+
+/* Next button */
+.qnext-row{margin-top:14px;display:flex;justify-content:flex-end}
+.qnext-btn{padding:10px 20px;border-radius:10px;font-size:.85em;font-weight:700;background:var(--accent);color:#fff;transition:.2s}
+.qnext-btn:active{transform:scale(.95)}
+
+/* Scoreboard overlay */
+.quiz-scoreboard-overlay{position:absolute;inset:0;background:rgba(26,26,46,.95);backdrop-filter:blur(8px);z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;animation:fadeIn .25s}
+.qsb-title{font-size:1.4em;font-weight:800;margin-bottom:20px}
+.qsb-list{width:100%;max-width:340px}
+.qsb-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--card);border-radius:12px;margin-bottom:8px}
+.qsb-row:first-child{background:linear-gradient(135deg,rgba(233,69,96,.2),rgba(78,205,196,.15));border:1px solid rgba(233,69,96,.3)}
+.qsb-name{font-size:1em;font-weight:600}
+.qsb-pts{font-weight:800;color:var(--sec);font-size:1.1em}
+.qsb-row:first-child .qsb-pts{color:var(--accent);font-size:1.25em}
+.qsb-close{margin-top:20px;padding:10px 30px;border-radius:10px;background:var(--card);color:var(--text);font-weight:600;font-size:.9em}
+.qsb-streak{font-size:.7em;color:var(--muted);margin-top:4px}
+
+/* Day complete screen */
+.quiz-complete{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 24px;height:100%;animation:fadeIn .4s}
+.quiz-complete .qc-emoji{font-size:3.5em;margin-bottom:16px}
+.quiz-complete .qc-title{font-size:1.3em;font-weight:800;color:var(--accent);margin-bottom:8px}
+.quiz-complete .qc-sub{color:var(--muted);font-size:.9em;margin-bottom:24px;line-height:1.5}
+
+/* LEVEL COLORS (kept for backward compat) */
 .lvl-easy{color:#4ecdc4}.lvl-medium{color:#f7b731}.lvl-expert{color:#e94560}.lvl-wtaf{color:#a55eea}.lvl-cinema{color:#fc5c65}
 </style>
 </head>
@@ -171,18 +230,25 @@ h2.section-title{font-size:1.15em;margin:18px 0 10px;padding-left:4px}
 
 <!-- TAB: QUIZ -->
 <div class="tab" id="tabQuiz">
-  <div class="quiz-header">
-    <h2 style="font-size:1.1em">🧠 Quiz du Jour</h2>
-    <div style="display:flex;gap:8px;align-items:center">
-      <button onclick="toggleScoreboard()" style="font-size:1.2em">🏆</button>
-      <select id="quizDaySelect" onchange="renderQuiz(+this.value)"></select>
+  <!-- Top bar -->
+  <div class="quiz-topbar">
+    <div class="qt-day">
+      <button id="qPrevDay" onclick="quizChangeDay(-1)">‹</button>
+      <span class="qt-day-label" id="qDayLabel">J1</span>
+      <button id="qNextDay" onclick="quizChangeDay(1)">›</button>
+    </div>
+    <div class="qt-right">
+      <span class="qt-score" id="qScoreSmall"></span>
+      <span class="qt-trophy" onclick="quizShowScoreboard()">🏆</span>
     </div>
   </div>
-  <div id="scoreboardBox" class="scoreboard" style="display:none">
-    <h3>🏆 Classement Cumulé</h3>
-    <div id="sbRows"></div>
+  <!-- Progress bar -->
+  <div class="quiz-progress">
+    <div class="qp-fill" id="qProgressFill" style="width:0%"></div>
+    <div class="qp-label" id="qProgressLabel"></div>
   </div>
-  <div id="quizQuestions"></div>
+  <!-- Question stage -->
+  <div class="quiz-stage" id="quizStage"></div>
 </div>
 
 </div><!-- /app -->
@@ -535,146 +601,318 @@ function renderCulture() {
   document.getElementById('cultureList').innerHTML = html;
 }
 
-// ===================== QUIZ TAB =====================
+// ===================== QUIZ TAB — One question at a time =====================
+const QUIZ_PTS = {easy:1,medium:2,expert:3,wtaf:5,cinema:2};
+const QUIZ_LEVEL_LABEL = {easy:'⭐ Facile',medium:'⭐⭐ Moyen',expert:'🔥 Expert',wtaf:'🤯 WTAF',cinema:'🎬 Ciné'};
+let quizDay = 1;        // current day number (1-14)
+let quizIdx = 0;        // current question index (0-9)
+let quizAnswered = {};   // {d1q0: chosenIdx, ...}
+let quizStreaks = {};    // {playerName: currentStreakCount}
+
 function loadQuiz() {
-  // Inline quiz data
   fetch('questions.json').then(r=>r.ok?r.json():null).then(data=>{
     if(data){QUIZ_DATA=data;setupQuiz();}
-  }).catch(()=>{
-    // Try inline
-    QUIZ_DATA = null;
-  });
-  // Also try embedded approach — setup immediately if we have data
-  setTimeout(()=>{if(!QUIZ_DATA)setupQuizFallback();},1000);
+  }).catch(()=>{ QUIZ_DATA=null; });
+  setTimeout(()=>{ if(!QUIZ_DATA) quizFallback(); },1200);
 }
 
 function setupQuiz(){
-  const sel = document.getElementById('quizDaySelect');
-  sel.innerHTML = '';
-  QUIZ_DATA.days.forEach(d=>{
-    const opt = document.createElement('option');
-    opt.value = d.day;
-    opt.textContent = `J${d.day} — ${d.label.substring(0,30)}`;
-    sel.appendChild(opt);
-  });
-  // Auto-detect day
-  const now = new Date();
-  const tripDay = Math.floor((now - TRIP_START)/86400000)+1;
-  if(tripDay>=1&&tripDay<=14) sel.value=tripDay;
-  else sel.value=1;
-  renderQuiz(+sel.value);
+  // Load persisted state
+  try { quizAnswered = JSON.parse(localStorage.getItem('quizAnswered2026')||'{}'); } catch(e){ quizAnswered={}; }
+  try { quizStreaks = JSON.parse(localStorage.getItem('quizStreaks2026')||'{}'); } catch(e){ quizStreaks={}; }
+  PLAYERS.forEach(p=>{ if(!quizStreaks[p]) quizStreaks[p]=0; });
+
+  // Restore position
+  const saved = JSON.parse(localStorage.getItem('quizPos2026')||'null');
+  if(saved){ quizDay=saved.day; quizIdx=saved.idx; }
+  else {
+    const now=new Date(), tripDay=Math.floor((now-TRIP_START)/86400000)+1;
+    quizDay = (tripDay>=1&&tripDay<=14)?tripDay:1;
+    quizIdx = 0;
+  }
+  // Clamp
+  if(!QUIZ_DATA.days.find(d=>d.day===quizDay)) quizDay=1;
+  quizRender();
 }
 
-function setupQuizFallback(){
-  const sel = document.getElementById('quizDaySelect');
-  sel.innerHTML = '<option value="0">Chargement...</option>';
-  document.getElementById('quizQuestions').innerHTML = '<div class="card"><p style="color:var(--muted);text-align:center">📱 Fichier questions.json non trouvé.<br>Placez-le à côté de index.html</p></div>';
+function quizFallback(){
+  document.getElementById('quizStage').innerHTML='<div style="padding:40px 20px;text-align:center;color:var(--muted)">📱 Fichier questions.json non trouvé.<br>Placez-le à côté de index.html</div>';
 }
 
-function renderQuiz(dayNum){
+function quizSavePos(){
+  localStorage.setItem('quizPos2026',JSON.stringify({day:quizDay,idx:quizIdx}));
+}
+
+function quizChangeDay(delta){
+  const days = QUIZ_DATA.days.map(d=>d.day).sort((a,b)=>a-b);
+  const ci = days.indexOf(quizDay);
+  const ni = ci+delta;
+  if(ni<0||ni>=days.length) return;
+  quizDay = days[ni];
+  quizIdx = 0;
+  quizSavePos();
+  quizRender();
+}
+
+function quizRender(){
   if(!QUIZ_DATA) return;
-  const dayData = QUIZ_DATA.days.find(d=>d.day===dayNum);
-  if(!dayData){document.getElementById('quizQuestions').innerHTML='<div class="card"><p style="color:var(--muted)">Pas de questions pour ce jour</p></div>';return;}
-  
-  let html = `<div style="text-align:center;margin-bottom:12px;font-size:.85em;color:var(--muted)">${dayData.label}</div>`;
-  const answered = JSON.parse(localStorage.getItem('quizAnswered2026')||'{}');
-  
-  dayData.questions.forEach((q,qi)=>{
-    const qid = `d${dayNum}q${qi}`;
-    const wasAnswered = answered[qid] !== undefined;
-    const levelClass = 'lvl-'+(q.level==='wtaf'?'wtaf':q.level);
-    const levelLabel = {easy:'⭐ Facile',medium:'⭐⭐ Moyen',expert:'🔥 Expert',wtaf:'🤯 WTAF',cinema:'🎬 Ciné'}[q.level]||q.level;
-    const pts = {easy:1,medium:2,expert:3,wtaf:5,cinema:2}[q.level]||1;
-    
-    html += `<div class="quiz-q" id="${qid}">
-      <div class="q-level ${levelClass}">${levelLabel} • ${pts} pt${pts>1?'s':''}</div>
-      <div class="q-text">${q.text}</div>
-      <div class="q-options">`;
-    q.options.forEach((opt,oi)=>{
-      let cls = wasAnswered ? 'disabled' : '';
-      if(wasAnswered){
-        if(oi===q.correct) cls += ' correct';
-        else if(oi===answered[qid]) cls += ' wrong';
-      }
-      html += `<div class="q-opt ${cls}" onclick="answerQ('${qid}',${dayNum},${qi},${oi})">${opt}</div>`;
-    });
-    html += `</div>
-      <div class="q-explain ${wasAnswered?'show':''}" id="${qid}ex">${q.explanation}${q.link?'<br><em style="color:var(--accent)">'+q.link+'</em>':''}</div>
-      <div class="q-points ${wasAnswered?'show':''}" id="${qid}pts">`;
-    PLAYERS.forEach(p=>{
-      // Check if laurine is still in group for this day
-      if(p==='Laurine' && dayNum > 10) return;
-      const awardKey = qid+'_'+p;
-      const awarded = localStorage.getItem(awardKey);
-      html += `<button class="${awarded?'awarded':''}" onclick="awardPoint('${qid}',${dayNum},${qi},'${p}',this)">${awarded?'✅ ':''} ${p} +${pts}</button>`;
-    });
-    html += '</div></div>';
+  const dayData = QUIZ_DATA.days.find(d=>d.day===quizDay);
+  if(!dayData) return;
+  const total = dayData.questions.length;
+  const allDays = QUIZ_DATA.days.map(d=>d.day).sort((a,b)=>a-b);
+  const dayIdx = allDays.indexOf(quizDay);
+
+  // Top bar
+  document.getElementById('qDayLabel').textContent = `J${quizDay}`;
+  document.getElementById('qPrevDay').disabled = dayIdx<=0;
+  document.getElementById('qNextDay').disabled = dayIdx>=allDays.length-1;
+
+  // Small score
+  const topScore = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('qScoreSmall').textContent = topScore ? `${topScore[0]} ${topScore[1]}pts` : '';
+
+  // Check if day complete
+  const allAnswered = dayData.questions.every((_,qi)=>quizAnswered[`d${quizDay}q${qi}`]!==undefined);
+  // Count how many answered & attributed
+  const answeredCount = dayData.questions.filter((_,qi)=>quizAnswered[`d${quizDay}q${qi}`]!==undefined).length;
+
+  // If all 10 done and we're past the last → show completion
+  if(allAnswered && quizIdx >= total){
+    quizShowComplete(dayData);
+    return;
+  }
+
+  // Clamp index
+  if(quizIdx<0) quizIdx=0;
+  if(quizIdx>=total) quizIdx=total-1;
+
+  // Progress bar
+  const pct = ((quizIdx+1)/total)*100;
+  document.getElementById('qProgressFill').style.width = pct+'%';
+  document.getElementById('qProgressLabel').textContent = `${quizIdx+1}/${total}`;
+
+  // Render current question
+  const q = dayData.questions[quizIdx];
+  const qid = `d${quizDay}q${quizIdx}`;
+  const wasAnswered = quizAnswered[qid]!==undefined;
+  const pts = QUIZ_PTS[q.level]||1;
+  const levelLabel = QUIZ_LEVEL_LABEL[q.level]||q.level;
+
+  const stage = document.getElementById('quizStage');
+  const slide = document.createElement('div');
+  slide.className = 'quiz-slide active';
+  slide.id = 'qSlide';
+
+  let html = `<div class="qlevel qlevel-${q.level}">${levelLabel} · ${pts} pt${pts>1?'s':''}</div>`;
+  html += `<div class="qtext">${q.text}</div>`;
+  html += `<div class="qopts">`;
+  q.options.forEach((opt,oi)=>{
+    let cls = '';
+    if(wasAnswered){
+      cls = 'disabled ';
+      if(oi===q.correct) cls += 'correct';
+      else if(oi===quizAnswered[qid]) cls += 'wrong';
+      else cls += 'dim';
+    }
+    html += `<div class="qopt ${cls}" onclick="quizAnswer(${oi})">${opt}</div>`;
   });
-  
-  document.getElementById('quizQuestions').innerHTML = html;
-  updateScoreboard();
+  html += `</div>`;
+
+  // Explanation (shown if answered)
+  if(wasAnswered){
+    html += `<div class="qexplain">${q.explanation}${q.link?'<span class="qlink">'+q.link+'</span>':''}</div>`;
+    html += quizPlayersHTML(qid, q);
+    html += quizNextBtnHTML();
+  }
+
+  slide.innerHTML = html;
+
+  // Transition: remove old slides, add new
+  const oldSlide = stage.querySelector('.quiz-slide');
+  if(oldSlide){
+    oldSlide.remove();
+  }
+  stage.appendChild(slide);
 }
 
-function answerQ(qid, dayNum, qi, chosen){
+function quizPlayersHTML(qid, q){
+  const pts = QUIZ_PTS[q.level]||1;
+  let html = `<div class="qplayers"><div class="qplayers-title">Qui a trouvé ?</div><div class="qplayers-grid">`;
+  PLAYERS.forEach(p=>{
+    if(p==='Laurine' && quizDay>10) return;
+    const awardKey = qid+'_'+p;
+    const awarded = localStorage.getItem(awardKey);
+    html += `<button class="qplayer-btn ${awarded?'awarded':''}" onclick="quizAward('${qid}','${p}',this)">${p}</button>`;
+  });
+  html += `<button class="qplayer-btn nobody" onclick="quizNext()">Personne</button>`;
+  html += `</div></div>`;
+  return html;
+}
+
+function quizNextBtnHTML(){
+  return `<div class="qnext-row"><button class="qnext-btn" onclick="quizNext()">Suivant →</button></div>`;
+}
+
+function quizAnswer(chosen){
   if(!QUIZ_DATA) return;
-  const dayData = QUIZ_DATA.days.find(d=>d.day===dayNum);
-  const q = dayData.questions[qi];
-  const answered = JSON.parse(localStorage.getItem('quizAnswered2026')||'{}');
-  if(answered[qid]!==undefined) return;
-  answered[qid] = chosen;
-  localStorage.setItem('quizAnswered2026',JSON.stringify(answered));
-  
-  // Update UI
-  const container = document.getElementById(qid);
-  const opts = container.querySelectorAll('.q-opt');
+  const dayData = QUIZ_DATA.days.find(d=>d.day===quizDay);
+  const q = dayData.questions[quizIdx];
+  const qid = `d${quizDay}q${quizIdx}`;
+  if(quizAnswered[qid]!==undefined) return;
+
+  quizAnswered[qid] = chosen;
+  localStorage.setItem('quizAnswered2026',JSON.stringify(quizAnswered));
+
+  // Update options visually
+  const slide = document.getElementById('qSlide');
+  const opts = slide.querySelectorAll('.qopt');
   opts.forEach((o,i)=>{
     o.classList.add('disabled');
     if(i===q.correct) o.classList.add('correct');
     else if(i===chosen) o.classList.add('wrong');
+    else o.classList.add('dim');
   });
-  document.getElementById(qid+'ex').classList.add('show');
-  document.getElementById(qid+'pts').classList.add('show');
+
+  // Inject explanation + players + next
+  let extra = `<div class="qexplain">${q.explanation}${q.link?'<span class="qlink">'+q.link+'</span>':''}</div>`;
+  extra += quizPlayersHTML(qid, q);
+  extra += quizNextBtnHTML();
+  slide.insertAdjacentHTML('beforeend', extra);
 }
 
-function awardPoint(qid, dayNum, qi, player, btn){
+function quizAward(qid, player, btn){
   if(!QUIZ_DATA) return;
+  const parts = qid.match(/d(\d+)q(\d+)/);
+  const dayNum = +parts[1], qi = +parts[2];
   const dayData = QUIZ_DATA.days.find(d=>d.day===dayNum);
   const q = dayData.questions[qi];
-  const pts = {easy:1,medium:2,expert:3,wtaf:5,cinema:2}[q.level]||1;
+  const pts = QUIZ_PTS[q.level]||1;
   const awardKey = qid+'_'+player;
-  
+
   if(localStorage.getItem(awardKey)){
-    // Remove
+    // Toggle off
     localStorage.removeItem(awardKey);
-    scores[player] = (scores[player]||0) - pts;
+    scores[player] = Math.max(0,(scores[player]||0) - pts);
     btn.classList.remove('awarded');
-    btn.textContent = ` ${player} +${pts}`;
+    // Reset streak
+    quizStreaks[player] = 0;
   } else {
-    // Add
+    // Award
     localStorage.setItem(awardKey, '1');
     scores[player] = (scores[player]||0) + pts;
     btn.classList.add('awarded');
-    btn.textContent = `✅ ${player} +${pts}`;
+    // Streak tracking
+    quizStreaks[player] = (quizStreaks[player]||0) + 1;
+    if(quizStreaks[player] >= 3 && quizStreaks[player] % 3 === 0){
+      // Streak bonus!
+      scores[player] += 2;
+      quizShowStreakBonus(player);
+    }
   }
-  
+
   localStorage.setItem('quizScores2026', JSON.stringify(scores));
-  updateScoreboard();
+  localStorage.setItem('quizStreaks2026', JSON.stringify(quizStreaks));
 }
 
-function updateScoreboard(){
+function quizShowStreakBonus(player){
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--accent);color:#fff;padding:14px 28px;border-radius:16px;font-weight:800;font-size:1.1em;z-index:200;animation:fadeIn .3s;pointer-events:none;text-align:center';
+  toast.innerHTML = `🔥 STREAK! ${player}<br>+2 pts bonus!`;
+  document.body.appendChild(toast);
+  setTimeout(()=>toast.remove(), 1800);
+}
+
+function quizNext(){
+  if(!QUIZ_DATA) return;
+  const dayData = QUIZ_DATA.days.find(d=>d.day===quizDay);
+  const total = dayData.questions.length;
+
+  // Reset streak for players who didn't get this one
+  const qid = `d${quizDay}q${quizIdx}`;
+  PLAYERS.forEach(p=>{
+    if(!localStorage.getItem(qid+'_'+p)){
+      quizStreaks[p] = 0;
+    }
+  });
+  localStorage.setItem('quizStreaks2026', JSON.stringify(quizStreaks));
+
+  quizIdx++;
+  quizSavePos();
+
+  if(quizIdx >= total){
+    // All done — show completion
+    quizShowComplete(dayData);
+    return;
+  }
+
+  // Slide transition
+  const stage = document.getElementById('quizStage');
+  const old = stage.querySelector('.quiz-slide');
+  if(old){
+    old.classList.add('leaving-right');
+    setTimeout(()=>old.remove(), 300);
+  }
+  setTimeout(()=>quizRender(), 50);
+}
+
+function quizShowComplete(dayData){
+  const total = dayData.questions.length;
+  // Progress bar full
+  document.getElementById('qProgressFill').style.width = '100%';
+  document.getElementById('qProgressLabel').textContent = `${total}/${total}`;
+
+  const stage = document.getElementById('quizStage');
   const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
   const medals = ['🥇','🥈','🥉','4️⃣','5️⃣'];
-  let html = '';
+
+  let html = `<div class="quiz-complete">
+    <div class="qc-emoji">🏆</div>
+    <div class="qc-title">Jour ${quizDay} terminé !</div>
+    <div class="qc-sub">${dayData.label}</div>`;
+
+  // Mini scoreboard
+  html += `<div style="width:100%;max-width:300px;text-align:left">`;
   sorted.forEach(([name,score],i)=>{
-    html += `<div class="sb-row"><span class="sb-name">${medals[i]||''} ${name}</span><span class="sb-score">${score} pts</span></div>`;
+    html += `<div class="qsb-row"><span class="qsb-name">${medals[i]||''} ${name}</span><span class="qsb-pts">${score} pts</span></div>`;
   });
-  document.getElementById('sbRows').innerHTML = html;
+  html += `</div>`;
+
+  // Replay / next day buttons
+  html += `<div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center">`;
+  html += `<button class="qnext-btn" style="background:var(--card)" onclick="quizIdx=0;quizSavePos();quizRender()">↺ Revoir J${quizDay}</button>`;
+  const allDays = QUIZ_DATA.days.map(d=>d.day).sort((a,b)=>a-b);
+  const dayIdx = allDays.indexOf(quizDay);
+  if(dayIdx < allDays.length-1){
+    html += `<button class="qnext-btn" onclick="quizDay=${allDays[dayIdx+1]};quizIdx=0;quizSavePos();quizRender()">J${allDays[dayIdx+1]} →</button>`;
+  }
+  html += `</div></div>`;
+
+  const old = stage.querySelector('.quiz-slide,.quiz-complete');
+  if(old) old.remove();
+  // Remove any scoreboard overlay too
+  const sbOv = stage.querySelector('.quiz-scoreboard-overlay');
+  if(sbOv) sbOv.remove();
+
+  stage.innerHTML = html;
 }
 
-let sbVisible = false;
-function toggleScoreboard(){
-  sbVisible = !sbVisible;
-  document.getElementById('scoreboardBox').style.display = sbVisible ? '' : 'none';
+function quizShowScoreboard(){
+  const stage = document.getElementById('quizStage');
+  // Toggle
+  const existing = stage.querySelector('.quiz-scoreboard-overlay');
+  if(existing){ existing.remove(); return; }
+
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const medals = ['🥇','🥈','🥉','4️⃣','5️⃣'];
+  let html = `<div class="quiz-scoreboard-overlay">
+    <div class="qsb-title">🏆 Classement Cumulé</div>
+    <div class="qsb-list">`;
+  sorted.forEach(([name,score],i)=>{
+    const streak = quizStreaks[name]||0;
+    html += `<div class="qsb-row"><span class="qsb-name">${medals[i]||''} ${name}${streak>=2?' 🔥'+streak:''}</span><span class="qsb-pts">${score} pts</span></div>`;
+  });
+  html += `</div><button class="qsb-close" onclick="this.parentElement.remove()">Fermer</button></div>`;
+  stage.insertAdjacentHTML('beforeend', html);
 }
 
 // Service Worker
