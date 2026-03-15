@@ -198,7 +198,7 @@ h2.section-title{font-size:1.15em;margin:18px 0 10px;padding-left:4px}
 <script>
 // ===================== AUTH =====================
 const PIN_VISITOR = '158a323a7ba44870f23d96f1516dd70aa48e9a72db4ebb026b0a89e212a208ab'; // 2026
-const PIN_ADMIN = '73cbb09e6f1915f80be7b6cf511d3de1c10c8b8641fcc18a725fac3ab3a7f7e1'; // admin
+const PIN_ADMIN = 'fd21cc3cb5062bc4ac714c489e1ca0e37a577c19ba23b0d00e9767f598d37636'; // admin
 let isAdmin = false;
 const pinInput = document.getElementById('pinInput');
 const pinErr = document.getElementById('pinErr');
@@ -249,7 +249,7 @@ function injectTeasers(){
   const style=document.createElement('style');style.textContent=teaserCSS;document.head.appendChild(style);
 
   const teasers = {
-    tabJour: {emoji:'📋',title:'Programme jour par jour',text:'Le programme détaillé sera dévoilé à J-7...<br><br>🕐 Horaires, 🏨 hôtels, 🎯 activités<br>Tout sera là, patience !',badge:'Disponible le 10 avril'},
+    tabDay: {emoji:'📋',title:'Programme jour par jour',text:'Le programme détaillé sera dévoilé à J-7...<br><br>🕐 Horaires, 🏨 hôtels, 🎯 activités<br>Tout sera là, patience !',badge:'Disponible le 10 avril'},
     tabRoute: {emoji:'🗺️',title:'2 524 km · 5 parcs · 4 États',text:'L\'itinéraire complet à travers le Sud-Ouest américain...<br><br>15 jours de road trip, des routes mythiques,<br>des paysages à couper le souffle 🏜️',badge:'Disponible le jour du départ'},
     tabCulture: {emoji:'📚',title:'Carnet Culturel',text:'Géologie, histoire, Navajos, mormons, cuisine locale...<br><br>Un guide pour devenir incollable.<br>À lire dans l\'avion ✈️<br><br><em>Ceux qui lisent le carnet auront un AVANTAGE au quiz 😏</em>',badge:'Disponible le 10 avril'},
     tabQuiz: {emoji:'🧠',title:'140 questions vous attendent',text:'10 questions par jour de route, adaptées au programme.<br><br>⭐ Facile → 🤯 WTAF<br>Classement cumulé + prix 🏆<br><br><em>Ceux qui ont lu le carnet culturel marqueront plus de points...</em>',badge:'Disponible en voiture'}
