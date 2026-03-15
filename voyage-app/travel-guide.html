@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Carnet Culturel — USA 2026</title>
+<style>
+@page {
+  size: A4;
+  margin: 2cm 2.2cm;
+  @bottom-center { content: counter(page); font-size: 9pt; color: #888; }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 11pt;
+  line-height: 1.7;
+  color: #1a1a1a;
+  background: #fff;
+  max-width: 210mm;
+  margin: 0 auto;
+}
+
+/* Cover page */
+.cover {
+  page-break-after: always;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #fff;
+  padding: 40px;
+}
+.cover h1 {
+  font-size: 36pt;
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #e94560, #f7b731);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.cover .subtitle {
+  font-size: 14pt;
+  color: #8892b0;
+  font-style: italic;
+  max-width: 440px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+.cover .route {
+  font-size: 12pt;
+  color: #4ecdc4;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.cover .stats {
+  font-size: 11pt;
+  color: #8892b0;
+  margin-bottom: 40px;
+}
+.cover .date {
+  font-size: 10pt;
+  color: #555;
+  margin-top: 30px;
+}
+
+/* TOC */
+.toc {
+  page-break-after: always;
+  padding: 40px 0;
+}
+.toc h2 {
+  font-size: 22pt;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.toc ul {
+  list-style: none;
+  padding: 0;
+}
+.toc li {
+  padding: 10px 0;
+  border-bottom: 1px dotted #ccc;
+  font-size: 11pt;
+  display: flex;
+  justify-content: space-between;
+}
+.toc li span.toc-title { font-weight: 600; }
+.toc li span.toc-page { color: #888; }
+.toc .toc-zone { margin-bottom: 16px; }
+.toc .toc-zone-title {
+  font-size: 13pt;
+  font-weight: 800;
+  color: #e94560;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+/* Zones */
+.zone {
+  page-break-before: always;
+  padding-top: 20px;
+}
+
+/* Zone titles with colors */
+h1.zone-title {
+  font-size: 26pt;
+  font-weight: 900;
+  margin-bottom: 6px;
+  padding-bottom: 8px;
+  border-bottom: 4px solid currentColor;
+}
+.zone-subtitle {
+  font-size: 12pt;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 4px;
+}
+.zone-days {
+  font-size: 10pt;
+  color: #888;
+  margin-bottom: 24px;
+}
+
+/* Zone-specific colors */
+.zone-vegas h1.zone-title { color: #dc2626; }
+.zone-vegas h2 { color: #dc2626; }
+.zone-vegas .funfact { border-color: #dc2626; }
+.zone-vegas .funfact strong { color: #dc2626; }
+
+.zone-gc h1.zone-title { color: #ea580c; }
+.zone-gc h2 { color: #ea580c; }
+.zone-gc .funfact { border-color: #ea580c; }
+.zone-gc .funfact strong { color: #ea580c; }
+
+.zone-zion h1.zone-title { color: #16a34a; }
+.zone-zion h2 { color: #16a34a; }
+.zone-zion .funfact { border-color: #16a34a; }
+.zone-zion .funfact strong { color: #16a34a; }
+
+.zone-arches h1.zone-title { color: #b45309; }
+.zone-arches h2 { color: #b45309; }
+.zone-arches .funfact { border-color: #b45309; }
+.zone-arches .funfact strong { color: #b45309; }
+
+.zone-denver h1.zone-title { color: #2563eb; }
+.zone-denver h2 { color: #2563eb; }
+.zone-denver .funfact { border-color: #2563eb; }
+.zone-denver .funfact strong { color: #2563eb; }
+
+.zone-fil h1.zone-title { color: #dc2626; }
+.zone-fil h2 { color: #dc2626; }
+.zone-fil .funfact { border-color: #dc2626; }
+.zone-fil .funfact strong { color: #dc2626; }
+
+.zone-food h1.zone-title { color: #ea580c; }
+.zone-food h2 { color: #ea580c; }
+
+.zone-practical h1.zone-title { color: #6d28d9; }
+.zone-practical h2 { color: #6d28d9; }
+
+/* Section titles */
+h2 {
+  font-size: 16pt;
+  font-weight: 800;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 12pt;
+  font-weight: 700;
+  color: #333;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+p { margin-bottom: 10px; }
+
+/* Fun fact / Le saviez-vous */
+.funfact {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 12px 16px;
+  margin: 14px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 10pt;
+  line-height: 1.6;
+}
+.funfact strong { color: #b45309; }
+
+/* Warning box */
+.warning {
+  background: #fef2f2;
+  border-left: 4px solid #dc2626;
+  padding: 12px 16px;
+  margin: 14px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 10pt;
+  line-height: 1.6;
+}
+.warning strong { color: #dc2626; }
+
+/* Photo spot */
+.photospot {
+  background: #eff6ff;
+  border-left: 4px solid #2563eb;
+  padding: 12px 16px;
+  margin: 14px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 10pt;
+  line-height: 1.6;
+}
+.photospot strong { color: #2563eb; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 10pt;
+}
+th {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 700;
+}
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+tr:nth-child(even) { background: #f9fafb; }
+
+/* Blockquote */
+blockquote {
+  border-left: 3px solid #8892b0;
+  padding: 8px 14px;
+  margin: 12px 0;
+  color: #555;
+  font-style: italic;
+}
+
+/* Separator */
+hr {
+  border: none;
+  border-top: 2px solid #e5e7eb;
+  margin: 24px 0;
+}
+
+.overview-box {
+  background: #f0fdf4;
+  border: 2px solid #16a34a;
+  border-radius: 10px;
+  padding: 18px;
+  margin: 16px 0;
+  font-size: 10.5pt;
+}
+.overview-box p { margin-bottom: 8px; }
+
+/* Film table */
+.film-table td:first-child { font-weight: 600; }
+
+/* Index table */
+.index-table { font-size: 9.5pt; }
+.index-table td:first-child { font-weight: 600; }
+.index-table td:nth-child(2) { color: #dc2626; font-weight: 700; }
+
+.page-break { page-break-before: always; }
+
+/* Emoji sizing */
+.emoji-lg { font-size: 14pt; }
+</style>
+</head>
+<body>
+
+<!-- ==================== COVER ==================== -->
+<div class="cover">
+  <div style="font-size:60pt;margin-bottom:20px">📖</div>
+  <h1>Carnet Culturel</h1>
+  <div class="subtitle">Un guide à lire dans l'avion, pour ceux qui veulent comprendre ce qu'ils regardent</div>
+  <div class="route">Las Vegas → Grand Canyon → Page → Zion → Bryce → Moab → Denver</div>
+  <div class="stats">17 avril – 1er mai 2026 · 2 524 km · 5 parcs nationaux · 4 États</div>
+  <div style="margin-top:40px;font-size:32pt">🌎</div>
+  <div class="date">Juju's Adventures — USA 2026</div>
+</div>
+
+<!-- ==================== TOC ==================== -->
+<div class="toc">
+  <h2>📋 Sommaire</h2>
+  <div class="toc-zone">
+    <div class="toc-zone-title">🗺️ Vue d'ensemble</div>
+    <ul><li><span class="toc-title">Le voyage en un coup d'œil</span></li></ul>
+  </div>
+  <div class="toc-zone">
+    <div class="toc-zone-title">🎰 Zone 1 — Las Vegas & le Mojave</div>
+    <ul>
+      <li><span class="toc-title">Chloride & la Route 66 · Valley of Fire · Sin City · KÀ</span></li>
+    </ul>
+  </div>
+  <div class="toc-zone">
+    <div class="toc-zone-title">🏜️ Zone 2 — Grand Canyon & Page</div>
+    <ul>
+      <li><span class="toc-title">La Great Unconformity · Horseshoe Bend · Antelope Canyon · Coral Pink</span></li>
+    </ul>
+  </div>
+  <div class="toc-zone">
+    <div class="toc-zone-title">⛰️ Zone 3 — Zion & Bryce</div>
+    <ul>
+      <li><span class="toc-title">Angel's Landing · Le canyon qui pleure · Les hoodoos · Grafton</span></li>
+    </ul>
+  </div>
+  <div class="toc-zone">
+    <div class="toc-zone-title">🪨 Zone 4 — Capitol Reef, Arches & Moab</div>
+    <ul>
+      <li><span class="toc-title">Le récif infranchissable · Factory Butte · Arches · Dead Horse · Moab</span></li>
+    </ul>
+  </div>
+  <div class="toc-zone">
+    <div class="toc-zone-title">🏔️ Zone 5 — Denver & les Rocheuses</div>
+    <ul>
+      <li><span class="toc-title">Montagnes fantômes · Mile High City · Denver Mint · Bière & altitude</span></li>
+    </ul>
+  </div>
+  <div class="toc-zone">
+    <div class="toc-zone-title">🔴 Fils Rouges du Voyage</div>
+    <ul>
+      <li><span class="toc-title">Le Colorado · Les fuseaux horaires · Les Navajos · Les Mormons · Edward Abbey · Art rupestre</span></li>
+    </ul>
+  </div>
+  <div class="toc-zone">
+    <div class="toc-zone-title">🍽️ Cuisine · 📸 Spots Photo · ⚠️ Infos Pratiques · 🎬 Films</div>
+  </div>
+</div>
+
+<!-- ==================== VUE D'ENSEMBLE ==================== -->
+<div class="zone">
+<h1 class="zone-title" style="color:#1a1a2e">🗺️ Vue d'ensemble — Le voyage en un coup d'œil</h1>
+
+<div class="overview-box">
+<p>On traverse le <strong>Colorado Plateau</strong> — un bloc de croûte terrestre de 340 000 km² qui s'est soulevé il y a 5 à 10 millions d'années comme un piston géant, d'un seul tenant, sans se fracturer. Résultat : des couches de roches vieilles de centaines de millions d'années se sont retrouvées exposées à l'air libre, et les rivières se sont mises à les sculpter.</p>
+
+<p>Le fil conducteur, c'est le <strong>fleuve Colorado</strong>. On le croise au Grand Canyon (1 600 m plus bas), à Horseshoe Bend (305 m de vide), et à Dead Horse Point (600 m au-dessus). Le même fleuve, le même voyage — mais il ne ressemble jamais à la même chose.</p>
+
+<p>Et partout, la roche est <strong>rouge</strong>. Pas parce qu'elle est spéciale — parce qu'elle rouille. Littéralement. Chaque grain de sable est un quartz recouvert d'une fine couche d'oxyde de fer. C'est de la rouille microscopique. On marche pendant 15 jours sur un désert qui rouille depuis 190 millions d'années.</p>
+</div>
+
+<table>
+<tr><th>Zone</th><th>Jours</th><th>Ce qu'on y fait</th></tr>
+<tr><td>🎰 Las Vegas & le Mojave</td><td>J1, J5-8</td><td>Ghost town, Valley of Fire, Vegas, Google Next, KÀ</td></tr>
+<tr><td>🏜️ Grand Canyon & Page</td><td>J2-4</td><td>South Rim, Horseshoe Bend, Antelope Canyon, Coral Pink</td></tr>
+<tr><td>⛰️ Zion & Bryce</td><td>J9-10</td><td>Angel's Landing, hoodoos, Navajo Loop</td></tr>
+<tr><td>🪨 Capitol Reef, Arches & Moab</td><td>J11-12</td><td>Factory Butte, Arches, Dead Horse Point</td></tr>
+<tr><td>🏔️ Denver & les Rocheuses</td><td>J13-14</td><td>Mile High City, Capitole, brasseries</td></tr>
+</table>
+</div>
+
+<!-- ==================== ZONE 1 ==================== -->
+<div class="zone zone-vegas">
+<h1 class="zone-title">🎰 Zone 1 — Las Vegas et le Mojave</h1>
+<div class="zone-subtitle">Du désert de Mojave à la ville la plus improbable du monde</div>
+<div class="zone-days">Jours 1, 5-8 · Chloride, Valley of Fire, Las Vegas</div>
+
+<h2>🤠 Tennessee Schuerman ne demandait la permission à personne</h2>
+<p>En 1893, dans un canyon paumé de l'Arizona, une femme tenait un saloon, possédait 17 concessions minières et avait survécu à une attaque de diligence. Elle s'appelait Tennessee Schuerman, et elle vivait à <strong>Chloride</strong> — la ville où on passe notre première nuit.</p>
+<p>Chloride est née en 1863 quand des prospecteurs ont trouvé du chlorure d'argent dans les Cerbat Mountains. À son apogée : 75 mines, 5 000 habitants, troisième ville d'Arizona. Puis le crash de l'argent de 1893 — le gouvernement abandonne l'étalon argent, le prix s'effondre, et 4 900 personnes font leurs valises en un an.</p>
+<p>Aujourd'hui : 300 âmes, un silence assourdissant, et les fresques psychédéliques de Roy Purcell peintes sur les rochers dans les années 60 — avec de la peinture mélangée à de l'urine animale pour la durabilité.</p>
+
+<div class="funfact"><strong>💡 Le saviez-vous ?</strong><br>On a failli dormir à Kingman, sur la Route 66. Problème : 100 trains de marchandises BNSF passent par jour sur la ligne LA-Chicago, soit un toutes les 15 minutes, 24h/24. Klaxon garanti. Chloride, à 25 km de là : silence absolu et 80€ d'économie.</div>
+
+<hr>
+
+<h2>🛣️ La route qui a inventé le road trip américain</h2>
+<p>Le 11 novembre 1926, la Route 66 est inaugurée : 3 940 km de Chicago à Santa Monica, à travers 8 États. Mais c'est la catastrophe qui l'a rendue mythique.</p>
+<p>Quand le <strong>Dust Bowl</strong> a ravagé les Grandes Plaines dans les années 30 — des tempêtes de poussière noire qui obscurcissaient le ciel en plein jour — 400 000 familles d'Oklahoma ont tout quitté. Ils ont chargé ce qu'ils pouvaient dans des Ford Model T et ont pris la Route 66 vers l'ouest. Steinbeck les a appelés les "Okies" et la route "Mother Road" dans <em>Les Raisins de la Colère</em>.</p>
+<p>Bobby Troup a chanté "Get your kicks on Route 66" en 1946. La route a été officiellement déclassée le 27 juin 1985, remplacée par l'Interstate 40.</p>
+
+<div class="photospot"><strong>📸 Spot photo — Kingman</strong><br>Arrêt petit-déj au Mr. D'z Route 66 Diner (08h00 le matin, J2). Façade vintage rose et turquoise. Shooting rapide puis route vers le Grand Canyon.</div>
+
+<hr>
+
+<h2>🔥 Valley of Fire — Le désert qui brûle (mais pas vraiment)</h2>
+<p>Le grès rouge de Valley of Fire a 150 millions d'années. C'est du sable fossilisé de l'ère des dinosaures — des dunes géantes solidifiées, avec les couches de vent encore visibles dans la roche. La couleur vient de l'oxyde de fer sur chaque grain. Mais ici, la concentration est maximale — les roches sont d'un rouge incandescent qui semble littéralement en feu au lever et au coucher du soleil.</p>
+<p><strong>Deux arrêts photos rapides (30-45 min) :</strong> Fire Wave — une vague de grès aux stries roses et blanches. Elephant Rock — exactement ce que ça dit.</p>
+
+<hr>
+
+<h2>💧 Las Vegas ne devrait pas exister</h2>
+<p>Construite dans le désert de Mojave — 10 cm de pluie par an — Las Vegas tire 90% de son eau du Lake Mead, via le fleuve Colorado. Quand le lac est descendu dangereusement bas en 2015, la ville a percé un 3e tunnel à 270 m de profondeur dans la roche (817 millions de dollars).</p>
+<p>Mais voilà le plot twist : depuis 2002, Vegas a <strong>réduit sa consommation d'eau de 47%</strong> alors que 850 000 nouveaux habitants se sont installés. Comment ?</p>
+<ul style="margin:8px 0 8px 20px">
+<li><strong>Programme "Cash for Grass"</strong> : la ville paye les gens pour arracher leur pelouse (3 dollars le square foot)</li>
+<li><strong>Recyclage à 99%</strong> : tout ce qui passe par un évier revient au Lake Mead</li>
+<li><strong>La "Water Police"</strong> : des agents qui patrouillent pour verbaliser les arrosages illégaux</li>
+</ul>
+<p>Et les fontaines du Bellagio ? Elles utilisent de l'eau de puits non potable. Le Strip entier consomme moins de 3% de l'eau de la ville.</p>
+
+<div class="funfact"><strong>💡 Le saviez-vous ?</strong><br>La "bath tub ring" blanche visible sur les falaises du Lake Mead mesure 40 mètres de haut. C'est l'ancien niveau d'eau. Le lac a perdu plus de 70% de son volume depuis 2000.</div>
+
+<hr>
+
+<h2>🎭 KÀ — Quand la scène disparaît sous vos pieds</h2>
+<p>Le "Sand Cliff Deck" de KÀ pèse 80 tonnes, pivote à 360° sur 5 axes, s'incline à 100° (quasi-vertical) et descend de 15 mètres. Le système de contrôle fait tourner 6 millions de lignes de code, plus qu'un Boeing 787. Le théâtre a coûté 165 millions de dollars, ce qui en faisait le spectacle le plus cher jamais produit en 2004.</p>
+
+<div class="warning"><strong>⚠️ Bon à savoir</strong><br>KÀ se prononce "Ka" — comme le double spirituel dans la mythologie égyptienne. Mardi 21 avril, 20h30. Prévoir d'arriver 30 min avant.</div>
+
+<hr>
+
+<h2>🎰 Sin City en 60 secondes</h2>
+<p>Las Vegas est surnommée "Sin City" depuis les années 40, quand la mafia a commencé à y construire des casinos. Le Flamingo (1946) de Bugsy Siegel a ouvert le bal. Pendant 40 ans, la Cosa Nostra contrôlait une partie du Strip — l'histoire racontée dans <em>Casino</em> (1995) de Scorsese.</p>
+<p>On dort au <strong>Luxor</strong> — la pyramide noire du Strip, avec un faisceau lumineux visible à 20 km — et au <strong>LINQ</strong> — au pied de la plus grande roue du monde (High Roller, 168 m).</p>
+</div>
+
+<!-- ==================== ZONE 2 ==================== -->
+<div class="zone zone-gc">
+<h1 class="zone-title">🏜️ Zone 2 — Grand Canyon & Page</h1>
+<div class="zone-subtitle">1,2 milliard d'années manquantes et un fleuve qui fait demi-tour</div>
+<div class="zone-days">Jours 2-4 · Grand Canyon South Rim, Horseshoe Bend, Antelope Canyon, Coral Pink</div>
+
+<h2>📚 Le plus grand trou de mémoire de la Terre</h2>
+<p>En 1869, le géologue John Wesley Powell descend le Colorado en bateau — borgne, avec un seul bras. Il met trois mois. Ce qu'il découvre au fond du Grand Canyon : des roches noires et brillantes, le <strong>Vishnu Schist</strong>, vieilles de 1,84 milliard d'années.</p>
+<p>Le Grand Canyon expose 40 couches de roches sur 1,6 km de profondeur. En descendant, on remonte le temps. Mais entre les roches du fond et celles du dessus, il manque <strong>1,2 milliard d'années</strong> de strates. Disparues. C'est la <strong>"Great Unconformity"</strong> — et personne ne sait exactement ce qui s'est passé.</p>
+
+<div class="funfact"><strong>🪨 Géologie express</strong><br>On y a trouvé des cristaux de zircon vieux de 4,4 milliards d'années — quasi aussi vieux que la planète elle-même.</div>
+
+<div class="photospot"><strong>📸 Spot photo — Grand Canyon</strong><br><strong>Coucher de soleil à Hopi Point</strong> (J2, ~18h53) — les couches passent du beige à l'orange puis au rouge foncé. Arriver 30 min avant.<br><strong>Lever de soleil à Mather Point</strong> (J3, ~05h30) — la lumière rasante sculpte les ombres.</div>
+
+<hr>
+
+<h2>🍽️ Dîner à la table de 1905</h2>
+<p>Le soir du Grand Canyon, on dîne au <strong>El Tovar Dining Room</strong> — le restaurant historique du parc, ouvert en 1905. Theodore Roosevelt y a séjourné. On y mange des plats inspirés de la cuisine du Sud-Ouest : bison, truite, produits locaux.</p>
+
+<hr>
+
+<h2>🔄 Le méandre qu'Instagram a rendu fou</h2>
+<p>Horseshoe Bend est un <strong>méandre encaissé</strong> : le Colorado s'est enfoncé dans le grès Navajo tout en conservant ses courbes. 305 mètres de chute libre. Virage de 270°, 540 mètres de large.</p>
+<p>Jusqu'en 2012 : ni panneau, ni parking. Puis une photo Instagram est devenue virale. En 2015 : 100 000 visiteurs. En 2023 : plus de 2 millions. Le canyon n'a pas changé d'un millimètre.</p>
+
+<div class="funfact"><strong>💡 Le saviez-vous ?</strong><br>À terme — quelques millions d'années — le fleuve percera l'isthme de 300 m de large, créant un pont naturel, comme Rainbow Bridge.</div>
+
+<div class="photospot"><strong>📸 Spot photo — Horseshoe Bend</strong><br>Coucher de soleil (J3, ~18h30-19h). Grand angle obligatoire (16mm ou moins). Pas de barrière au bord. ⚠️ Vertige.</div>
+
+<hr>
+
+<h2>🌊 L'endroit où l'eau coule à travers les rochers</h2>
+<p>En navajo, Antelope Canyon s'appelle <strong>Tsé bighánílíní</strong>. Le 12 août 1997, un orage éclate à 16 km. Une crue-éclair envahit Lower Antelope Canyon : l'eau monte de <strong>6 mètres en quelques minutes</strong>. 11 touristes meurent.</p>
+<p>Les murs lisses ? C'est de l'eau chargée de sable qui "ponce" le grès depuis des millions d'années. Les <strong>light beams</strong> qu'on va voir (créneau 12h25) sont le soleil au zénith qui perce les 40 m de roche. Ce phénomène ne dure que 2 heures par jour.</p>
+
+<div class="warning"><strong>⚠️ Bon à savoir</strong><br>Visite UNIQUEMENT avec un guide Navajo autorisé. Sacs transparents obligatoires. Arriver 30 min avant le créneau.</div>
+
+<hr>
+
+<h2>🌸 Les seules dunes roses au monde</h2>
+<p>Les <strong>Coral Pink Sand Dunes</strong> doivent leur couleur à l'<strong>effet Venturi</strong> : le vent s'accélère entre deux chaînes de montagnes, arrache des particules de grès Navajo rouge. Chaque grain est un quartz recouvert d'hématite — de la rouille microscopique. C'est aussi le seul habitat du <strong>Welsh's milkweed</strong>, une plante qui ne pousse nulle part ailleurs sur Terre.</p>
+</div>
+
+<!-- ==================== ZONE 3 ==================== -->
+<div class="zone zone-zion">
+<h1 class="zone-title">⛰️ Zone 3 — Zion & Bryce</h1>
+<div class="zone-subtitle">Là où seuls les anges se posent, et où les vaches se perdent</div>
+<div class="zone-days">Jours 9-10 · Angel's Landing, Grafton Ghost Town, Bryce Canyon</div>
+
+<h2>👼 "Seul un ange pourrait s'y poser"</h2>
+<p>En 1916, Frederick Vining Fisher déclare : <em>"Only an angel could land on it."</em> Les chaînes ont été installées en 1926 par Walter Ruesch — à la main, suspendu au-dessus du vide. Les <strong>"Walter's Wiggles"</strong> — 21 lacets vertigineux — portent son nom.</p>
+<p>La dernière section fait <strong>45 à 60 cm de large</strong> avec 300 mètres de vide de chaque côté. Au moins 16 personnes sont mortes en tombant. Le permis est obligatoire depuis 2022.</p>
+
+<div class="funfact"><strong>💡 Le saviez-vous ?</strong><br>Le grès mouillé de Zion est comme du savon. La majorité des accidents arrivent par temps de pluie. Si c'est mouillé → Scout Lookout (même vue à 95%, sans les chaînes).</div>
+
+<hr>
+
+<h2>💦 Un canyon qui pleure</h2>
+<p><strong>Zion Canyon</strong> est un slot canyon à l'échelle monumentale. La Virgin River a creusé 600 m de profondeur tout en restant confinée entre des parois parfois distantes de seulement <strong>6 mètres</strong> (dans The Narrows).</p>
+<p>Le grès Navajo est extrêmement <strong>poreux</strong> (20-30%). Il absorbe la pluie comme une éponge géante, puis la relâche lentement — ce sont les <strong>"weeping walls"</strong>, couverts de fougères et de jardins suspendus au milieu du désert.</p>
+
+<hr>
+
+<h2>🤠 Grafton — Le village fantôme de Butch Cassidy</h2>
+<p>Ce village mormon fondé en 1862 a été abandonné après des crues dévastatrices. Il a servi de décor pour <em>Butch Cassidy et le Kid</em> (1969). Gratuit, 5 km de piste.</p>
+
+<hr>
+
+<h2>🐄 "Sacré endroit pour perdre une vache"</h2>
+<p><strong>Bryce Canyon n'est PAS un canyon.</strong> Aucune rivière ne l'a creusé. C'est le bord du plateau qui s'érode vers l'intérieur. Nommé par <strong>Ebenezer Bryce</strong> (1875) : <em>"It's a hell of a place to lose a cow."</em></p>
+<p>Les <strong>hoodoos</strong> ne sont pas sculptés par le vent mais par la <strong>glace</strong>. Bryce subit 200 cycles gel/dégel par an, le record de l'Utah. L'eau s'infiltre, gèle (expansion de 9%), fait exploser la roche. Les hoodoos reculent de <strong>30 à 60 cm par siècle</strong>.</p>
+
+<div class="funfact"><strong>💡 Le saviez-vous ?</strong><br>Bryce culmine à 2 778 m — le point le plus haut de tous les parcs du voyage. C'est un "International Dark Sky Park" : on y voit 7 500 étoiles à l'œil nu, contre 2 000 en ville. Lever les yeux après le dîner.</div>
+
+<div class="photospot"><strong>📸 Spot photo — Bryce Canyon</strong><br>Coucher de soleil à Sunset Point (J10, ~19h30). Le Navajo Loop + Queen's Garden (2-3h, 4,5 km) permet de descendre PARMI les hoodoos.</div>
+</div>
+
+<!-- ==================== ZONE 4 ==================== -->
+<div class="zone zone-arches">
+<h1 class="zone-title">🪨 Zone 4 — Capitol Reef, Arches & Moab</h1>
+<div class="zone-subtitle">Marcher sur Mars, voir des arches mourir, et boire une bière dans une ancienne ville nucléaire</div>
+<div class="zone-days">Jours 11-12 · Capitol Reef, Factory Butte, Arches NP, Dead Horse Point, Moab</div>
+
+<h2>🏛️ Le "récif" infranchissable de Capitol Reef</h2>
+<p>Le <strong>Waterpocket Fold</strong> est un pli géologique de 160 km de long — une muraille que les pionniers appelaient un "reef" car elle était aussi <strong>infranchissable qu'un récif de corail</strong>. La vallée de <strong>Fruita</strong>, piégée derrière, est restée isolée jusqu'en 1962. Les vergers centenaires produisent encore ~2 000 boisseaux de fruits par an.</p>
+
+<div class="funfact"><strong>💡 Le saviez-vous ?</strong><br>Les pétroglyphes de Capitol Reef (600-1300 apr. J.-C.) sont l'œuvre du peuple Fremont — des chasseurs-cueilleurs qui n'ont rien à voir avec les Navajos. Arrêt rapide (5 min), visible depuis la route.</div>
+
+<hr>
+
+<h2>🚀 Factory Butte — La NASA y teste ses rovers</h2>
+<p><strong>Factory Butte</strong> ressemble tellement à Mars que la NASA y mène des simulations depuis 2001. Le monolithe de 490 m domine des badlands de "Mancos Shale" — des sédiments d'un fond marin vieux de 75 à 90 millions d'années. On marche littéralement sur un <strong>ancien océan qui ressemble à une autre planète</strong>.</p>
+
+<div class="photospot"><strong>📸 Spot photo — Factory Butte</strong><br>Fin d'après-midi (J11, ~17h). Le monolithe est spectaculaire quand le soleil descend. Route de terre OK pour SUV. 30-45 min sur place.</div>
+
+<hr>
+
+<h2>🧂 Tout commence par du sel</h2>
+<p>Les <strong>2 000+ arches</strong> d'Arches NP commencent par un secret souterrain. Il y a 300 millions d'années, une mer intérieure s'est évaporée, laissant une couche de sel de <strong>900 m d'épaisseur</strong>. Ce sel se dissout lentement, déstabilisant la roche au-dessus.</p>
+<p><strong>Wall Arch</strong> (22 m) s'est effondrée dans la nuit du 4 août 2008. <strong>Landscape Arch</strong> (93 m de portée), la plus longue au monde, perd des blocs de 20 tonnes régulièrement. On en perd environ une par décennie.</p>
+
+<div class="funfact"><strong>💡 Le saviez-vous ?</strong><br>Delicate Arch (14 m) est sur les plaques d'immatriculation de l'Utah. Edward Abbey l'a escaladée ivre en 1956 quand il était ranger ici.</div>
+
+<div class="photospot"><strong>📸 Spot photo — Delicate Arch</strong><br>Coucher de soleil (J12, départ 17h) — 4,8 km A/R, 2-3h. Les La Sal Mountains enneigées en arrière-plan. C'est LA photo du voyage.</div>
+
+<hr>
+
+<h2>🐴 Les chevaux qui sont morts de soif avec la rivière sous les yeux</h2>
+<p><strong>Dead Horse Point</strong> est une mesa reliée au continent par un isthme de 30 mètres. La légende raconte que des chevaux abandonnés par les cowboys <strong>moururent de soif</strong> — avec le Colorado visible 600 m plus bas, totalement inaccessible.</p>
+<p>Tom Cruise y a tourné la scène d'ouverture de <em>Mission Impossible 2</em> — escalade sans doublure.</p>
+
+<hr>
+
+<h2>☢️ Moab — De la bombe atomique au VTT</h2>
+<p><strong>Boom uranium (1952-1964)</strong> : Charlie Steen, géologue fauché, découvre le filon "Mi Vida" et devient millionnaire. Des milliers de prospecteurs affluent. Héritage : <strong>16 millions de tonnes de déchets radioactifs</strong> le long du Colorado.</p>
+<p><strong>Boom outdoor</strong> depuis les années 80 : le Slickrock Trail est devenu le trail VTT le plus célèbre au monde. Moab (5 000 habitants) accueille 3 millions de visiteurs par an.</p>
+</div>
+
+<!-- ==================== ZONE 5 ==================== -->
+<div class="zone zone-denver">
+<h1 class="zone-title">🏔️ Zone 5 — Denver & les Rocheuses</h1>
+<div class="zone-subtitle">La ville à un mile du sol, sur les ruines de montagnes fantômes</div>
+<div class="zone-days">Jours 13-14 · I-70 Colorado, Denver</div>
+
+<h2>🏔️ Des montagnes sur des montagnes mortes</h2>
+<p>Les Rocky Mountains ont 70 millions d'années. Mais ce ne sont pas les "originales". Des <strong>"Ancestral Rockies"</strong> existaient 300 millions d'années plus tôt et se sont complètement érodées. Le grès rouge de <strong>Red Rocks Amphitheatre</strong> = leurs débris. On fait un concert dans les ruines d'une chaîne de montagnes fantôme.</p>
+<p>L'<strong>Eisenhower Tunnel</strong> perce la Continental Divide à 3 401 m — le plus haut tunnel routier des US.</p>
+
+<div class="warning"><strong>⚠️ Bon à savoir — I-70</strong><br>Cols à 3 200-3 400 m. Neige rare fin avril mais possible. Pneus M+S obligatoires. Site météo : cotrip.org.</div>
+
+<hr>
+
+<h2>📏 Quelle marche est à un mile ?</h2>
+<p>Denver culmine à <strong>1 609 m</strong> (5 280 pieds = 1 mile). La 13e marche du Capitole est gravée "One Mile Above Sea Level" depuis 1947. Problème : un relevé GPS de 2003 a montré que c'est la <strong>18e marche</strong>. Les deux sont maintenant marquées.</p>
+<p>L'altitude a des effets concrets :</p>
+<ul style="margin:8px 0 8px 20px">
+<li>L'eau bout à <strong>95°C</strong> → les pâtes cuisent moins bien</li>
+<li>Au Coors Field, les home runs volent <strong>9% plus loin</strong></li>
+<li>L'air est <strong>17% moins dense</strong> → on bronze plus vite</li>
+</ul>
+
+<div class="funfact"><strong>💡 Le saviez-vous ?</strong><br>Denver compte plus de 400 brasseries artisanales. L'altitude accélère l'absorption d'alcool : deux pintes à Denver = trois pintes au niveau de la mer. 🍺</div>
+
+<hr>
+
+<h2>💰 La Denver Mint — Où naissent les pièces</h2>
+<p>La Denver Mint frappe des <strong>milliards de pièces par an</strong> depuis 1906. Toutes les pièces frappées ici portent un petit "D".</p>
+</div>
+
+<!-- ==================== FILS ROUGES ==================== -->
+<div class="zone zone-fil">
+<h1 class="zone-title">🔴 Fils Rouges du Voyage</h1>
+<div class="zone-subtitle">Les thèmes qui nous accompagnent du premier au dernier jour</div>
+
+<h2>🌊 Le Colorado, le fleuve qui meurt</h2>
+<p>Le Colorado parcourt 2 330 km, alimente <strong>40 millions de personnes</strong>. Mais il a été "sur-alloué" dès le départ (1922, basé sur des années anormalement humides). Depuis <strong>1998</strong>, le Colorado ne rejoint plus le Golfe de Californie. Le fleuve qui a creusé le Grand Canyon pendant 6 millions d'années <strong>meurt de soif dans le sable du désert mexicain</strong>.</p>
+
+<hr>
+
+<h2>🕐 L'Arizona et ses 4 fuseaux horaires</h2>
+<p>L'Arizona refuse l'heure d'été. Mais la <strong>Nation Navajo</strong> l'observe. Résultat absurde en été : en roulant sur l'I-40, on change d'heure <strong>4 fois en 120 km</strong> (Arizona → Navajo → Hopi → Navajo → Arizona).</p>
+
+<div class="warning"><strong>⚠️ Pour notre voyage (avril)</strong><br>Nevada (PDT, UTC-7) = Arizona (MST, UTC-7) → même heure. En entrant en Utah : MDT (UTC-6) → on perd 1 heure. Changement le J8.</div>
+
+<hr>
+
+<h2>🏹 La terre des Navajos</h2>
+<h3>La Longue Marche de 1864</h3>
+<p>L'armée américaine a forcé <strong>9 000 Navajos</strong> à marcher 480 km. Des centaines sont morts. Internés 4 ans à Fort Sumner. En 1868, retour sur un territoire réduit. Aujourd'hui : <strong>71 000 km², 170 000 habitants</strong>.</p>
+
+<h3>Le fry bread — un pain né de la souffrance</h3>
+<p>Pendant l'internement, les Navajos n'avaient que les rations du gouvernement : farine, sel, levure, saindoux. Ils en ont fait un pain frit. Aujourd'hui, symbole complexe : fierté pour certains, rappel de l'oppression pour d'autres.</p>
+
+<h3>Étiquette sur terre Navajo</h3>
+<ul style="margin:8px 0 8px 20px">
+<li>Demander avant de photographier les personnes</li>
+<li>Ne pas toucher les pierres, bois ou objets dans les lieux sacrés</li>
+<li>Pas de drones — interdit par la loi tribale</li>
+<li>Respecter les guides d'Antelope Canyon — gardiens d'un lieu sacré</li>
+<li>Pourboire : 10-20$/personne</li>
+</ul>
+
+<hr>
+
+<h2>⛪ Les Mormons et l'Utah</h2>
+<p>En 1847, <strong>Brigham Young</strong> mène 70 000 mormons vers le Grand Lac Salé : <em>"This is the right place."</em> Colonisation méthodique de chaque vallée. En Utah, la bière en épicerie est limitée à 5%, les spiritueux ne se vendent que dans des "State Liquor Stores" (fermés le dimanche).</p>
+
+<hr>
+
+<h2>📖 Edward Abbey, le punk du désert</h2>
+<p>Ranger à Arches dans les années 50. <em>Desert Solitaire</em> (1968). <em>The Monkey Wrench Gang</em> (1975) — 4 amis planifient de faire sauter le Glen Canyon Dam — a inspiré Earth First! Abbey a demandé à être enterré illégalement dans le désert, en sac de couchage. Ses amis l'ont fait.</p>
+
+<hr>
+
+<h2>🎨 L'art sur la roche</h2>
+<p><strong>Pétroglyphe</strong> = image gravée. <strong>Pictogramme</strong> = image peinte. Les pétroglyphes de Capitol Reef sont l'œuvre du <strong>peuple Fremont</strong> (600-1300 apr. J.-C.). "Anasazi" signifie "anciens ennemis" en navajo — les descendants préfèrent <strong>"Ancestral Puebloans"</strong>.</p>
+</div>
+
+<!-- ==================== CUISINE ==================== -->
+<div class="zone zone-food">
+<h1 class="zone-title">🍽️ À goûter sur place — Cuisine locale par zone</h1>
+
+<h2>🎰 Las Vegas & Nevada</h2>
+<p><strong>Buffets de casino</strong> — tradition depuis les années 50. <strong>In-N-Out Burger</strong> — demander "Animal Style". <strong>Tacos de rue</strong> — communauté mexicaine 30%+.</p>
+
+<h2>🏜️ Arizona & terre Navajo</h2>
+<p><strong>Navajo taco</strong> (fry bread + garniture). <strong>Blue corn tortillas</strong> — saveur plus noisettée. <strong>Mutton stew</strong> — plat traditionnel.</p>
+
+<h2>⛰️ Utah</h2>
+<p><strong>Fry sauce</strong> (ketchup + mayo — les locaux en mettent sur TOUT). <strong>Funeral potatoes</strong> — gratin mormon servi aux funérailles. <strong>Scones de l'Utah</strong> = fry bread + miel-beurre (pas britannique!).</p>
+
+<h2>🪨 Moab</h2>
+<p><strong>Milt's Stop & Eat</strong> — burgers depuis 1954. <strong>Dead Horse Amber Ale</strong> & <strong>Rocket Bike Lager</strong> (Moab Brewery).</p>
+
+<h2>🏔️ Denver</h2>
+<p><strong>Green chili</strong> — ragoût de piment vert sur tout. <strong>Rocky Mountain Oysters</strong> — ce ne sont PAS des huîtres (testicules de taureau panées). <strong>400+ brasseries</strong> artisanales dans RiNo.</p>
+</div>
+
+<!-- ==================== SPOTS PHOTO ==================== -->
+<div class="zone zone-practical">
+<h1 class="zone-title" style="color:#2563eb">📸 Spots photo — Timing & angles</h1>
+
+<table>
+<tr><th>Spot</th><th>Jour</th><th>Moment</th><th>Conseil</th></tr>
+<tr><td>Grand Canyon — Hopi Point</td><td>J2</td><td>Coucher ~18h53</td><td>Arriver 30 min avant, trépied</td></tr>
+<tr><td>Grand Canyon — Mather Point</td><td>J3</td><td>Lever ~05h30</td><td>Lumière rasante</td></tr>
+<tr><td>Horseshoe Bend</td><td>J3</td><td>Coucher ~18h30</td><td>Grand angle 16mm. Pas de barrière</td></tr>
+<tr><td>Antelope Canyon</td><td>J4</td><td>12h20</td><td>Light beams au zénith. Mode portrait</td></tr>
+<tr><td>Coral Pink Sand Dunes</td><td>J4</td><td>Fin d'après-midi</td><td>Lumière rasante = rose accentué</td></tr>
+<tr><td>Valley of Fire</td><td>J5</td><td>Matin tôt</td><td>Fire Wave + Elephant Rock</td></tr>
+<tr><td>Angel's Landing</td><td>J9</td><td>Toute la journée</td><td>Vue du sommet, pas juste le selfie</td></tr>
+<tr><td>Bryce — Sunset Point</td><td>J10</td><td>Coucher ~19h30</td><td>Navajo Loop pour photos "parmi"</td></tr>
+<tr><td>Factory Butte</td><td>J11</td><td>Fin d'après-midi</td><td>Monolithe + badlands</td></tr>
+<tr><td>Delicate Arch</td><td>J12</td><td>Coucher ~19h45</td><td>2-3h rando. 20 dernières min = magie</td></tr>
+<tr><td>Dead Horse Point</td><td>J12-13</td><td>Lever ~06h</td><td>Colorado reflète le ciel rose</td></tr>
+<tr><td>Denver Capitol</td><td>J14</td><td>N'importe quand</td><td>Selfie marches 13 et 18</td></tr>
+</table>
+</div>
+
+<!-- ==================== INFOS PRATIQUES ==================== -->
+<div class="zone zone-practical">
+<h1 class="zone-title">⚠️ Infos pratiques culturelles</h1>
+
+<h2>🏔️ L'altitude, ça compte</h2>
+<table>
+<tr><th>Lieu</th><th>Altitude</th><th>Effet</th></tr>
+<tr><td>Las Vegas</td><td>610 m</td><td>Rien de spécial</td></tr>
+<tr><td>Grand Canyon (South Rim)</td><td>2 100 m</td><td>Fatigue accrue, essoufflement possible</td></tr>
+<tr><td>Bryce Canyon</td><td>2 400-2 778 m</td><td>Point le plus haut. Froid le matin</td></tr>
+<tr><td>Denver</td><td>1 609 m</td><td>Alcool + fort, coups de soleil + rapides</td></tr>
+<tr><td>Moab</td><td>1 200 m</td><td>Désert chaud, hydratation critique</td></tr>
+</table>
+
+<p><strong>Conseil :</strong> boire 3-4 litres d'eau par jour. L'air sec déshydrate sans qu'on s'en rende compte.</p>
+
+<h2>☀️ UV et soleil</h2>
+<p>À 2 400 m (Bryce), l'exposition UV est <strong>25-30% plus forte</strong>. Crème SPF50+, chapeau, lunettes, baume à lèvres avec SPF.</p>
+
+<h2>🌊 Crues-éclair (flash floods)</h2>
+<p>Danger n°1 dans les slot canyons. Une pluie à 50 km peut provoquer un mur d'eau de 3-6 m en minutes. <strong>Le ciel au-dessus de vous peut être bleu.</strong> Vérifier la météo CHAQUE matin.</p>
+
+<h2>🕐 Fuseaux horaires (résumé)</h2>
+<table>
+<tr><th>Lieu</th><th>Fuseau (avril)</th><th>UTC</th></tr>
+<tr><td>Nevada (Vegas, Mesquite)</td><td>PDT</td><td>UTC-7</td></tr>
+<tr><td>Arizona (Grand Canyon, Page)</td><td>MST</td><td>UTC-7</td></tr>
+<tr><td>Utah (Zion, Bryce, Moab)</td><td>MDT</td><td>UTC-6</td></tr>
+<tr><td>Colorado (Denver)</td><td>MDT</td><td>UTC-6</td></tr>
+</table>
+</div>
+
+<!-- ==================== FILMS ==================== -->
+<div class="zone zone-practical">
+<h1 class="zone-title" style="color:#dc2626">🎬 Les films à reconnaître sur place</h1>
+
+<table class="film-table">
+<tr><th>Film</th><th>Lieu</th><th>Scène</th></tr>
+<tr><td>Thelma & Louise (1991)</td><td>Dead Horse Point, J12</td><td>La scène finale mythique</td></tr>
+<tr><td>127 Hours (2010)</td><td>Moab</td><td>Aron Ralston se coupe le bras</td></tr>
+<tr><td>Forrest Gump (1994)</td><td>Monument Valley</td><td>"I just felt like running"</td></tr>
+<tr><td>Indiana Jones 3 (1989)</td><td>Arches NP, J12</td><td>Le jeune Indy à cheval</td></tr>
+<tr><td>Mission Impossible 2 (2000)</td><td>Dead Horse Point, J12</td><td>Tom Cruise escalade (sans doublure)</td></tr>
+<tr><td>Ocean's Eleven (2001)</td><td>Las Vegas, J5-8</td><td>Bellagio, MGM Grand, fontaines</td></tr>
+<tr><td>Butch Cassidy (1969)</td><td>Grafton (J9) + Beaver (J11)</td><td>Tourné en Utah — Butch né à Beaver</td></tr>
+<tr><td>Casino (1995)</td><td>Las Vegas, J5-8</td><td>La mafia qui contrôlait Vegas</td></tr>
+</table>
+
+<p style="margin-top:12px;font-style:italic;color:#888">Si vous n'avez le temps que pour un seul film : Thelma & Louise.</p>
+</div>
+
+<!-- ==================== INDEX ==================== -->
+<div class="zone">
+<h1 class="zone-title" style="color:#1a1a2e">📋 Index des faits marquants</h1>
+
+<table class="index-table">
+<tr><th>Fait</th><th>Chiffre</th><th>Où</th></tr>
+<tr><td>Roches les plus anciennes</td><td>1,84 Md d'années</td><td>Grand Canyon (fond)</td></tr>
+<tr><td>"Great Unconformity"</td><td>1,2 Md d'années manquantes</td><td>Grand Canyon</td></tr>
+<tr><td>Profondeur du Grand Canyon</td><td>1,6 km</td><td>Grand Canyon, J2</td></tr>
+<tr><td>Hauteur de Horseshoe Bend</td><td>305 m de vide</td><td>Horseshoe Bend, J3</td></tr>
+<tr><td>Hauteur Dead Horse Point</td><td>600 m</td><td>Dead Horse Point, J12</td></tr>
+<tr><td>Nombre d'arches</td><td>2 000+</td><td>Arches, J12</td></tr>
+<tr><td>Landscape Arch (portée)</td><td>93 m</td><td>Arches, J12</td></tr>
+<tr><td>Cycles gel/dégel Bryce</td><td>200/an</td><td>Bryce, J10</td></tr>
+<tr><td>Étoiles visibles Bryce</td><td>7 500</td><td>Bryce, nuit J10</td></tr>
+<tr><td>Altitude Denver</td><td>1 609 m</td><td>Denver, J14</td></tr>
+<tr><td>Eisenhower Tunnel</td><td>3 401 m</td><td>I-70, J13</td></tr>
+<tr><td>Longueur fleuve Colorado</td><td>2 330 km</td><td>Partout</td></tr>
+<tr><td>Personnes dépendant du Colorado</td><td>40 millions</td><td>—</td></tr>
+<tr><td>Coût du show KÀ</td><td>165 M $</td><td>MGM Grand, J5</td></tr>
+<tr><td>Déchets radioactifs Moab</td><td>16 M tonnes</td><td>Moab, J11-12</td></tr>
+<tr><td>Brasseries à Denver</td><td>400+</td><td>Denver, J13-14</td></tr>
+</table>
+
+<br>
+<hr>
+<p style="text-align:center;color:#888;font-size:9pt;margin-top:20px">
+Carnet Culturel — Juju's Adventures USA 2026<br>
+Rédigé le 15 mars 2026 · V1<br>
+Sources : NPS.gov, USGS, Wikipedia, recherches web<br>
+<em>À enrichir après le voyage avec les photos et anecdotes du terrain</em>
+</p>
+</div>
+
+</body>
+</html>
