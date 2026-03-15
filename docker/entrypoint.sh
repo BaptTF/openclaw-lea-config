@@ -148,4 +148,21 @@ if [ ! -f "$CONFIG_FILE" ] && [ "${OPENCLAW_SKIP_ONBOARD:-false}" != "true" ]; t
   fi
 fi
 
+# Quiz PWA static server (offline-capable quiz for road trip)
+if [ -d "$HOME/quiz-pwa" ] && [ -f "$HOME/quiz-pwa/index.html" ]; then
+  node -e "
+    const http=require('http'),fs=require('fs'),path=require('path');
+    const dir=process.env.HOME+'/quiz-pwa';
+    const mime={'.html':'text/html','.js':'application/javascript','.json':'application/json','.png':'image/png','.svg':'image/svg+xml'};
+    http.createServer((q,r)=>{
+      let f=path.join(dir,q.url==='/'?'index.html':q.url);
+      if(!fs.existsSync(f))f=path.join(dir,'index.html');
+      const ext=path.extname(f);
+      r.writeHead(200,{'Content-Type':mime[ext]||'text/plain','Cache-Control':'public, max-age=86400'});
+      fs.createReadStream(f).pipe(r);
+    }).listen(8080,'0.0.0.0',()=>console.log('Quiz PWA serving on :8080'));
+  " &
+  echo "==> Quiz PWA server started on port 8080"
+fi
+
 exec "$@"

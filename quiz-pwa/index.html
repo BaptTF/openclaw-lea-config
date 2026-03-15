@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e94560">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Quiz Road Trip">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>🧠 Quiz Road Trip</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #1a1a2e; color: #eee; padding: 12px;
+    max-width: 500px; margin: 0 auto;
+    -webkit-tap-highlight-color: transparent;
+  }
+  h1 { font-size: 1.3em; text-align: center; margin: 8px 0; }
+  .day-info { text-align: center; color: #aaa; font-size: 0.85em; margin-bottom: 12px; }
+  .question-card {
+    background: #16213e; border-radius: 12px; padding: 16px;
+    margin-bottom: 12px; border-left: 4px solid #e94560;
+  }
+  .q-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .q-number { color: #e94560; font-weight: bold; }
+  .q-level { font-size: 0.8em; }
+  .q-text { font-size: 1.05em; line-height: 1.4; margin-bottom: 12px; }
+  .q-options { list-style: none; }
+  .q-options li { 
+    background: #0f3460; padding: 10px 12px; border-radius: 8px;
+    margin-bottom: 6px; cursor: pointer; transition: all 0.2s;
+  }
+  .q-options li:active { transform: scale(0.98); }
+  .q-options li.correct { background: #1b8a2d !important; }
+  .q-options li.wrong { background: #8a1b1b !important; opacity: 0.6; }
+  .q-answer { 
+    display: none; background: #1b4a1b; border-radius: 8px;
+    padding: 12px; margin-top: 8px; font-size: 0.9em; line-height: 1.4;
+  }
+  .q-answer.show { display: block; }
+  .q-link { color: #4ecdc4; font-style: italic; margin-top: 6px; display: block; }
+  .players-title { font-size: 1em; margin-bottom: 8px; color: #e94560; text-align: center; }
+  .players-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+  .player-btn {
+    background: #16213e; border: 2px solid #0f3460; border-radius: 10px;
+    padding: 10px 6px; text-align: center; cursor: pointer;
+    transition: all 0.15s; user-select: none; -webkit-user-select: none;
+  }
+  .player-btn:active { transform: scale(0.95); background: #1b8a2d; border-color: #1b8a2d; }
+  .player-btn .name { font-size: 0.9em; font-weight: bold; }
+  .player-btn .score { font-size: 1.2em; margin-top: 2px; color: #4ecdc4; }
+  .player-btn .streak { font-size: 0.7em; color: #ffd93d; }
+  .controls { display: flex; gap: 8px; margin: 12px 0; }
+  .btn {
+    background: #e94560; border: none; color: white; padding: 10px 16px;
+    border-radius: 8px; font-size: 0.9em; cursor: pointer; flex: 1;
+    text-align: center;
+  }
+  .btn:active { opacity: 0.8; transform: scale(0.98); }
+  .btn.secondary { background: #0f3460; }
+  .btn.small { padding: 6px 10px; font-size: 0.8em; flex: none; }
+  .nobody-btn { text-align: center; margin-top: 4px; }
+  .hidden { display: none !important; }
+  .scoreboard { background: #16213e; border-radius: 12px; padding: 16px; margin-top: 12px; }
+  .score-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #0f3460; }
+  .score-row:last-child { border: none; }
+  .score-rank { width: 30px; font-size: 1.2em; }
+  .score-name { flex: 1; }
+  .score-pts { font-weight: bold; color: #4ecdc4; font-size: 1.1em; }
+  .popup {
+    position: fixed; top: 40%; left: 50%; transform: translate(-50%,-50%);
+    background: #1b8a2d; color: white; font-size: 1.5em; font-weight: bold;
+    padding: 16px 32px; border-radius: 16px; z-index: 100; pointer-events: none;
+    animation: pop 0.6s forwards;
+  }
+  @keyframes pop { 0%{opacity:0;scale:0.5} 30%{opacity:1;scale:1.1} 100%{opacity:0;scale:1;translate:0 -30px} }
+  .end-screen { text-align: center; padding: 20px; }
+  .end-screen h2 { margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<div id="game">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h1>🧠 Quiz Road Trip</h1>
+    <button class="btn small secondary" onclick="toggleScoreboard()">🏆</button>
+  </div>
+  <div class="day-info" id="day-info">5 questions sample — teste l'app !</div>
+
+  <div id="scoreboard-panel" class="hidden">
+    <div class="scoreboard" id="sb"></div>
+    <div class="controls"><button class="btn secondary" onclick="toggleScoreboard()">← Retour</button>
+    <button class="btn" onclick="resetScores()">🔄 Reset</button></div>
+  </div>
+
+  <div id="quiz-panel">
+    <div class="question-card">
+      <div class="q-header">
+        <span class="q-number" id="qnum"></span>
+        <span class="q-level" id="qlvl"></span>
+      </div>
+      <div class="q-text" id="qtxt"></div>
+      <ul class="q-options" id="qopts"></ul>
+      <div class="q-answer" id="qans"></div>
+    </div>
+
+    <div id="award" class="hidden">
+      <div class="players-title">✅ Qui a trouvé ?</div>
+      <div class="players-grid" id="pgrid"></div>
+      <div class="nobody-btn"><button class="btn small secondary" onclick="skip()">Personne 😅</button></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn secondary" id="revealBtn" onclick="reveal()">👁️ Révéler</button>
+      <button class="btn hidden" id="nextBtn" onclick="next()">➡️ Suivante</button>
+    </div>
+  </div>
+
+  <div id="endscreen" class="hidden end-screen">
+    <h2>🏆 Quiz terminé !</h2>
+    <div class="scoreboard" id="endsb"></div>
+    <div class="controls" style="margin-top:16px;">
+      <button class="btn" onclick="restart()">🔄 Rejouer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var P = [
+  {n:'René',s:0,k:0},{n:'Nicole',s:0,k:0},{n:'Alexandre',s:0,k:0},
+  {n:'Dinah',s:0,k:0},{n:'Laurine',s:0,k:0}
+];
+var LV = {
+  easy:{e:'⭐',l:'Facile',p:1,c:'#4ecdc4'},
+  medium:{e:'⭐⭐',l:'Moyen',p:2,c:'#ffd93d'},
+  expert:{e:'⭐⭐⭐',l:'Expert',p:3,c:'#e94560'},
+  wtaf:{e:'🤯',l:'WTAF',p:5,c:'#ff6b6b'},
+  cinema:{e:'🎬',l:'Ciné',p:2,c:'#a29bfe'}
+};
+var Q = [
+  {v:'easy',t:"Instagram a fait passer Horseshoe Bend de 100 000 à combien de visiteurs par an ?",
+   o:['500 000','1 million','2 millions','5 millions'],c:2,
+   x:"2 millions ! Le canyon n'a pas bougé d'un millimètre, mais il coûte maintenant 10$ l'entrée.",
+   k:"📍 On y sera cet après-midi à 16h"},
+  {v:'medium',t:"Quelle est la particularité de la \"Great Unconformity\" au Grand Canyon ?",
+   o:['Une faille sismique active',"1,2 milliard d'années de roches manquantes",'Le point le plus profond','Une grotte souterraine'],c:1,
+   x:"Entre le Vishnu Schist (1,7 Md d'années) et les strates au-dessus, il manque 1,2 milliard d'années. Personne ne sait pourquoi.",
+   k:"📍 On verra cette ligne au South Rim"},
+  {v:'expert',t:"Pourquoi le Navajo fry bread existe-t-il ?",
+   o:['Recette ancestrale millénaire','Inventé pendant la Longue Marche de 1864','Apporté par les colons espagnols','Créé pour les touristes en 1950'],c:1,
+   x:"En 1864, l'armée US a forcé 8000 Navajos à marcher 500 km. Ils n'avaient que farine, sucre et saindoux. Le fry bread est né de la survie.",
+   k:"📍 On pourra en goûter au Navajo Village"},
+  {v:'wtaf',t:"Combien de fois changes-tu d'heure en traversant 120 km d'autoroute en Arizona ?",
+   o:['0 fois','1 fois','2 fois','4 fois'],c:3,
+   x:"4 FOIS ! Arizona → Réserve Navajo → Réserve Hopi → Réserve Navajo → Arizona. Le chaos total.",
+   k:"📍 On vivra ce délire sur la route"},
+  {v:'cinema',t:"Dans quel film la scène finale est tournée à Dead Horse Point ?",
+   o:['Indiana Jones 3','Thelma & Louise','127 Hours','Mission Impossible 2'],c:1,
+   x:"Thelma & Louise (1991) — la Thunderbird plonge dans le vide. On sera au bord du MÊME précipice.",
+   k:"📍 Dead Horse Point, jour 12"}
+];
+var ci=0, shown=false;
+
+function render(){
+  if(ci>=Q.length){endGame();return}
+  var q=Q[ci],lv=LV[q.v];
+  shown=false;
+  document.getElementById('qnum').textContent='Question '+(ci+1)+'/'+Q.length;
+  document.getElementById('qlvl').textContent=lv.e+' '+lv.l+' — '+lv.p+'pt'+(lv.p>1?'s':'');
+  document.getElementById('qlvl').style.color=lv.c;
+  document.getElementById('qtxt').textContent=q.t;
+  var h='';for(var i=0;i<q.o.length;i++)h+='<li onclick="pick('+i+')" id="o'+i+'">'+String.fromCharCode(65+i)+') '+q.o[i]+'</li>';
+  document.getElementById('qopts').innerHTML=h;
+  document.getElementById('qans').className='q-answer';
+  document.getElementById('award').classList.add('hidden');
+  document.getElementById('revealBtn').classList.remove('hidden');
+  document.getElementById('nextBtn').classList.add('hidden');
+  document.getElementById('quiz-panel').classList.remove('hidden');
+  document.getElementById('endscreen').classList.add('hidden');
+}
+
+function pick(i){if(!shown)reveal(i)}
+
+function reveal(sel){
+  if(shown)return;shown=true;
+  var q=Q[ci];
+  for(var i=0;i<q.o.length;i++){
+    var el=document.getElementById('o'+i);
+    if(i===q.c)el.classList.add('correct');
+    else if(i===sel)el.classList.add('wrong');
+  }
+  var a=document.getElementById('qans');
+  a.innerHTML='💡 '+q.x+(q.k?'<span class="q-link">'+q.k+'</span>':'');
+  a.className='q-answer show';
+  document.getElementById('award').classList.remove('hidden');
+  document.getElementById('revealBtn').classList.add('hidden');
+  renderPlayers();
+}
+
+function renderPlayers(){
+  var q=Q[ci],lv=LV[q.v],h='';
+  for(var i=0;i<P.length;i++){
+    h+='<div class="player-btn" onclick="award('+i+')"><div class="name">'+P[i].n+'</div><div class="score">'+P[i].s+' pts</div>';
+    if(P[i].k>=2)h+='<div class="streak">🔥'+P[i].k+'</div>';
+    h+='</div>';
+  }
+  document.getElementById('pgrid').innerHTML=h;
+}
+
+function award(pi){
+  var q=Q[ci],lv=LV[q.v],p=P[pi];
+  p.s+=lv.p;p.k++;
+  var bonus='';
+  if(p.k===3){p.s+=2;bonus=' 🔥+2!';}
+  for(var i=0;i<P.length;i++)if(i!==pi)P[i].k=0;
+  popup(p.n+' +'+lv.p+'pt'+(lv.p>1?'s':'')+bonus);
+  renderPlayers();
+  setTimeout(function(){ci++;render()},900);
+}
+
+function skip(){
+  for(var i=0;i<P.length;i++)P[i].k=0;
+  ci++;render();
+}
+
+function next(){ci++;render();}
+
+function popup(t){
+  var d=document.createElement('div');d.className='popup';d.textContent=t;
+  document.body.appendChild(d);setTimeout(function(){d.remove()},700);
+}
+
+function toggleScoreboard(){
+  var sp=document.getElementById('scoreboard-panel');
+  var qp=document.getElementById('quiz-panel');
+  if(sp.classList.contains('hidden')){sp.classList.remove('hidden');qp.classList.add('hidden');renderSB('sb');}
+  else{sp.classList.add('hidden');qp.classList.remove('hidden');}
+}
+
+function renderSB(id){
+  var s=P.slice().sort(function(a,b){return b.s-a.s});
+  var r=['🥇','🥈','🥉','4️⃣','5️⃣'],h='';
+  for(var i=0;i<s.length;i++)h+='<div class="score-row"><span class="score-rank">'+(r[i]||'')+'</span><span class="score-name">'+s[i].n+'</span><span class="score-pts">'+s[i].s+' pts</span></div>';
+  document.getElementById(id).innerHTML=h;
+}
+
+function endGame(){
+  document.getElementById('quiz-panel').classList.add('hidden');
+  document.getElementById('endscreen').classList.remove('hidden');
+  renderSB('endsb');
+}
+
+function resetScores(){
+  if(!confirm('Remettre à zéro ?'))return;
+  for(var i=0;i<P.length;i++){P[i].s=0;P[i].k=0;}
+  ci=0;toggleScoreboard();render();
+}
+
+function restart(){
+  for(var i=0;i<P.length;i++){P[i].s=0;P[i].k=0;}
+  ci=0;render();
+}
+
+render();
+</script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}</script>
+</body>
+</html>

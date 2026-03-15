@@ -7,11 +7,14 @@ services:
       # - "18789:18789"
       # SSH access (optional, enable with OPENCLAW_SSH_ENABLED=true)
       - "22222:22"
+      # Quiz PWA (static files served by node)
+      - "8080:8080"
     volumes:
       - ./data:/home/node/.openclaw
       - ./ssh:/home/node/.ssh
       - ./litellm_config.yaml:/home/node/litellm/config.yaml
       - ./config:/home/node/.config
+      - ./quiz-pwa:/home/node/quiz-pwa:ro
     env_file:
       - .env
     environment:
