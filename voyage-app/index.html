@@ -223,6 +223,8 @@ pinInput.addEventListener('input', async function() {
   } else pinErr.textContent='';
 });
 
+function logout(){sessionStorage.clear();location.reload();}
+
 function unlock(){
   document.getElementById('auth').classList.add('hidden');
   document.getElementById('app').style.display='';
