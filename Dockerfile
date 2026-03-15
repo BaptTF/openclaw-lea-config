@@ -50,6 +50,14 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     uv tool install mcp-server-time --python-preference managed && \
     uv tool install mcp-server-fetch --python-preference managed
 
+# Install Mnemon - persistent memory for OpenClaw agents
+# renovate: datasource=github-releases depName=mnemon-dev/mnemon
+ARG MNEMON_VERSION=0.1.2
+RUN ARCH="$(dpkg --print-architecture)" && \
+    curl -fsSL "https://github.com/mnemon-dev/mnemon/releases/download/v${MNEMON_VERSION}/mnemon_${MNEMON_VERSION}_linux_${ARCH}.tar.gz" \
+      | tar -xz -C /usr/local/bin mnemon && \
+    chmod +x /usr/local/bin/mnemon
+
 # Install Playwright Chromium + system dependencies for headless browser
 # Enables OpenClaw browser tool (web scraping, JS-rendered pages, automation)
 RUN npx playwright install --with-deps chromium && \
