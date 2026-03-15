@@ -1,20 +1,43 @@
 services:
+  # ============================================
+  # TRAEFIK — Reverse proxy + SSL + Auth
+  # ============================================
+  traefik:
+    image: traefik:v3.3
+    container_name: traefik
+    restart: unless-stopped
+    command:
+      - --api.dashboard=false
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --certificatesresolvers.le.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.le.acme.email=${ACME_EMAIL:-rene.jullien@gmail.com}
+      - --certificatesresolvers.le.acme.storage=/letsencrypt/acme.json
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./letsencrypt:/letsencrypt
+
+  # ============================================
+  # OPENCLAW — Léa 🌙
+  # ============================================
   openclaw:
     image: ghcr.io/bapttf/openclaw-lea-config:latest
     container_name: openclaw
     restart: unless-stopped
     ports:
-      # - "18789:18789"
       # SSH access (optional, enable with OPENCLAW_SSH_ENABLED=true)
       - "22222:22"
-      # Quiz PWA (static files served by node)
-      - "8080:8080"
     volumes:
       - ./data:/home/node/.openclaw
       - ./ssh:/home/node/.ssh
       - ./litellm_config.yaml:/home/node/litellm/config.yaml
       - ./config:/home/node/.config
-      - ./quiz-pwa:/home/node/quiz-pwa:ro
     env_file:
       - .env
     environment:
@@ -23,6 +46,10 @@ services:
       - OPENCLAW_CONFIG_PATH=/home/node/.openclaw/lea/openclaw.json
     depends_on:
       - litellm
+
+  # ============================================
+  # LITELLM — LLM proxy (Bedrock)
+  # ============================================
   litellm:
     image: ghcr.io/berriai/litellm:main-latest
     container_name: litellm
@@ -30,3 +57,62 @@ services:
     volumes:
       - ./litellm_config.yaml:/app/config.yaml
     command: --config /app/config.yaml --port 4000 --num_workers 1
+
+  # ============================================
+  # QUIZ PWA — App Road Trip (offline-capable)
+  # ============================================
+  quiz-pwa:
+    image: nginx:alpine
+    container_name: quiz-pwa
+    restart: unless-stopped
+    volumes:
+      - ./quiz-pwa:/usr/share/nginx/html:ro
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.quiz.rule=Host(`${QUIZ_DOMAIN:-quiz.bapttf.com}`)
+      - traefik.http.routers.quiz.entrypoints=websecure
+      - traefik.http.routers.quiz.tls.certresolver=le
+      - traefik.http.services.quiz.loadbalancer.server.port=80
+
+  # ============================================
+  # POTAGER — Site Camille (GitHub OAuth)
+  # ============================================
+  potager:
+    image: nginx:alpine
+    container_name: potager
+    restart: unless-stopped
+    volumes:
+      - ./potager-site:/usr/share/nginx/html:ro
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.potager.rule=Host(`${POTAGER_DOMAIN:-potager.bapttf.com}`)
+      - traefik.http.routers.potager.entrypoints=websecure
+      - traefik.http.routers.potager.tls.certresolver=le
+      - traefik.http.services.potager.loadbalancer.server.port=80
+      # GitHub OAuth middleware
+      - traefik.http.routers.potager.middlewares=potager-auth
+      - traefik.http.middlewares.potager-auth.forwardauth.address=http://oauth2-proxy:4180/oauth2/auth
+      - traefik.http.middlewares.potager-auth.forwardauth.trustForwardHeader=true
+      - traefik.http.middlewares.potager-auth.forwardauth.authResponseHeaders=X-Auth-Request-User
+
+  oauth2-proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy:latest
+    container_name: oauth2-proxy
+    restart: unless-stopped
+    command:
+      - --provider=github
+      - --client-id=${GITHUB_OAUTH_CLIENT_ID}
+      - --client-secret=${GITHUB_OAUTH_CLIENT_SECRET}
+      - --cookie-secret=${OAUTH_COOKIE_SECRET}
+      - --github-user=rjullien,jlncamille,BaptTF,NicoleJ06
+      - --email-domain=*
+      - --upstream=static://200
+      - --http-address=0.0.0.0:4180
+      - --redirect-url=https://${POTAGER_DOMAIN:-potager.bapttf.com}/oauth2/callback
+      - --cookie-secure=true
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.oauth.rule=Host(`${POTAGER_DOMAIN:-potager.bapttf.com}`) && PathPrefix(`/oauth2/`)
+      - traefik.http.routers.oauth.entrypoints=websecure
+      - traefik.http.routers.oauth.tls.certresolver=le
+      - traefik.http.services.oauth.loadbalancer.server.port=4180
