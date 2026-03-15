@@ -83,7 +83,22 @@
 </head>
 <body>
 
-<div id="game">
+<!-- AUTH SCREEN -->
+<div id="auth">
+  <h1>🧠 Quiz Road Trip</h1>
+  <p style="color:#aaa;text-align:center;margin:20px 0;">Entrez le code pour accéder au quiz</p>
+  <div style="text-align:center;">
+    <input type="password" id="pin" placeholder="Code..." 
+           style="background:#0f3460;border:2px solid #16213e;color:#eee;padding:14px;border-radius:10px;font-size:1.2em;width:200px;text-align:center;"
+           onkeypress="if(event.key==='Enter')checkPin()">
+    <br><br>
+    <button class="btn" onclick="checkPin()" style="width:200px;">🔓 Entrer</button>
+    <p id="pin-error" style="color:#e94560;margin-top:10px;display:none;">Code incorrect !</p>
+  </div>
+  <p style="color:#444;text-align:center;margin-top:40px;font-size:0.7em;">Le code sera donné le jour J dans la voiture 😏</p>
+</div>
+
+<div id="game" class="hidden">
   <div style="display:flex; justify-content:space-between; align-items:center;">
     <h1>🧠 Quiz Road Trip</h1>
     <button class="btn small secondary" onclick="toggleScoreboard()">🏆</button>
@@ -127,6 +142,31 @@
     </div>
   </div>
 </div>
+
+<script>
+// Auth - PIN code (hashed, not plaintext)
+// Change this hash to change the PIN. Default: "2026"
+var PIN_HASH = '4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5';
+function sha256(s){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(b=>Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join(''));}
+function checkPin(){
+  var v=document.getElementById('pin').value;
+  sha256(v).then(function(h){
+    if(h===PIN_HASH){
+      document.getElementById('auth').classList.add('hidden');
+      document.getElementById('game').classList.remove('hidden');
+      sessionStorage.setItem('quizAuth','1');
+    } else {
+      document.getElementById('pin-error').style.display='block';
+      document.getElementById('pin').value='';
+    }
+  });
+}
+// Auto-login if already authenticated this session
+if(sessionStorage.getItem('quizAuth')==='1'){
+  document.getElementById('auth').classList.add('hidden');
+  document.getElementById('game').classList.remove('hidden');
+}
+</script>
 
 <script>
 var P = [
