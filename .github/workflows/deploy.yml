@@ -58,15 +58,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha # Utilise le cache de GitHub Actions pour aller plus vite
           cache-to: type=gha,mode=max
-
-  trigger-deploy:
-    # Ce job ne s'exécute que si le build est passé ET que nous sommes sur la branche master
-    needs: build-and-push
-    if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger VPS Webhook
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-          -d '{"secret": "${{ secrets.WEBHOOK_SECRET }}"}' \
-          ${{ secrets.WEBHOOK_URL }}
