@@ -7,6 +7,10 @@ RUN apt-get update && \
 
 FROM platformatic/node-caged:25
 
+# Create node user (not included in node-caged base image unlike official node:*)
+RUN groupadd --gid 1000 node && \
+    useradd --uid 1000 --gid node --shell /bin/bash --create-home node
+
 # Install openssh-server and GitHub CLI (gh)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends tini openssh-server && \
