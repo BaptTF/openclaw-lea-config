@@ -5,7 +5,7 @@ RUN apt-get update && \
     cargo install himalaya --locked --features oauth2 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-FROM platformatic/node-caged:24
+FROM platformatic/node-caged:25
 
 # Install openssh-server and GitHub CLI (gh)
 RUN apt-get update && \
