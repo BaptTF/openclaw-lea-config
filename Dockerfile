@@ -5,11 +5,11 @@ RUN apt-get update && \
     cargo install himalaya --locked --features oauth2 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-FROM node:24
+FROM platformatic/node-caged:24
 
-# Install supervisor, openssh-server and GitHub CLI (gh)
+# Install openssh-server and GitHub CLI (gh)
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends supervisor openssh-server && \
+    apt-get install -y --no-install-recommends tini openssh-server && \
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
       -o /usr/share/keyrings/githubcli-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
@@ -58,8 +58,7 @@ RUN npx playwright install --with-deps chromium && \
 # Copy Himalaya binary with OAuth2 support from builder stage
 COPY --from=himalaya-builder /usr/local/cargo/bin/himalaya /usr/local/bin/himalaya
 
-# Add supervisord config and entrypoint script
-COPY docker/supervisord.conf /etc/supervisor/conf.d/openclaw.conf
+# Add entrypoint script
 COPY docker/entrypoint.sh /entrypoint.sh
 COPY docker/patch-config.js /patch-config.js
 RUN chmod +x /entrypoint.sh
@@ -74,5 +73,5 @@ RUN chmod +x /setup-ssh.sh
 
 EXPOSE 18789 18790 22
 
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["supervisord", "-n", "-c", "/etc/supervisor/conf.d/openclaw.conf"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/entrypoint.sh"]
+CMD ["openclaw-gateway"]
