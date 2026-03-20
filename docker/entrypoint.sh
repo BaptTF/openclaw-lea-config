@@ -6,19 +6,8 @@ trap 'echo "Error on line $LINENO: $BASH_COMMAND" >&2' ERR
 if [ "${OPENCLAW_SSH_ENABLED:-false}" = "true" ]; then
   if [ "$(id -u)" = "0" ]; then
     /setup-ssh.sh
-
-    # Add sshd to supervisord config
-    cat >> /etc/supervisor/conf.d/openclaw.conf <<'EOF'
-
-[program:sshd]
-command=/usr/sbin/sshd -D -e
-autostart=true
-autorestart=true
-stdout_logfile=/dev/stdout
-stdout_logfile_maxbytes=0
-stderr_logfile=/dev/stderr
-stderr_logfile_maxbytes=0
-EOF
+    # Start sshd in background (tini will reap zombies)
+    /usr/sbin/sshd -D -e &
   else
     echo "Warning: SSH enabled but not running as root, skipping SSH setup" >&2
   fi
@@ -52,8 +41,6 @@ else
   if [ -z "${OPENCLAW_GATEWAY_TOKEN:-}" ]; then
     OPENCLAW_GATEWAY_TOKEN="$(
       openssl rand -hex 32 2>/dev/null \
-        || python3 -c 'import secrets; print(secrets.token_hex(32))' 2>/dev/null \
-        || python  -c 'import secrets; print(secrets.token_hex(32))' 2>/dev/null \
         || (head -c 32 /dev/urandom | od -An -tx1 | tr -d ' \n')
     )"
     export OPENCLAW_GATEWAY_TOKEN
@@ -148,4 +135,13 @@ if [ ! -f "$CONFIG_FILE" ] && [ "${OPENCLAW_SKIP_ONBOARD:-false}" != "true" ]; t
   fi
 fi
 
-exec "$@"
+# Build gateway command
+GATEWAY_CMD=(openclaw gateway --bind "$OPENCLAW_GATEWAY_BIND" --port "$OPENCLAW_GATEWAY_PORT")
+if [ "$GATEWAY_AUTH_MODE" = "password" ]; then
+  GATEWAY_CMD+=(--auth password --password "$OPENCLAW_GATEWAY_PASSWORD")
+else
+  GATEWAY_CMD+=(--token "$OPENCLAW_GATEWAY_TOKEN")
+fi
+
+# Run gateway as node user (PID 1 via exec, tini handles signals)
+exec runuser -u node -- "${GATEWAY_CMD[@]}"
