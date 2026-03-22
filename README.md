@@ -1,236 +1,110 @@
-# OpenClaw All-in-One Docker 🦞
+# OpenClaw Léa — Docker Image 🌙
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/fourplayers/openclaw.svg?maxAge=604800)](https://hub.docker.com/r/fourplayers/openclaw/)
+Custom Docker image for **Léa**, an OpenClaw AI assistant running 24/7 on a Kubernetes cluster.
 
-A ready-to-deploy Docker image for [OpenClaw](https://github.com/openclaw/openclaw), the powerful open-source AI assistant that brings Claude and GPT to your favorite messaging apps. Built for [ODIN Fleet](https://odin.4players.io/fleet/) and any Docker-compatible platform.
+## Architecture
 
-**Features:**
-- Zero-config startup — auto-configures on first run
-- HTTPS support with auto-generated or custom certificates
-- Supports Anthropic and OpenAI APIs
-- Connect WhatsApp, Telegram, Discord, Slack, and more
-- Persistent storage for seamless container restarts
+```
+BaptTF/vps-infra                    ← K8s cluster (deployment, PVC, secrets)
+  └── workloads/openclaw/
+BaptTF/openclaw-lea-config          ← This repo (Docker image)
+rjullien/openclaw-leo               ← Léa's config (workspace, memory, openclaw.json)
+```
 
-## Quick Start
+**This repo** = the Docker image only (system dependencies, tools, entrypoint).  
+All runtime config, memory, and workspace files live in `/home` (persistent volume).
+
+## What's in the image
+
+| Component | Purpose |
+|-----------|---------|
+| [OpenClaw](https://github.com/openclaw/openclaw) | AI assistant gateway |
+| [Playwright](https://playwright.dev/) + Chromium | Headless browser (web scraping, automation) |
+| [Himalaya](https://github.com/pimalaya/himalaya) | CLI email client (IMAP/SMTP with OAuth2) |
+| [GitHub CLI](https://cli.github.com/) (gh) | GitHub operations (PRs, issues, API) |
+| [mcporter](https://github.com/nicholasgasior/mcporter) | MCP server manager |
+| [uv](https://github.com/astral-sh/uv) | Python package manager |
+| [poppler-utils](https://poppler.freedesktop.org/) | PDF text extraction (pdftotext) |
+| [tini](https://github.com/krallin/tini) | Init process (PID 1, signal handling) |
+| OpenSSH server | Remote SSH access |
+
+### Pre-installed MCP servers (npm)
+
+- `@modelcontextprotocol/server-brave-search`
+- `server-perplexity-ask`
+- `@modelcontextprotocol/server-sequential-thinking`
+- `@zengwenliang/mcp-server-sequential-thinking`
+- `@modelcontextprotocol/server-filesystem`
+- `@modelcontextprotocol/server-memory`
+- `@upstash/context7-mcp`
+- `open-meteo-mcp-server`
+
+### Pre-installed MCP servers (Python via uv)
+
+- `osm-mcp-server` — OpenStreetMap
+- `mcp-server-time` — Time/timezone
+- `mcp-server-fetch` — URL fetching
+
+## Runtime-installed tools (persistent in /home)
+
+These tools are installed by Léa at first boot and persist across rebuilds via the `/home` volume:
+
+| Tool | Install command | Purpose |
+|------|----------------|---------|
+| [ACE framework](https://github.com/kayba-ai/ace) | `uv tool install ace-framework` | Agent learning from session traces |
+| [Mnemon](https://github.com/nicholasgasior/mnemon) | Binary in `~/bin/` | Cross-session semantic memory (SQLite) |
+| [mcp-gsuite](https://github.com/nicholasgasior/mcp-gsuite) | Via mcporter config | Google Calendar + Gmail access |
+
+## Data persistence
+
+`/home` is mounted as a PersistentVolumeClaim. Everything under `/home/node/` survives container rebuilds:
+
+```
+/home/node/
+├── .openclaw/lea/          ← OpenClaw config + workspace (openclaw-leo repo)
+│   ├── openclaw.json       ← Main config file
+│   └── workspace/          ← Memory, skills, scripts
+├── .cache/ms-playwright/   ← Chromium binary (+ proxy wrapper)
+├── .local/share/uv/        ← Python tools (ACE, MCP servers)
+├── .ssh/                   ← Deploy keys
+├── .config/                ← gh CLI, mcporter config
+└── bin/                    ← Custom scripts (gtasks, fix-chrome-proxy.sh)
+```
+
+## Ports
+
+| Port | Service |
+|------|---------|
+| 18789 | OpenClaw gateway (HTTP + WebSocket) |
+| 18790 | OpenClaw browser CDP proxy |
+| 22 | SSH server |
+
+## Health check
 
 ```bash
-# 1. Configure
-cp .env.example .env
-# Edit .env: set your API key and gateway auth (password or token)
-
-# 2. Build & start
-docker compose up -d --build
-
-# 3. Access Control UI
-# With password: https://localhost:18789 (enter password when prompted)
-# With token: https://localhost:18789/?token=YOUR_TOKEN
+curl http://localhost:18789/health
+# → 200 OK
 ```
 
-## Memory Search (Embeddings)
+K8s liveness/readiness probes should target `GET /health` on port `18789`.
 
-OpenClaw supports semantic memory search over `MEMORY.md` and `memory/*.md` files. To enable it, you need an embedding model accessible via LiteLLM.
-
-**Setup with Amazon Titan Embed V2 (Bedrock):**
-
-1. Add the embedding model to `litellm_config.yaml` (see `litellm_config.example.yaml`):
-   ```yaml
-   - model_name: titan-embed-v2
-     litellm_params:
-       model: bedrock/amazon.titan-embed-text-v2:0
-       aws_region_name: us-west-2
-       aws_access_key_id: YOUR_AWS_ACCESS_KEY
-       aws_secret_access_key: YOUR_AWS_SECRET_KEY
-   ```
-
-2. Configure OpenClaw's `openclaw.json` to use the embedding model:
-   ```json
-   {
-     "memory": { "backend": "builtin" },
-     "agents": {
-       "defaults": {
-         "memorySearch": {
-           "provider": "openai",
-           "model": "titan-embed-v2",
-           "remote": {
-             "baseUrl": "http://litellm:4000/v1/",
-             "apiKey": "sk-your-litellm-key"
-           }
-         }
-       }
-     }
-   }
-   ```
-
-3. Restart both containers:
-   ```bash
-   docker compose restart litellm openclaw
-   ```
-
-**Cost:** Amazon Titan Embed V2 costs ~$0.00011 per 1K tokens — virtually free for personal memory (~$0.01/month).
-
-## Data Persistence
-
-OpenClaw stores all configuration and state in `/home/node/.openclaw` inside the container. **This directory must be mounted as a volume to prevent data loss** when the container is recreated.
-
-```yaml
-volumes:
-  - ./data:/home/node/.openclaw
-```
-
-This folder contains:
-- `openclaw.json` — main configuration (gateway settings, API keys, TLS config)
-- Channel credentials (WhatsApp sessions, bot tokens, etc.)
-- Auto-generated TLS certificates (if enabled)
-
-## Environment Variables
-
-| Variable                       | Purpose                          | Default        |
-| ------------------------------ | -------------------------------- | -------------- |
-| `OPENCLAW_GATEWAY_HOST`        | Gateway public IP/FQDN           | `localhost`    |
-| `OPENCLAW_GATEWAY_PORT`        | Gateway port                     | `18789`        |
-| `OPENCLAW_GATEWAY_PASSWORD`    | Gateway password (user-friendly) | -              |
-| `OPENCLAW_GATEWAY_TOKEN`       | Gateway token (machine-friendly) | Auto-generated |
-| `ANTHROPIC_API_KEY`            | Anthropic API key                | -              |
-| `OPENAI_API_KEY`               | OpenAI API key                   | -              |
-| `OPENCLAW_AUTH_CHOICE`         | Auth provider if no API key      | `skip`         |
-| `OPENCLAW_TLS_ENABLED`         | Enable HTTPS                     | `false`        |
-| `OPENCLAW_SKIP_ONBOARD`        | Skip auto-setup (for OAuth)      | `false`        |
-| `OPENCLAW_MODEL`               | AI model to use                  | Auto-detected  |
-| `OPENCLAW_SSH_ENABLED`         | Enable SSH server                | `false`        |
-| `OPENCLAW_SSH_PORT`            | SSH server port                  | `22`           |
-| `OPENCLAW_SSH_AUTHORIZED_KEYS` | SSH public keys (one per line)   | -              |
-
-> **Auth modes:** Set `OPENCLAW_GATEWAY_PASSWORD` for password auth, or `OPENCLAW_GATEWAY_TOKEN` for token auth. If neither is set, a token is auto-generated and printed in the logs.
-
-## TLS / HTTPS
-
-Set `OPENCLAW_TLS_ENABLED=true` to enable HTTPS with an auto-generated self-signed certificate.
-
-**Custom certificates (mounted):**
-
-```yaml
-volumes:
-  - ./certs/cert.pem:/certs/cert.pem:ro
-  - ./certs/key.pem:/certs/key.pem:ro
-```
-
-**Docker Secrets:**
-
-```yaml
-secrets:
-  - tls_cert
-  - tls_key
-```
-
-**Disable TLS:**
-
-```yaml
-environment:
-  - OPENCLAW_TLS_ENABLED=false
-```
-
-## SSH Access
-
-Enable SSH for remote access and debugging. Uses public key authentication only (no passwords).
-
-```yaml
-environment:
-  - OPENCLAW_SSH_ENABLED=true
-  - OPENCLAW_SSH_AUTHORIZED_KEYS=ssh-ed25519 AAAA... user@host
-ports:
-  - "2222:22"
-```
-
-**Multiple keys (via environment):**
-
-```yaml
-environment:
-  - OPENCLAW_SSH_ENABLED=true
-  - |
-    OPENCLAW_SSH_AUTHORIZED_KEYS=
-    ssh-ed25519 AAAA... user1@host
-    ssh-rsa AAAA... user2@host
-```
-
-**Via mounted file:**
-
-```yaml
-volumes:
-  - ./authorized_keys:/ssh/authorized_keys:ro
-```
-
-**Via Docker secret:**
-
-```yaml
-secrets:
-  - ssh_authorized_keys
-```
-
-Then connect: `ssh -p 2222 node@<host>`
-
-## OAuth (Claude.ai / Codex)
+## Building
 
 ```bash
-# 1. Interactive setup
-docker compose run --rm openclaw openclaw onboard
-
-# 2. Set OPENCLAW_SKIP_ONBOARD=true in .env
-
-# 3. Start
-docker compose up -d
+docker build -t openclaw-lea .
 ```
 
-## Adding Channels
+The image is automatically built by GitHub Actions on push to `master` and published to `ghcr.io/bapttf/openclaw-lea-config`.
 
-```bash
-# WhatsApp (shows QR code)
-docker compose exec -it openclaw openclaw channels login --channel whatsapp
+## Environment variables
 
-# Telegram
-docker compose exec openclaw openclaw channels add --channel telegram --token <BOT_TOKEN>
+Configured via K8s secrets (`openclaw-secret`) and deployment env:
 
-# Discord
-docker compose exec openclaw openclaw channels add --channel discord --token <BOT_TOKEN>
+| Variable | Purpose |
+|----------|---------|
+| `OPENCLAW_CONFIG_PATH` | Path to openclaw.json (`/home/node/.openclaw/lea/openclaw.json`) |
+| `OPENCLAW_SSH_ENABLED` | Enable SSH server (`true`) |
+| `OPENCLAW_SSH_PORT` | SSH port (`22`) |
+| `NODE_OPTIONS` | Node.js memory settings (`--max-old-space-size=1280`) |
 
-# Slack
-docker compose exec openclaw openclaw channels add --channel slack --bot-token <xoxb-...> --app-token <xapp-...>
-```
-
-## CLI
-
-```bash
-docker compose exec openclaw openclaw health
-docker compose exec openclaw openclaw channels list
-docker compose exec openclaw openclaw <command>
-```
-
-## Updating
-
-```bash
-docker compose pull
-docker compose up -d
-```
-
-Or rebuild from source:
-
-```bash
-docker compose build --no-cache
-docker compose up -d
-```
-
-## Troubleshooting
-
-```bash
-docker compose logs -f                 # View logs
-rm -rf ./data && docker compose up -d  # Reset and re-run setup
-```
-
-**Permission denied on `./data` directory:**
-
-If you see `EACCES: permission denied` errors for `/home/node/.openclaw/openclaw.json`, fix the data directory permissions:
-
-```bash
-sudo chown -R 1000:1000 ./data
-```
-
-The `node` user inside the container has UID 1000. This is common on Linux hosts where Docker creates the directory as root.
+API keys and channel tokens are in the K8s secret, not in the image.

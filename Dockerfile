@@ -60,10 +60,6 @@ RUN npx playwright install --with-deps chromium && \
     ln -s $(find /root/.cache/ms-playwright -name chrome -type f | head -1) /usr/bin/chromium && \
     rm -rf /tmp/*
 
-# Install ACE framework (agent learning from session traces)
-# Custom scripts + skillbook live in /home/node (persistent volume)
-RUN uv tool install ace-framework --python-preference managed
-
 # Copy Himalaya binary with OAuth2 support from builder stage
 COPY --from=himalaya-builder /usr/local/cargo/bin/himalaya /usr/local/bin/himalaya
 
