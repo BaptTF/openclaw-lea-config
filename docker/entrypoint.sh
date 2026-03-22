@@ -135,6 +135,14 @@ if [ ! -f "$CONFIG_FILE" ] && [ "${OPENCLAW_SKIP_ONBOARD:-false}" != "true" ]; t
   fi
 fi
 
+# Run post-rebuild init script from persistent volume (if it exists)
+# This handles: Chrome proxy wrapper, symlinks, mcporter daemon, etc.
+POST_REBUILD_SCRIPT="$HOME/.openclaw/lea/workspace/bin/post-rebuild-init.sh"
+if [ -x "$POST_REBUILD_SCRIPT" ]; then
+  echo "==> Running post-rebuild init..."
+  runuser -u node -- "$POST_REBUILD_SCRIPT" || echo "Warning: post-rebuild init failed" >&2
+fi
+
 # Build gateway command
 GATEWAY_CMD=(openclaw gateway --bind "$OPENCLAW_GATEWAY_BIND" --port "$OPENCLAW_GATEWAY_PORT")
 if [ "$GATEWAY_AUTH_MODE" = "password" ]; then
