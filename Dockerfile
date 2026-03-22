@@ -11,9 +11,9 @@ FROM platformatic/node-caged:25
 RUN groupadd --gid 1000 node && \
     useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-# Install openssh-server and GitHub CLI (gh)
+# Install openssh-server, GitHub CLI (gh) and poppler-utils (pdftotext)
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends tini openssh-server && \
+    apt-get install -y --no-install-recommends tini openssh-server poppler-utils && \
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
       -o /usr/share/keyrings/githubcli-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
