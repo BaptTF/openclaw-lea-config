@@ -33,7 +33,21 @@ AllowUsers $SSH_USER
 X11Forwarding no
 EOF
 
-# Generate host keys if they don't exist
+# Persist host keys in /home so they survive container rebuilds
+# (prevents SSH "REMOTE HOST IDENTIFICATION HAS CHANGED" warnings)
+PERSISTENT_HOST_KEYS="/home/node/.ssh/host_keys"
+mkdir -p "$PERSISTENT_HOST_KEYS"
+
+# If we have persisted keys from a previous run, restore them
+if ls "$PERSISTENT_HOST_KEYS"/ssh_host_* &>/dev/null; then
+  cp "$PERSISTENT_HOST_KEYS"/ssh_host_* /etc/ssh/
+  echo "==> Restored SSH host keys from persistent storage"
+fi
+
+# Generate host keys if they don't exist (first boot only)
 ssh-keygen -A
+
+# Persist newly generated keys back to /home
+cp /etc/ssh/ssh_host_* "$PERSISTENT_HOST_KEYS/"
 
 echo "==> SSH server configured on port $SSH_PORT for user $SSH_USER"
