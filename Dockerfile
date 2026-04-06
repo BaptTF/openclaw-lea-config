@@ -39,6 +39,14 @@ RUN npm install -g \
     @upstash/context7-mcp \
     open-meteo-mcp-server
 
+# Install QMD-Go (hybrid search engine for agent memory)
+# Single binary, no CGO, no native deps. Uses Bifrost/Titan for embeddings.
+# https://github.com/alexei-led/qmd-go
+ARG QMD_VERSION=v0.0.1
+RUN curl -fsSL -o /usr/local/bin/qmd \
+      "https://github.com/alexei-led/qmd-go/releases/download/${QMD_VERSION}/qmd-linux-amd64" && \
+    chmod +x /usr/local/bin/qmd
+
 # Environment setup — set HOME before uv tool install so Python-based
 # MCP servers install into /home/node/.local/bin (survives container rebuild
 # when /home/node is a mounted volume)
