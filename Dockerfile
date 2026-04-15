@@ -19,6 +19,18 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     mkdir -p /run/sshd
 
+# Install Go toolchain + C compiler (needed for CGo/SQLite)
+ARG GO_VERSION=1.24.3
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends build-essential && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    curl -fsSL https://go.dev/dl/go${GO_VERSION}.linux-$(dpkg --print-architecture).tar.gz \
+      | tar -C /usr/local -xzf - && \
+    ln -s /usr/local/go/bin/go /usr/local/bin/go && \
+    ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
+ENV GOPATH=/home/node/go
+ENV PATH="${GOPATH}/bin:/usr/local/go/bin:${PATH}"
+
 # Install OpenClaw and mcporter globally from npm
 # renovate: datasource=npm depName=openclaw
 ARG OPENCLAW_VERSION=2026.3.2
