@@ -37,7 +37,7 @@ ENV PATH="${GOPATH}/bin:/usr/local/go/bin:${PATH}"
 
 # Install OpenClaw and mcporter globally from npm
 # renovate: datasource=npm depName=openclaw
-ARG OPENCLAW_VERSION=2026.4.9
+ARG OPENCLAW_VERSION=2026.4.27
 RUN npm install -g openclaw@${OPENCLAW_VERSION} && npm install -g mcporter@latest
 
 # Pre-install MCP server packages (used by mcporter)
