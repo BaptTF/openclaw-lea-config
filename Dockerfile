@@ -5,7 +5,7 @@ RUN apt-get update && \
     cargo install himalaya --locked --features oauth2 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-FROM platformatic/node-caged:25
+FROM platformatic/node-caged:26
 
 # Create node user (not included in node-caged base image unlike official node:*)
 RUN groupadd --gid 1000 node && \
