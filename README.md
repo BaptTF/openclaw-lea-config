@@ -20,7 +20,6 @@ All runtime config, memory, and workspace files live in `/home` (persistent volu
 |-----------|---------|
 | [OpenClaw](https://github.com/openclaw/openclaw) | AI assistant gateway |
 | [Playwright](https://playwright.dev/) + Chromium | Headless browser (web scraping, automation) |
-| [Himalaya](https://github.com/pimalaya/himalaya) | CLI email client (IMAP/SMTP with OAuth2) |
 | [GitHub CLI](https://cli.github.com/) (gh) | GitHub operations (PRs, issues, API) |
 | [mcporter](https://github.com/nicholasgasior/mcporter) | MCP server manager |
 | [uv](https://github.com/astral-sh/uv) | Python package manager |

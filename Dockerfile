@@ -1,10 +1,3 @@
-# Build Himalaya with OAuth2 support (pre-built binaries don't include it)
-FROM rust:1-bookworm AS himalaya-builder
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends pkg-config libssl-dev && \
-    cargo install himalaya --locked --features oauth2 && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
 FROM platformatic/node-caged:25
 
 # Create node user (not included in node-caged base image unlike official node:*)
@@ -71,9 +64,6 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
 RUN npx playwright install --with-deps chromium && \
     ln -s $(find /root/.cache/ms-playwright -name chrome -type f | head -1) /usr/bin/chromium && \
     rm -rf /tmp/*
-
-# Copy Himalaya binary with OAuth2 support from builder stage
-COPY --from=himalaya-builder /usr/local/cargo/bin/himalaya /usr/local/bin/himalaya
 
 # Add entrypoint script
 COPY docker/entrypoint.sh /entrypoint.sh
